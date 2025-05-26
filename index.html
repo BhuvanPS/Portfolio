@@ -95,6 +95,74 @@
         .fa-icon-skill {
             font-size: 48px; /* For skill cards */
         }
+
+        /* Micro-interactions */
+
+        /* Button Active State */
+        .btn-primary:active {
+            transform: scale(0.98) translateY(0); /* Slightly smaller on press */
+            background-color: var(--tw-indigo-800, #3730a3); /* Darker shade of indigo */
+            box-shadow: none;
+        }
+        .dark .btn-primary:active {
+            background-color: var(--tw-indigo-700, #4f46e5); /* Darker shade for dark mode */
+        }
+
+        /* Nav Link Underline Effect */
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: currentColor; /* Inherits color from parent */
+            transition: width 0.3s ease-out;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .nav-link:hover {
+            transform: scale(1.02); /* Subtle text size increase */
+            transition: transform 0.2s ease-out;
+        }
+
+        /* Skill Card Icon Hover Effect */
+        .skill-card-icon {
+            transition: color 0.3s ease-out, transform 0.3s ease-out;
+        }
+        .skill-card:hover .skill-card-icon {
+            color: var(--tw-indigo-500, #6366f1); /* Change icon color on hover */
+            transform: rotate(5deg); /* Subtle rotation */
+        }
+        .dark .skill-card:hover .skill-card-icon {
+            color: var(--tw-indigo-300, #a5b4fc);
+        }
+
+        /* Form Input Focus Border */
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--tw-indigo-500, #6366f1);
+            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.5); /* Custom focus ring */
+        }
+
+        /* Back to Top Button Animation */
+        #backToTopBtn {
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+            transform: translateY(20px) rotate(-90deg); /* Initial state for appearance animation */
+            opacity: 0;
+        }
+        #backToTopBtn.show {
+            transform: translateY(0) rotate(0deg);
+            opacity: 1;
+        }
+        #backToTopBtn:hover {
+            transform: translateY(0) rotate(15deg) scale(1.1); /* Subtle hover rotation and scale */
+        }
     </style>
 </head>
 <body class="min-h-screen bg-gray-50 dark:bg-gray-950 font-sans text-gray-800 dark:text-gray-200 antialiased transition-colors duration-500">
@@ -157,7 +225,7 @@
                 A passionate <span class="font-semibold">Data Scientist & Mobile App Developer</span> creating <span class="font-semibold">impactful software solutions and data-driven insights</span>.
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-6 animate-fade-in-up animation-delay-1000">
-                <button data-section="projects" class="scroll-button rounded-full bg-white px-10 py-4 text-lg font-semibold text-indigo-700 shadow-xl transition-all duration-300 hover:scale-105 hover:bg-gray-100 transform hover:-translate-y-1">
+                <button data-section="projects" class="scroll-button btn-primary rounded-full bg-white px-10 py-4 text-lg font-semibold text-indigo-700 shadow-xl transition-all duration-300 hover:scale-105 hover:bg-gray-100 transform hover:-translate-y-1">
                     View My Work
                 </button>
                 <a
@@ -173,8 +241,8 @@
 
     <section id="about" class="bg-white dark:bg-gray-900 py-20 md:py-24 transition-colors duration-500">
         <div class="container mx-auto px-4 max-w-6xl">
-            <h2 class="mb-16 text-center text-4xl md:text-5xl font-bold text-indigo-700 dark:text-indigo-400 animate-fade-in-down">About Me</h2>
-            <div class="text-lg leading-relaxed text-gray-700 dark:text-gray-300 animate-fade-in-left mb-12">
+            <h2 class="mb-16 text-center text-4xl md:text-5xl font-bold text-indigo-700 dark:text-indigo-400">About Me</h2>
+            <div class="text-lg leading-relaxed text-gray-700 dark:text-gray-300 mb-12">
                 <p class="mb-6">
                     Hello! I'm <span class="font-semibold">Bhuvan Purushothaman Subramani</span>, a motivated Computer Science graduate with a B.Tech (Honors) and a current Master's in Data Science from Deakin University. I possess strong expertise in Data Structures, SQL, and Firebase.
                 </p>
@@ -185,13 +253,13 @@
                     My commitment extends to continuous improvement by staying updated with the latest industry trends and technologies, and prioritizing the development of strong interpersonal skills to collaborate effectively in diverse team environments.
                 </p>
                 <div class="mt-12 text-center md:text-left">
-                    <button data-section="projects" class="scroll-button rounded-full bg-indigo-600 dark:bg-indigo-500 px-8 py-3 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-indigo-700 dark:hover:bg-indigo-600 transform hover:-translate-y-1">
+                    <button data-section="projects" class="scroll-button btn-primary rounded-full bg-indigo-600 dark:bg-indigo-500 px-8 py-3 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-indigo-700 dark:hover:bg-indigo-600 transform hover:-translate-y-1">
                         Explore My Projects
                     </button>
                 </div>
             </div>
 
-            <div class="w-full space-y-10 animate-fade-in-right">
+            <div class="w-full space-y-10">
                 <h3 class="text-3xl font-bold text-indigo-700 dark:text-indigo-400 text-center mb-8">My Journey</h3>
                 <div class="group bg-gray-50 dark:bg-gray-800 rounded-xl p-8 shadow-xl border border-gray-200 dark:border-gray-700 transform transition-all duration-300 hover:scale-[1.01] hover:shadow-2xl hover:border-indigo-500">
                     <div class="flex items-center mb-6">
@@ -207,7 +275,7 @@
                         <li class="border-l-4 border-indigo-500 pl-4 py-2">
                             <h5 class="text-xl font-semibold text-gray-800 dark:text-gray-200">Flutter Development Intern <span class="text-gray-600 dark:text-gray-400 text-sm ml-2">01/2024 – 05/2024</span></h5>
                             <p class="text-md font-medium text-indigo-700 dark:text-indigo-400 mb-1">CUROWEBS, COIMBATORE INDIA</p>
-                            <p class="text-gray-700 dark:text-gray-300 text-sm">Designed, developed, and launched C-Meds, an AI powered medication reminder app, on the Google Play Store, achieving significant downloads. Implemented key features such as custom reminders, medication tracking, and high-accuracy auto prescription scanner, reducing prescription entry time by 90%. Co-ordinated and conducted testing with the QA team to ensure high app performance and reliability across devices.</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm">Design, developed, and launched C-Meds, an AI powered medication reminder app, on the Google Play Store, achieving significant downloads. Implemented key features such as custom reminders, medication tracking, and high-accuracy auto prescription scanner, reducing prescription entry time by 90%. Co-ordinated and conducted testing with the QA team to ensure high app performance and reliability across devices.</p>
                         </li>
                         <li class="border-l-4 border-indigo-500 pl-4 py-2">
                             <h5 class="text-xl font-semibold text-gray-800 dark:text-gray-200">Technical Coordinator <span class="text-gray-600 dark:text-gray-400 text-sm ml-2">07/2023 – 12/2023</span></h5>
@@ -274,9 +342,9 @@
 
     <section id="skills" class="bg-gray-100 dark:bg-gray-900 py-20 md:py-24 transition-colors duration-500">
         <div class="container mx-auto px-4 max-w-6xl">
-            <h2 class="mb-16 text-center text-4xl md:text-5xl font-bold text-indigo-700 dark:text-indigo-400 animate-fade-in-down">My Skills</h2>
+            <h2 class="mb-16 text-center text-4xl md:text-5xl font-bold text-indigo-700 dark:text-indigo-400">My Skills</h2>
 
-            <div class="mb-16 animate-fade-in-up">
+            <div class="mb-16">
                 <h3 class="text-3xl font-bold text-gray-800 dark:text-gray-200 text-center mb-10 flex items-center justify-center">
                     <i class="fa-solid fa-code fa-icon-large mr-3 text-indigo-600 dark:text-indigo-400"></i>
                     Languages & Frameworks
@@ -285,7 +353,7 @@
                     </div>
             </div>
 
-            <div class="mb-16 animate-fade-in-up animation-delay-200">
+            <div class="mb-16">
                 <h3 class="text-3xl font-bold text-gray-800 dark:text-gray-200 text-center mb-10 flex items-center justify-center">
                     <i class="fa-solid fa-database fa-icon-large mr-3 text-indigo-600 dark:text-indigo-400"></i>
                     Databases
@@ -294,7 +362,7 @@
                     </div>
             </div>
 
-            <div class="mb-16 animate-fade-in-up animation-delay-400">
+            <div class="mb-16">
                 <h3 class="text-3xl font-bold text-gray-800 dark:text-gray-200 text-center mb-10 flex items-center justify-center">
                     <i class="fa-solid fa-wrench fa-icon-large mr-3 text-indigo-600 dark:text-indigo-400"></i>
                     Tools & Platforms
@@ -303,7 +371,7 @@
                     </div>
             </div>
 
-            <div class="animate-fade-in-up animation-delay-600">
+            <div>
                 <h3 class="text-3xl font-bold text-gray-800 dark:text-gray-200 text-center mb-10 flex items-center justify-center">
                     <i class="fa-solid fa-layer-group fa-icon-large mr-3 text-indigo-600 dark:text-indigo-400"></i>
                     Other Skills
@@ -316,7 +384,7 @@
 
     <section id="projects" class="bg-white dark:bg-gray-950 py-20 md:py-24 transition-colors duration-500">
         <div class="container mx-auto px-4 max-w-6xl">
-            <h2 class="mb-16 text-center text-4xl md:text-5xl font-bold text-indigo-700 dark:text-indigo-400 animate-fade-in-down">My Projects</h2>
+            <h2 class="mb-16 text-center text-4xl md:text-5xl font-bold text-indigo-700 dark:text-indigo-400">My Projects</h2>
             <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                 </div>
         </div>
@@ -330,8 +398,8 @@
         </div>
 
         <div class="container mx-auto px-4 max-w-4xl z-10 relative">
-            <h2 class="mb-8 text-4xl md:text-5xl font-bold animate-fade-in-down">Ready to Collaborate?</h2>
-            <p class="mb-12 text-xl md:text-2xl font-light max-w-2xl mx-auto animate-fade-in-up animation-delay-200">
+            <h2 class="mb-8 text-4xl md:text-5xl font-bold">Ready to Collaborate?</h2>
+            <p class="mb-12 text-xl md:text-2xl font-light max-w-2xl mx-auto">
                 I'm always excited to work on new and challenging projects. Let's build something amazing together!
             </p>
 
@@ -339,8 +407,8 @@
             <p class="mb-10 text-lg max-w-xl mx-auto">
                 Feel free to reach out using the form below or my direct contact information.
             </p>
-            <div class="mx-auto max-w-lg bg-white dark:bg-gray-800 p-8 rounded-xl shadow-2xl animate-fade-in-up animation-delay-400">
-                <form class="space-y-6">
+            <div class="mx-auto max-w-lg bg-white dark:bg-gray-800 p-8 rounded-xl shadow-2xl">
+                <form id="contactForm" class="space-y-6">
                     <div>
                         <label for="name" class="sr-only">Name</label>
                         <input
@@ -373,7 +441,7 @@
                     </div>
                     <button
                         type="submit"
-                        class="w-full rounded-lg bg-indigo-600 dark:bg-indigo-500 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:scale-[1.02] hover:bg-indigo-700 dark:hover:bg-indigo-600 transform hover:-translate-y-0.5"
+                        class="w-full rounded-lg bg-indigo-600 dark:bg-indigo-500 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:scale-[1.02] hover:bg-indigo-700 dark:hover:bg-indigo-600 transform hover:-translate-y-0.5 btn-primary"
                     >
                         Send Message
                     </button>
@@ -401,6 +469,14 @@
             <p>&copy; <span id="currentYear"></span> Bhuvan Purushothaman Subramani. All rights reserved.</p>
         </div>
     </footer>
+
+    <button id="backToTopBtn" class="fixed bottom-6 right-6 z-50 p-3 rounded-full bg-indigo-600 text-white shadow-lg transition-all duration-300 hover:bg-indigo-700 focus:outline-none hidden" aria-label="Back to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <div id="messageBox" class="fixed bottom-1/2 left-1/2 -translate-x-1/2 translate-y-1/2 bg-green-500 text-white p-4 rounded-lg shadow-xl z-[100] hidden transition-all duration-300 ease-in-out transform scale-0 opacity-0">
+        Message sent successfully!
+    </div>
 
     <script>
         // Data for projects and skills (moved from React component)
@@ -450,7 +526,7 @@
         // Skill data with Font Awesome classes
         const skillData = {
             'Languages & Frameworks': [
-                { name: 'Flutter', iconClass: 'fa-brands fa-dev fa-icon-skill', color: 'blue-500' }, // Using a generic dev icon for Flutter
+                { name: 'Flutter', iconClass: 'fa-brands fa-dev fa-icon-skill', color: 'blue-500' },
                 { name: 'Dart', iconClass: 'fa-solid fa-code fa-icon-skill', color: 'blue-700' },
                 { name: 'C#', iconClass: 'fa-solid fa-code fa-icon-skill', color: 'purple-600' },
                 { name: 'Python', iconClass: 'fa-brands fa-python fa-icon-skill', color: 'green-600' },
@@ -459,8 +535,8 @@
                 { name: 'JavaScript', iconClass: 'fa-brands fa-js fa-icon-skill', color: 'yellow-500' },
             ],
             'Databases': [
-                { name: 'Firebase', iconClass: 'fa-solid fa-fire fa-icon-skill', color: 'red-500' }, // Using a fire icon for Firebase
-                { name: 'MongoDB', iconClass: 'fa-solid fa-leaf fa-icon-skill', color: 'gray-700' }, // Using a leaf icon for MongoDB
+                { name: 'Firebase', iconClass: 'fa-solid fa-fire fa-icon-skill', color: 'red-500' },
+                { name: 'MongoDB', iconClass: 'fa-solid fa-leaf fa-icon-skill', color: 'gray-700' },
                 { name: 'SQL', iconClass: 'fa-solid fa-database fa-icon-skill', color: 'blue-800' },
             ],
             'Tools & Platforms': [
@@ -469,26 +545,26 @@
                 { name: 'Git', iconClass: 'fa-solid fa-code-branch fa-icon-skill', color: 'gray-900' },
                 { name: 'GitHub', iconClass: 'fa-brands fa-github fa-icon-skill', color: 'gray-700' },
                 { name: 'API Development', iconClass: 'fa-solid fa-server fa-icon-skill', color: 'purple-500' },
-                { name: 'CI/CD for Mobile Apps', iconClass: 'fa-solid fa-arrows-rotate fa-icon-skill', color: 'blue-600' }, // Using rotate icon for CI/CD
+                { name: 'CI/CD for Mobile Apps', iconClass: 'fa-solid fa-arrows-rotate fa-icon-skill', color: 'blue-600' },
                 { name: 'Firebase Integration', iconClass: 'fa-solid fa-cloud fa-icon-skill', color: 'teal-500' },
                 { name: 'Cross-Platform Mobile Dev', iconClass: 'fa-solid fa-mobile-alt fa-icon-skill', color: 'yellow-600' },
             ],
             'Other Skills': [
                 { name: 'Project Management', iconClass: 'fa-solid fa-clipboard-list fa-icon-skill', color: 'indigo-500' },
-                { name: 'Agile Methodologies', iconClass: 'fa-solid fa-redo-alt fa-icon-skill', color: 'pink-500' }, // Using redo icon for Agile
+                { name: 'Agile Methodologies', iconClass: 'fa-solid fa-redo-alt fa-icon-skill', color: 'pink-500' },
                 { name: 'Problem-solving', iconClass: 'fa-solid fa-lightbulb fa-icon-skill', color: 'gray-600' },
-                { name: 'Optimization', iconClass: 'fa-solid fa-gauge-high fa-icon-skill', color: 'green-700' }, // Using gauge-high for optimization
-                { name: 'Automation of workflows', iconClass: 'fa-solid fa-robot fa-icon-skill', color: 'blue-900' }, // Using robot icon for automation
+                { name: 'Optimization', iconClass: 'fa-solid fa-gauge-high fa-icon-skill', color: 'green-700' },
+                { name: 'Automation of workflows', iconClass: 'fa-solid fa-robot fa-icon-skill', color: 'blue-900' },
             ],
         };
 
         // Function to create a skill card element
         function createSkillCard(skill) {
             const div = document.createElement('div');
-            div.className = `flex flex-col items-center justify-center rounded-lg bg-white dark:bg-gray-700 p-6 text-center shadow-md transition-all duration-300 hover:scale-105 hover:shadow-xl border border-gray-200 dark:border-gray-700`;
+            div.className = `skill-card flex flex-col items-center justify-center rounded-lg bg-white dark:bg-gray-700 p-6 text-center shadow-md transition-all duration-300 hover:scale-105 hover:shadow-xl border border-gray-200 dark:border-gray-700`;
             div.innerHTML = `
                 <div class="mb-3 h-12 w-12 flex items-center justify-center text-${skill.color}">
-                    <i class="${skill.iconClass}"></i>
+                    <i class="${skill.iconClass} skill-card-icon"></i>
                 </div>
                 <span class="font-semibold text-gray-800 dark:text-gray-200 text-lg">${skill.name}</span>
             `;
@@ -521,8 +597,8 @@
         // Function to create a project card element
         function createProjectCard(project, index) {
             const div = document.createElement('div');
-            div.className = `group relative overflow-hidden rounded-xl bg-gray-50 dark:bg-gray-800 shadow-xl border border-gray-200 dark:border-gray-700 transform transition-all duration-500 hover:scale-[1.03] hover:shadow-2xl animate-fade-in-up`;
-            div.style.animationDelay = `${index * 100}ms`;
+            div.className = `group relative overflow-hidden rounded-xl bg-gray-50 dark:bg-gray-800 shadow-xl border border-gray-200 dark:border-gray-700 transform transition-all duration-500 hover:scale-[1.03] hover:shadow-2xl`;
+            div.style.animationDelay = `${index * 100}ms`; // Keep individual delays for projects
 
             const tagsHtml = project.tags.map(tag => `
                 <span class="rounded-full bg-indigo-100 dark:bg-indigo-900 px-3 py-1 text-xs font-medium text-indigo-700 dark:text-indigo-300">
@@ -571,8 +647,8 @@
         function initializeDarkMode() {
             const darkModeToggleDesktop = document.getElementById('darkModeToggleDesktop');
             const darkModeToggleMobile = document.getElementById('darkModeToggleMobile');
-            const sunIcons = document.querySelectorAll('.sun-icon');
-            const moonIcons = document.querySelectorAll('.moon-icon');
+            const sunIcons = document.querySelectorAll('.fa-sun');
+            const moonIcons = document.querySelectorAll('.fa-moon');
 
             const isDarkMode = localStorage.getItem('theme') === 'dark' ||
                                (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
@@ -671,6 +747,59 @@
             }
         }
 
+        // Back to Top Button Logic
+        function initializeBackToTop() {
+            const backToTopBtn = document.getElementById('backToTopBtn');
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTopBtn.classList.remove('hidden');
+                    backToTopBtn.classList.add('show'); // Add 'show' class for animation
+                } else {
+                    backToTopBtn.classList.remove('show'); // Remove 'show' class
+                    backToTopBtn.classList.add('hidden');
+                }
+            });
+
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        // Form Submission Handling
+        function handleContactFormSubmission() {
+            const contactForm = document.getElementById('contactForm');
+            const messageBox = document.getElementById('messageBox');
+
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(event) {
+                    event.preventDefault(); // Prevent actual form submission
+
+                    // Simulate sending message
+                    setTimeout(() => {
+                        messageBox.textContent = 'Message sent successfully!';
+                        messageBox.classList.remove('hidden', 'scale-0', 'opacity-0', 'bg-red-500');
+                        messageBox.classList.add('bg-green-500', 'scale-100', 'opacity-100');
+
+                        // Clear form fields
+                        contactForm.reset();
+
+                        // Hide message after 3 seconds
+                        setTimeout(() => {
+                            messageBox.classList.remove('scale-100', 'opacity-100');
+                            messageBox.classList.add('scale-0', 'opacity-0');
+                            setTimeout(() => {
+                                messageBox.classList.add('hidden');
+                            }, 300); // Allow transition to finish
+                        }, 3000);
+                    }, 500); // Simulate network delay
+                });
+            }
+        }
+
         // Initial render and event listeners on DOMContentLoaded
         document.addEventListener('DOMContentLoaded', () => {
             renderSkills();
@@ -679,6 +808,8 @@
             initializeMobileMenu();
             initializeSmoothScrolling();
             setCurrentYear();
+            initializeBackToTop();
+            handleContactFormSubmission();
 
             // Set initial active section for desktop nav on load
             const initialSection = window.location.hash ? window.location.hash.substring(1) : 'home';
