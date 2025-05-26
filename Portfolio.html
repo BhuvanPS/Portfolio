@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhuvan Subramani - Professional Portfolio</title>
+    <meta name="description" content="Bhuvan Subramani's professional portfolio showcasing expertise in Data Science, Mobile App Development (Flutter), AI solutions, and impactful projects.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class', // Configure Tailwind to use 'class' strategy for dark mode
+            theme: {
+                extend: {
+                    // You can extend your theme here if needed
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes blob {
+            0% {
+                transform: translate(0px, 0px) scale(1);
+            }
+            33% {
+                transform: translate(30px, -50px) scale(1.1);
+            }
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+            100% {
+                transform: translate(0px, 0px) scale(1);
+            }
+        }
+
+        .animate-fade-in { animation: fadeIn 0.8s ease-out forwards; }
+        .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
+        .animate-fade-in-down { animation: fadeInDown 0.8s ease-out forwards; }
+        .animate-fade-in-left { animation: fadeInLeft 0.8s ease-out forwards; }
+        .animate-fade-in-right { animation: fadeInRight 0.8s ease-out forwards; }
+        .animate-blob { animation: blob 7s infinite; }
+
+        .animation-delay-200 { animation-delay: 0.2s; }
+        .animation-delay-400 { animation-delay: 0.4s; }
+        .animation-delay-500 { animation-delay: 0.5s; }
+        .animation-delay-600 { animation-delay: 0.6s; }
+        .animation-delay-1000 { animation-delay: 1s; }
+        .animation-delay-2000 { animation-delay: 2s; }
+        .animation-delay-3000 { animation-delay: 3s; }
+        .animation-delay-4000 { animation-delay: 4s; }
+        .animation-delay-5000 { animation-delay: 5s; }
+
+        /* Ensure animations don't run on initial load for all elements */
+        body *:not(.hero-section-element) {
+          animation-fill-mode: backwards;
+        }
+
+        /* Font Awesome icons sizing */
+        .fa-icon-large {
+            font-size: 32px; /* For section headers */
+        }
+        .fa-icon-medium {
+            font-size: 20px; /* For contact info */
+        }
+        .fa-icon-small {
+            font-size: 16px; /* For external links */
+        }
+        .fa-icon-skill {
+            font-size: 48px; /* For skill cards */
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-50 dark:bg-gray-950 font-sans text-gray-800 dark:text-gray-200 antialiased transition-colors duration-500">
+
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm shadow-lg transition-colors duration-500">
+        <nav class="container mx-auto flex items-center justify-between p-4 md:p-6">
+            <div class="text-2xl font-extrabold text-indigo-700 dark:text-indigo-400">Bhuvan.dev</div>
+            <ul class="hidden space-x-8 md:flex items-center">
+                <li><button data-section="home" class="nav-link text-lg font-medium hover:text-indigo-700 dark:hover:text-indigo-400 transition-colors duration-300">Home</button></li>
+                <li><button data-section="about" class="nav-link text-lg font-medium hover:text-indigo-700 dark:hover:text-indigo-400 transition-colors duration-300">About</button></li>
+                <li><button data-section="skills" class="nav-link text-lg font-medium hover:text-indigo-700 dark:hover:text-indigo-400 transition-colors duration-300">Skills</button></li>
+                <li><button data-section="projects" class="nav-link text-lg font-medium hover:text-indigo-700 dark:hover:text-indigo-400 transition-colors duration-300">Projects</button></li>
+                <li><button data-section="contact" class="nav-link text-lg font-medium hover:text-indigo-700 dark:hover:text-indigo-400 transition-colors duration-300">Contact</button></li>
+                <li class="ml-6">
+                    <button id="darkModeToggleDesktop" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300" aria-label="Toggle dark mode">
+                        <i class="fa-solid fa-sun h-5 w-5 hidden"></i>
+                        <i class="fa-solid fa-moon h-5 w-5"></i>
+                    </button>
+                </li>
+            </ul>
+            <div class="md:hidden flex items-center">
+                <button id="darkModeToggleMobile" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300 mr-4" aria-label="Toggle dark mode">
+                    <i class="fa-solid fa-sun h-5 w-5 hidden"></i>
+                    <i class="fa-solid fa-moon h-5 w-5"></i>
+                </button>
+                <button id="mobileMenuButton" class="text-gray-600 dark:text-gray-300 hover:text-indigo-700 dark:hover:text-indigo-400 focus:outline-none">
+                    <i class="fa-solid fa-bars menu-icon w-7 h-7"></i>
+                    <i class="fa-solid fa-xmark close-icon w-7 h-7 hidden"></i>
+                </button>
+            </div>
+        </nav>
+        <div id="mobileMenuOverlay" class="md:hidden bg-white dark:bg-gray-900 absolute top-full left-0 w-full shadow-lg pb-4 hidden transition-all duration-300 ease-in-out">
+            <nav class="flex flex-col items-center space-y-4">
+                <button data-section="home" class="nav-link-mobile w-full text-center py-2 text-lg font-medium hover:text-indigo-700 dark:hover:text-indigo-400 transition-colors duration-300">Home</button>
+                <button data-section="about" class="nav-link-mobile w-full text-center py-2 text-lg font-medium hover:text-indigo-700 dark:hover:text-indigo-400 transition-colors duration-300">About</button>
+                <button data-section="skills" class="nav-link-mobile w-full text-center py-2 text-lg font-medium hover:text-indigo-700 transition-colors duration-300">Skills</button>
+                <button data-section="projects" class="nav-link-mobile w-full text-center py-2 text-lg font-medium hover:text-indigo-700 transition-colors duration-300">Projects</button>
+                <button data-section="contact" class="nav-link-mobile w-full text-center py-2 text-lg font-medium hover:text-indigo-700 transition-colors duration-300">Contact</button>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="relative flex min-h-screen items-center justify-center bg-gradient-to-br from-indigo-700 to-purple-800 text-white overflow-hidden pt-16">
+        <div class="absolute inset-0 z-0 opacity-10">
+            <div class="absolute top-1/4 left-1/4 w-72 h-72 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+            <div class="absolute top-1/2 right-1/4 w-72 h-72 bg-indigo-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+            <div class="absolute bottom-1/4 left-1/2 w-72 h-72 bg-pink-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+        </div>
+
+        <div class="container mx-auto px-4 py-16 text-center z-10 relative">
+            <img
+                src="https://placehold.co/180x180/FFFFFF/4A5568?text=BHUVAN"
+                alt="Profile Picture of Bhuvan Subramani"
+                class="mx-auto mb-8 h-44 w-44 rounded-full border-4 border-white shadow-2xl object-cover transform transition-transform duration-500 hover:scale-105"
+            />
+            <h1 class="mb-4 text-5xl md:text-6xl font-extrabold leading-tight animate-fade-in-up">
+                Hi, I'm <span class="text-yellow-300">Bhuvan Subramani</span>
+            </h1>
+            <p class="mb-10 text-xl md:text-2xl font-light max-w-3xl mx-auto animate-fade-in-up animation-delay-500">
+                A passionate <span class="font-semibold">Data Scientist & Mobile App Developer</span> creating <span class="font-semibold">impactful software solutions and data-driven insights</span>.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-6 animate-fade-in-up animation-delay-1000">
+                <button data-section="projects" class="scroll-button rounded-full bg-white px-10 py-4 text-lg font-semibold text-indigo-700 shadow-xl transition-all duration-300 hover:scale-105 hover:bg-gray-100 transform hover:-translate-y-1">
+                    View My Work
+                </button>
+                <a
+                    href="/Resume.pdf"
+                    download="Bhuvan_Purushothaman_Subramani_Resume.pdf"
+                    class="rounded-full border-2 border-white px-10 py-4 text-lg font-semibold text-white shadow-xl transition-all duration-300 hover:scale-105 hover:bg-white hover:text-indigo-700 transform hover:-translate-y-1"
+                >
+                    Download Resume
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="bg-white dark:bg-gray-900 py-20 md:py-24 transition-colors duration-500">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <h2 class="mb-16 text-center text-4xl md:text-5xl font-bold text-indigo-700 dark:text-indigo-400 animate-fade-in-down">About Me</h2>
+            <div class="text-lg leading-relaxed text-gray-700 dark:text-gray-300 animate-fade-in-left mb-12">
+                <p class="mb-6">
+                    Hello! I'm <span class="font-semibold">Bhuvan Purushothaman Subramani</span>, a motivated Computer Science graduate with a B.Tech (Honors) and a current Master's in Data Science from Deakin University. I possess strong expertise in Data Structures, SQL, and Firebase.
+                </p>
+                <p class="mb-6">
+                    I have demonstrated success in mobile application development with a focus on creating engaging, user-centric solutions. I am looking to contribute skills in software development, data analytics, and system integration to drive impactful change in organizations and communities.
+                </p>
+                <p>
+                    My commitment extends to continuous improvement by staying updated with the latest industry trends and technologies, and prioritizing the development of strong interpersonal skills to collaborate effectively in diverse team environments.
+                </p>
+                <div class="mt-12 text-center md:text-left">
+                    <button data-section="projects" class="scroll-button rounded-full bg-indigo-600 dark:bg-indigo-500 px-8 py-3 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-indigo-700 dark:hover:bg-indigo-600 transform hover:-translate-y-1">
+                        Explore My Projects
+                    </button>
+                </div>
+            </div>
+
+            <div class="w-full space-y-10 animate-fade-in-right">
+                <h3 class="text-3xl font-bold text-indigo-700 dark:text-indigo-400 text-center mb-8">My Journey</h3>
+                <div class="group bg-gray-50 dark:bg-gray-800 rounded-xl p-8 shadow-xl border border-gray-200 dark:border-gray-700 transform transition-all duration-300 hover:scale-[1.01] hover:shadow-2xl hover:border-indigo-500">
+                    <div class="flex items-center mb-6">
+                        <i class="fa-solid fa-briefcase fa-icon-large text-indigo-600 dark:text-indigo-400 mr-4"></i>
+                        <h4 class="text-2xl font-bold text-gray-800 dark:text-gray-200">Experience</h4>
+                    </div>
+                    <ul class="space-y-6">
+                        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+                            <h5 class="text-xl font-semibold text-gray-800 dark:text-gray-200">Software Consultant <span class="text-gray-600 dark:text-gray-400 text-sm ml-2">05/2024 – 07/2024</span></h5>
+                            <p class="text-md font-medium text-indigo-700 dark:text-indigo-400 mb-1">RADSTEC</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm">Engineered an AI appointment booking solution, streamlining scheduling processes and improving user accessibility by implementing intuitive user interfaces. Collaborated with cross-functional teams to design and deploy the appointment booking system, ensuring seamless integration with existing platforms which resulted in a 20% increase in booking efficiency.</p>
+                        </li>
+                        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+                            <h5 class="text-xl font-semibold text-gray-800 dark:text-gray-200">Flutter Development Intern <span class="text-gray-600 dark:text-gray-400 text-sm ml-2">01/2024 – 05/2024</span></h5>
+                            <p class="text-md font-medium text-indigo-700 dark:text-indigo-400 mb-1">CUROWEBS, COIMBATORE INDIA</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm">Designed, developed, and launched C-Meds, an AI powered medication reminder app, on the Google Play Store, achieving significant downloads. Implemented key features such as custom reminders, medication tracking, and high-accuracy auto prescription scanner, reducing prescription entry time by 90%. Co-ordinated and conducted testing with the QA team to ensure high app performance and reliability across devices.</p>
+                        </li>
+                        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+                            <h5 class="text-xl font-semibold text-gray-800 dark:text-gray-200">Technical Coordinator <span class="text-gray-600 dark:text-gray-400 text-sm ml-2">07/2023 – 12/2023</span></h5>
+                            <p class="text-md font-medium text-indigo-700 dark:text-indigo-400 mb-1">E-CELL SASTRA</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm">Spearheading technical initiatives and serving as a key contributor to the success of E-Cell-Sastra, focusing on fostering innovation and entrepreneurship. Led mobile application development projects by following software lifecycles and using Flutter and Dart, achieving 500+ downloads and enhancing user engagement through strategic implementation of interactive features. Reduced manual communication by 40% through the introduction of networking features, improving team collaboration.</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="group bg-gray-50 dark:bg-gray-800 rounded-xl p-8 shadow-xl border border-gray-200 dark:border-gray-700 transform transition-all duration-300 hover:scale-[1.01] hover:shadow-2xl hover:border-indigo-500">
+                    <div class="flex items-center mb-6">
+                        <i class="fa-solid fa-graduation-cap fa-icon-large text-indigo-600 dark:text-indigo-400 mr-4"></i>
+                        <h4 class="text-2xl font-bold text-gray-800 dark:text-gray-200">Education</h4>
+                    </div>
+                    <ul class="space-y-6">
+                        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+                            <h5 class="text-xl font-semibold text-gray-800 dark:text-gray-200">Master of Science (Data Science) <span class="text-gray-600 dark:text-gray-400 text-sm ml-2">Present</span></h5>
+                            <p class="text-md font-medium text-indigo-700 dark:text-indigo-400 mb-1">DEAKIN UNIVERSITY, Melbourne</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm">Specializing in advanced data analysis techniques and data-driven decision-making. Gaining expertise in statistical methods, machine learning, and data visualization.</p>
+                        </li>
+                        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+                            <h5 class="text-xl font-semibold text-gray-800 dark:text-gray-200">Bachelor of Technology with Hons (Computer Science & Engineering) <span class="text-gray-600 dark:text-gray-400 text-sm ml-2">05/2024</span></h5>
+                            <p class="text-md font-medium text-indigo-700 dark:text-indigo-400 mb-1">SASTRA DEEMED UNIVERSITY, Thanjavur</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm">Scored a stellar CGPA of 8.62, showcasing consistent dedication to academic achievement.</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="group bg-gray-50 dark:bg-gray-800 rounded-xl p-8 shadow-xl border border-gray-200 dark:border-gray-700 transform transition-all duration-300 hover:scale-[1.01] hover:shadow-2xl hover:border-indigo-500">
+                    <div class="flex items-center mb-6">
+                        <i class="fa-solid fa-award fa-icon-large text-indigo-600 dark:text-indigo-400 mr-4"></i>
+                        <h4 class="text-2xl font-bold text-gray-800 dark:text-gray-200">Certificates</h4>
+                    </div>
+                    <ul class="space-y-6">
+                        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+                            <h5 class="text-xl font-semibold text-gray-800 dark:text-gray-200">Getting Started with Artificial Intelligence <span class="text-gray-600 dark:text-gray-400 text-sm ml-2">IBM SkillsBuild</span></h5>
+                            <a href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-medium text-sm mt-1">View Certificate <i class="fa-solid fa-external-link-alt fa-icon-small ml-1"></i></a>
+                        </li>
+                        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+                            <h5 class="text-xl font-semibold text-gray-800 dark:text-gray-200">Industrial Internet Of Things <span class="text-gray-600 dark:text-gray-400 text-sm ml-2">Unknown Issuing Organization</span></h5>
+                            <a href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-medium text-sm mt-1">View Certificate <i class="fa-solid fa-external-link-alt fa-icon-small ml-1"></i></a>
+                        </li>
+                        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+                            <h5 class="text-xl font-semibold text-gray-800 dark:text-gray-200">Privacy and Security in Online Social Media <span class="text-gray-600 dark:text-gray-400 text-sm ml-2">Unknown Issuing Organization</span></h5>
+                            <a href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-medium text-sm mt-1">View Certificate <i class="fa-solid fa-external-link-alt fa-icon-small ml-1"></i></a>
+                        </li>
+                        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+                            <h5 class="text-xl font-semibold text-gray-800 dark:text-gray-200">Flutter and Dart <span class="text-gray-600 dark:text-gray-400 text-sm ml-2">Unknown Issuing Organization</span></h5>
+                            <a href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-medium text-sm mt-1">View Certificate <i class="fa-solid fa-external-link-alt fa-icon-small ml-1"></i></a>
+                        </li>
+                        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+                            <h5 class="text-xl font-semibold text-gray-800 dark:text-gray-200">Deep Learning <span class="text-gray-600 dark:text-gray-400 text-sm ml-2">Unknown Issuing Organization</span></h5>
+                            <a href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-medium text-sm mt-1">View Certificate <i class="fa-solid fa-external-link-alt fa-icon-small ml-1"></i></a>
+                        </li>
+                        <li class="border-l-4 border-indigo-500 pl-4 py-2">
+                            <h5 class="text-xl font-semibold text-gray-800 dark:text-gray-200">Search Engine Optimization with Squarespace <span class="text-gray-600 dark:text-gray-400 text-sm ml-2">Unknown Issuing Organization</span></h5>
+                            <a href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-medium text-sm mt-1">View Certificate <i class="fa-solid fa-external-link-alt fa-icon-small ml-1"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="bg-gray-100 dark:bg-gray-900 py-20 md:py-24 transition-colors duration-500">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <h2 class="mb-16 text-center text-4xl md:text-5xl font-bold text-indigo-700 dark:text-indigo-400 animate-fade-in-down">My Skills</h2>
+
+            <div class="mb-16 animate-fade-in-up">
+                <h3 class="text-3xl font-bold text-gray-800 dark:text-gray-200 text-center mb-10 flex items-center justify-center">
+                    <i class="fa-solid fa-code fa-icon-large mr-3 text-indigo-600 dark:text-indigo-400"></i>
+                    Languages & Frameworks
+                </h3>
+                <div id="languages-skills" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                    </div>
+            </div>
+
+            <div class="mb-16 animate-fade-in-up animation-delay-200">
+                <h3 class="text-3xl font-bold text-gray-800 dark:text-gray-200 text-center mb-10 flex items-center justify-center">
+                    <i class="fa-solid fa-database fa-icon-large mr-3 text-indigo-600 dark:text-indigo-400"></i>
+                    Databases
+                </h3>
+                <div id="databases-skills" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                    </div>
+            </div>
+
+            <div class="mb-16 animate-fade-in-up animation-delay-400">
+                <h3 class="text-3xl font-bold text-gray-800 dark:text-gray-200 text-center mb-10 flex items-center justify-center">
+                    <i class="fa-solid fa-wrench fa-icon-large mr-3 text-indigo-600 dark:text-indigo-400"></i>
+                    Tools & Platforms
+                </h3>
+                <div id="tools-skills" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                    </div>
+            </div>
+
+            <div class="animate-fade-in-up animation-delay-600">
+                <h3 class="text-3xl font-bold text-gray-800 dark:text-gray-200 text-center mb-10 flex items-center justify-center">
+                    <i class="fa-solid fa-layer-group fa-icon-large mr-3 text-indigo-600 dark:text-indigo-400"></i>
+                    Other Skills
+                </h3>
+                <div id="other-skills" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="bg-white dark:bg-gray-950 py-20 md:py-24 transition-colors duration-500">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <h2 class="mb-16 text-center text-4xl md:text-5xl font-bold text-indigo-700 dark:text-indigo-400 animate-fade-in-down">My Projects</h2>
+            <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                </div>
+        </div>
+    </section>
+
+    <section id="contact" class="bg-gradient-to-br from-indigo-700 to-purple-800 py-20 md:py-24 text-white text-center relative overflow-hidden">
+        <div class="absolute inset-0 z-0 opacity-10">
+            <div class="absolute top-1/4 left-1/4 w-72 h-72 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-1000"></div>
+            <div class="absolute top-1/2 right-1/4 w-72 h-72 bg-indigo-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-3000"></div>
+            <div class="absolute bottom-1/4 left-1/2 w-72 h-72 bg-pink-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-5000"></div>
+        </div>
+
+        <div class="container mx-auto px-4 max-w-4xl z-10 relative">
+            <h2 class="mb-8 text-4xl md:text-5xl font-bold animate-fade-in-down">Ready to Collaborate?</h2>
+            <p class="mb-12 text-xl md:text-2xl font-light max-w-2xl mx-auto animate-fade-in-up animation-delay-200">
+                I'm always excited to work on new and challenging projects. Let's build something amazing together!
+            </p>
+
+            <h3 class="mb-8 text-3xl font-bold" id="contact-form-section">Get in Touch Directly</h3>
+            <p class="mb-10 text-lg max-w-xl mx-auto">
+                Feel free to reach out using the form below or my direct contact information.
+            </p>
+            <div class="mx-auto max-w-lg bg-white dark:bg-gray-800 p-8 rounded-xl shadow-2xl animate-fade-in-up animation-delay-400">
+                <form class="space-y-6">
+                    <div>
+                        <label for="name" class="sr-only">Name</label>
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Your Name"
+                            class="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 px-5 py-3 text-gray-800 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 transition-colors duration-300"
+                        />
+                    </div>
+                    <div>
+                        <label for="email" class="sr-only">Email</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Your Email"
+                            class="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 px-5 py-3 text-gray-800 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 transition-colors duration-300"
+                        />
+                    </div>
+                    <div>
+                        <label for="message" class="sr-only">Message</label>
+                        <textarea
+                            id="message"
+                            name="message"
+                            rows="6"
+                            placeholder="Your Message"
+                            class="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 px-5 py-3 text-gray-800 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 transition-colors duration-300"
+                        ></textarea>
+                    </div>
+                    <button
+                        type="submit"
+                        class="w-full rounded-lg bg-indigo-600 dark:bg-indigo-500 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:scale-[1.02] hover:bg-indigo-700 dark:hover:bg-indigo-600 transform hover:-translate-y-0.5"
+                    >
+                        Send Message
+                    </button>
+                </form>
+            </div>
+            <div class="mt-12 text-lg flex flex-col sm:flex-row justify-center items-center gap-6">
+                <p class="flex items-center">
+                    <i class="fa-solid fa-envelope fa-icon-medium mr-2 text-indigo-300"></i>
+                    <a href="mailto:psbhuvan2002@gmail.com" class="text-indigo-300 hover:underline">psbhuvan2002@gmail.com</a>
+                </p>
+                <p class="flex items-center">
+                    <i class="fa-solid fa-phone fa-icon-medium mr-2 text-indigo-300"></i>
+                    0451 412 465
+                </p>
+                <p class="flex items-center">
+                    <i class="fa-brands fa-linkedin fa-icon-medium mr-2 text-indigo-300"></i>
+                    <a href="https://www.linkedin.com/in/bhuvan-ps" target="_blank" rel="noopener noreferrer" class="text-indigo-300 hover:underline">linkedin.com/in/bhuvan-ps</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 dark:bg-gray-950 py-8 text-center text-gray-400 dark:text-gray-500 transition-colors duration-500">
+        <div class="container mx-auto px-4">
+            <p>&copy; <span id="currentYear"></span> Bhuvan Purushothaman Subramani. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Data for projects and skills (moved from React component)
+        const projects = [
+            {
+                id: 'victoria-transit',
+                title: 'Victoria Green Transit Strategy',
+                description: 'Developed a strategy that could generate $15 million in regenerative economy through improved urban mobility and sustainability. Reduced potential environmental impact by 25% by leveraging smart data and infrastructure for the movement of people and goods.',
+                image: 'https://placehold.co/400x250/4A5568/CBD5E0?text=Transit+Strategy',
+                tags: ['Data Analytics', 'Urban Mobility', 'Sustainability'],
+                link: '#', // Placeholder link
+            },
+            {
+                id: 'fraud-detection',
+                title: 'Financial Fraud Detection',
+                description: 'Applied Big Data Analytics in Python to uncover fraudulent transactions. Processed a dataset of 1 million nodes and 10 million edges. Enhanced fraud detection accuracy by 15%, reducing false positives and strengthening security measures.',
+                image: 'https://placehold.co/400x250/4A5568/CBD5E0?text=Fraud+Detection',
+                tags: ['Python', 'Big Data Analytics', 'Machine Learning'],
+                link: '#', // Placeholder link
+            },
+            {
+                id: 'e-cell-app',
+                title: 'E-Cell Sastra Mobile App',
+                description: 'Orchestrated the development and launch of the E-Cell Sastra mobile app on the Play Store. Seamlessly managed over 1000+ event registrations, feedback submissions, and additional interactive features. Incorporated advanced networking functionalities to facilitate effective communication and collaboration.',
+                image: 'https://placehold.co/400x250/4A5568/CBD5E0?text=Mobile+App',
+                tags: ['Flutter', 'Dart', 'Mobile Development'],
+                link: '#', // Placeholder link
+            },
+            {
+                id: 'wine-quality-prediction',
+                title: 'Wine Quality Prediction (R)',
+                description: 'Developed a machine learning model in R to predict wine quality. Utilized WAM, WPM, OWA, and Choquet Integral models, with the Choquet model selected as the best fit. Key tasks included feature selection, skewness correction, and importance interpretation.',
+                image: 'https://placehold.co/400x250/6B46C1/FFFFFF?text=Wine+Quality+Prediction',
+                tags: ['R', 'Machine Learning', 'Data Science', 'Predictive Modeling'],
+                link: '#', // Placeholder link
+            },
+            {
+                id: 'game-theory-solver',
+                title: 'Game Theory Solver (R Shiny)',
+                description: 'An interactive R Shiny application designed to solve two-player zero-sum games. Users can input the dimensions and values of a payoff matrix. The application then calculates and displays the optimal strategies for both players (either pure or mixed) and the value of the game. It also includes explanations of fundamental game theory concepts and uses custom CSS for a better user interface. Essentially, it\'s a tool to find the best way to play and the expected outcome of a strategic game defined by a payoff matrix.',
+                image: 'https://placehold.co/400x250/3498DB/FFFFFF?text=Game+Theory+Solver',
+                tags: ['R Shiny', 'Game Theory', 'Optimization', 'Interactive Application'],
+                link: '#', // Placeholder link
+            },
+        ];
+
+        // Skill data with Font Awesome classes
+        const skillData = {
+            'Languages & Frameworks': [
+                { name: 'Flutter', iconClass: 'fa-brands fa-dev fa-icon-skill', color: 'blue-500' }, // Using a generic dev icon for Flutter
+                { name: 'Dart', iconClass: 'fa-solid fa-code fa-icon-skill', color: 'blue-700' },
+                { name: 'C#', iconClass: 'fa-solid fa-code fa-icon-skill', color: 'purple-600' },
+                { name: 'Python', iconClass: 'fa-brands fa-python fa-icon-skill', color: 'green-600' },
+                { name: 'HTML', iconClass: 'fa-brands fa-html5 fa-icon-skill', color: 'orange-500' },
+                { name: 'CSS', iconClass: 'fa-brands fa-css3-alt fa-icon-skill', color: 'blue-400' },
+                { name: 'JavaScript', iconClass: 'fa-brands fa-js fa-icon-skill', color: 'yellow-500' },
+            ],
+            'Databases': [
+                { name: 'Firebase', iconClass: 'fa-solid fa-fire fa-icon-skill', color: 'red-500' }, // Using a fire icon for Firebase
+                { name: 'MongoDB', iconClass: 'fa-solid fa-leaf fa-icon-skill', color: 'gray-700' }, // Using a leaf icon for MongoDB
+                { name: 'SQL', iconClass: 'fa-solid fa-database fa-icon-skill', color: 'blue-800' },
+            ],
+            'Tools & Platforms': [
+                { name: 'Vertex AI', iconClass: 'fa-solid fa-brain fa-icon-skill', color: 'green-500' },
+                { name: 'Genkit', iconClass: 'fa-solid fa-sparkles fa-icon-skill', color: 'indigo-500' },
+                { name: 'Git', iconClass: 'fa-solid fa-code-branch fa-icon-skill', color: 'gray-900' },
+                { name: 'GitHub', iconClass: 'fa-brands fa-github fa-icon-skill', color: 'gray-700' },
+                { name: 'API Development', iconClass: 'fa-solid fa-server fa-icon-skill', color: 'purple-500' },
+                { name: 'CI/CD for Mobile Apps', iconClass: 'fa-solid fa-arrows-rotate fa-icon-skill', color: 'blue-600' }, // Using rotate icon for CI/CD
+                { name: 'Firebase Integration', iconClass: 'fa-solid fa-cloud fa-icon-skill', color: 'teal-500' },
+                { name: 'Cross-Platform Mobile Dev', iconClass: 'fa-solid fa-mobile-alt fa-icon-skill', color: 'yellow-600' },
+            ],
+            'Other Skills': [
+                { name: 'Project Management', iconClass: 'fa-solid fa-clipboard-list fa-icon-skill', color: 'indigo-500' },
+                { name: 'Agile Methodologies', iconClass: 'fa-solid fa-redo-alt fa-icon-skill', color: 'pink-500' }, // Using redo icon for Agile
+                { name: 'Problem-solving', iconClass: 'fa-solid fa-lightbulb fa-icon-skill', color: 'gray-600' },
+                { name: 'Optimization', iconClass: 'fa-solid fa-gauge-high fa-icon-skill', color: 'green-700' }, // Using gauge-high for optimization
+                { name: 'Automation of workflows', iconClass: 'fa-solid fa-robot fa-icon-skill', color: 'blue-900' }, // Using robot icon for automation
+            ],
+        };
+
+        // Function to create a skill card element
+        function createSkillCard(skill) {
+            const div = document.createElement('div');
+            div.className = `flex flex-col items-center justify-center rounded-lg bg-white dark:bg-gray-700 p-6 text-center shadow-md transition-all duration-300 hover:scale-105 hover:shadow-xl border border-gray-200 dark:border-gray-700`;
+            div.innerHTML = `
+                <div class="mb-3 h-12 w-12 flex items-center justify-center text-${skill.color}">
+                    <i class="${skill.iconClass}"></i>
+                </div>
+                <span class="font-semibold text-gray-800 dark:text-gray-200 text-lg">${skill.name}</span>
+            `;
+            return div;
+        }
+
+        // Function to render skills
+        function renderSkills() {
+            document.getElementById('languages-skills').innerHTML = '';
+            skillData['Languages & Frameworks'].forEach(skill => {
+                document.getElementById('languages-skills').appendChild(createSkillCard(skill));
+            });
+
+            document.getElementById('databases-skills').innerHTML = '';
+            skillData['Databases'].forEach(skill => {
+                document.getElementById('databases-skills').appendChild(createSkillCard(skill));
+            });
+
+            document.getElementById('tools-skills').innerHTML = '';
+            skillData['Tools & Platforms'].forEach(skill => {
+                document.getElementById('tools-skills').appendChild(createSkillCard(skill));
+            });
+
+            document.getElementById('other-skills').innerHTML = '';
+            skillData['Other Skills'].forEach(skill => {
+                document.getElementById('other-skills').appendChild(createSkillCard(skill));
+            });
+        }
+
+        // Function to create a project card element
+        function createProjectCard(project, index) {
+            const div = document.createElement('div');
+            div.className = `group relative overflow-hidden rounded-xl bg-gray-50 dark:bg-gray-800 shadow-xl border border-gray-200 dark:border-gray-700 transform transition-all duration-500 hover:scale-[1.03] hover:shadow-2xl animate-fade-in-up`;
+            div.style.animationDelay = `${index * 100}ms`;
+
+            const tagsHtml = project.tags.map(tag => `
+                <span class="rounded-full bg-indigo-100 dark:bg-indigo-900 px-3 py-1 text-xs font-medium text-indigo-700 dark:text-indigo-300">
+                    ${tag}
+                </span>
+            `).join('');
+
+            div.innerHTML = `
+                <img
+                    src="${project.image}"
+                    alt="${project.title}"
+                    class="w-full h-56 object-cover transform transition-transform duration-500 group-hover:scale-110 group-hover:brightness-75"
+                    onerror="this.onerror=null;this.src='https://placehold.co/400x250/E0E0E0/2C3E50?text=${project.title.replace(/\s/g, '+')}'"
+                />
+                <div class="p-6">
+                    <h3 class="mb-3 text-2xl font-bold text-gray-800 dark:text-gray-200">${project.title}</h3>
+                    <p class="mb-4 text-gray-700 dark:text-gray-300 text-sm leading-relaxed">${project.description}</p>
+                    <div class="flex flex-wrap gap-2 mb-5">
+                        ${tagsHtml}
+                    </div>
+                    <div class="flex justify-end">
+                        <a
+                            href="${project.link}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="inline-flex items-center rounded-full bg-indigo-600 dark:bg-indigo-500 px-6 py-2 text-base font-semibold text-white shadow-md transition-all duration-300 hover:scale-105 hover:bg-indigo-700 dark:hover:bg-indigo-600 transform hover:-translate-y-0.5"
+                        >
+                            Learn More <i class="fa-solid fa-external-link-alt fa-icon-small ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            `;
+            return div;
+        }
+
+        // Function to render projects
+        function renderProjects() {
+            const projectsContainer = document.getElementById('projects-container');
+            projectsContainer.innerHTML = ''; // Clear existing content
+            projects.forEach((project, index) => {
+                projectsContainer.appendChild(createProjectCard(project, index));
+            });
+        }
+
+        // Dark Mode Logic
+        function initializeDarkMode() {
+            const darkModeToggleDesktop = document.getElementById('darkModeToggleDesktop');
+            const darkModeToggleMobile = document.getElementById('darkModeToggleMobile');
+            const sunIcons = document.querySelectorAll('.sun-icon');
+            const moonIcons = document.querySelectorAll('.moon-icon');
+
+            const isDarkMode = localStorage.getItem('theme') === 'dark' ||
+                               (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+            if (isDarkMode) {
+                document.documentElement.classList.add('dark');
+                sunIcons.forEach(icon => icon.classList.remove('hidden'));
+                moonIcons.forEach(icon => icon.classList.add('hidden'));
+            } else {
+                document.documentElement.classList.remove('dark');
+                sunIcons.forEach(icon => icon.classList.add('hidden'));
+                moonIcons.forEach(icon => icon.classList.remove('hidden'));
+            }
+
+            function toggleDarkMode() {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                    sunIcons.forEach(icon => icon.classList.add('hidden'));
+                    moonIcons.forEach(icon => icon.classList.remove('hidden'));
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                    sunIcons.forEach(icon => icon.classList.remove('hidden'));
+                    moonIcons.forEach(icon => icon.classList.add('hidden'));
+                }
+            }
+
+            if (darkModeToggleDesktop) {
+                darkModeToggleDesktop.addEventListener('click', toggleDarkMode);
+            }
+            if (darkModeToggleMobile) {
+                darkModeToggleMobile.addEventListener('click', toggleDarkMode);
+            }
+        }
+
+        // Mobile Menu Logic
+        function initializeMobileMenu() {
+            const mobileMenuButton = document.getElementById('mobileMenuButton');
+            const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+            const menuIcon = document.querySelector('.menu-icon');
+            const closeIcon = document.querySelector('.close-icon');
+            const mobileNavLinks = document.querySelectorAll('.nav-link-mobile');
+
+            if (mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', () => {
+                    const isOpen = mobileMenuOverlay.classList.toggle('hidden');
+                    if (isOpen) {
+                        menuIcon.classList.remove('hidden');
+                        closeIcon.classList.add('hidden');
+                    } else {
+                        menuIcon.classList.add('hidden');
+                        closeIcon.classList.remove('hidden');
+                    }
+                });
+            }
+
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenuOverlay.classList.add('hidden');
+                    menuIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
+                });
+            });
+        }
+
+        // Smooth Scrolling for Navigation
+        function initializeSmoothScrolling() {
+            document.querySelectorAll('.nav-link, .scroll-button').forEach(button => {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const sectionId = this.dataset.section;
+                    const targetSection = document.getElementById(sectionId);
+                    if (targetSection) {
+                        targetSection.scrollIntoView({ behavior: 'smooth' });
+                        // Update active class for desktop nav links
+                        document.querySelectorAll('.nav-link').forEach(link => {
+                            if (link.dataset.section === sectionId) {
+                                link.classList.add('text-indigo-700', 'dark:text-indigo-400', 'border-b-2', 'border-indigo-700', 'dark:border-indigo-400');
+                                link.classList.remove('text-gray-600', 'dark:text-gray-300');
+                            } else {
+                                link.classList.remove('text-indigo-700', 'dark:text-indigo-400', 'border-b-2', 'border-indigo-700', 'dark:border-indigo-400');
+                                link.classList.add('text-gray-600', 'dark:text-gray-300');
+                            }
+                        });
+                    }
+                });
+            });
+        }
+
+        // Set current year in footer
+        function setCurrentYear() {
+            const currentYearSpan = document.getElementById('currentYear');
+            if (currentYearSpan) {
+                currentYearSpan.textContent = new Date().getFullYear();
+            }
+        }
+
+        // Initial render and event listeners on DOMContentLoaded
+        document.addEventListener('DOMContentLoaded', () => {
+            renderSkills();
+            renderProjects();
+            initializeDarkMode();
+            initializeMobileMenu();
+            initializeSmoothScrolling();
+            setCurrentYear();
+
+            // Set initial active section for desktop nav on load
+            const initialSection = window.location.hash ? window.location.hash.substring(1) : 'home';
+            document.querySelectorAll('.nav-link').forEach(link => {
+                if (link.dataset.section === initialSection) {
+                    link.classList.add('text-indigo-700', 'dark:text-indigo-400', 'border-b-2', 'border-indigo-700', 'dark:border-indigo-400');
+                    link.classList.remove('text-gray-600', 'dark:text-gray-300');
+                } else {
+                    link.classList.remove('text-indigo-700', 'dark:text-indigo-400', 'border-b-2', 'border-indigo-700', 'dark:border-indigo-400');
+                    link.classList.add('text-gray-600', 'dark:text-gray-300');
+                }
+            });
+        });
+
+        // Update active nav link on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            let currentActiveSection = 'home';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - document.querySelector('header').offsetHeight; // Adjust for fixed header
+                const sectionBottom = sectionTop + section.offsetHeight;
+                if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
+                    currentActiveSection = section.id;
+                }
+            });
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                if (link.dataset.section === currentActiveSection) {
+                    link.classList.add('text-indigo-700', 'dark:text-indigo-400', 'border-b-2', 'border-indigo-700', 'dark:border-indigo-400');
+                    link.classList.remove('text-gray-600', 'dark:text-gray-300');
+                } else {
+                    link.classList.remove('text-indigo-700', 'dark:text-indigo-400', 'border-b-2', 'border-indigo-700', 'dark:border-indigo-400');
+                    link.classList.add('text-gray-600', 'dark:text-gray-300');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
