@@ -17,146 +17,231 @@
             width: 8px;
         }
         ::-webkit-scrollbar-thumb {
-            background: #4f46e5;
+            background: #a78bfa; /* Purple-400 */
             border-radius: 4px;
         }
         ::-webkit-scrollbar-track {
-            background: #1f2937;
+            background: #1f2937; /* Gray-800 */
+        }
+        /* Gradient for the main hero section */
+        .hero-gradient {
+            background-image: linear-gradient(to right bottom, #111827, #1f2937);
+            border-bottom: 2px solid #a78bfa;
+        }
+        /* Card hover effect with inner shadow */
+        .data-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(167, 139, 250, 0.2), 0 4px 6px -2px rgba(167, 139, 250, 0.1);
+        }
+        /* Styling for the model ranking table */
+        .ranking-table th {
+            padding: 10px 16px;
+            text-align: left;
+            font-weight: 600;
+            color: #d8b4fe; /* Purple-300 */
+            border-bottom: 2px solid #4f46e5; /* Indigo-600 */
+        }
+        .ranking-table td {
+            padding: 10px 16px;
+            border-bottom: 1px solid #374151; /* Gray-700 */
+        }
+        .ranking-table tr:hover {
+            background-color: #374151; /* Gray-700 on hover */
+        }
+        .ranking-table tbody tr:last-child td {
+            border-bottom: none;
         }
     </style>
 </head>
-<body class="bg-gray-900 text-gray-100 min-h-screen p-4 md:p-8">
+<body class="bg-gray-900 text-gray-100 min-h-screen">
 
-    <div class="max-w-6xl mx-auto space-y-12">
+    <div class="max-w-7xl mx-auto space-y-16 p-4 md:p-10">
 
-        <!-- Header Section -->
-        <header class="text-center pb-6 border-b border-purple-700/50">
-            <h1 class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
-                Liver Cirrhosis Survival Prediction Analysis
+        <!-- Header Section (Enhanced Hero) -->
+        <header class="hero-gradient text-center p-8 rounded-2xl shadow-2xl">
+            <h1 class="text-5xl sm:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-indigo-400 tracking-tight mb-2">
+                Survival Prediction for Liver Cirrhosis
             </h1>
-            <p class="mt-2 text-lg text-purple-300">
-                A Machine Learning Approach to Patient Outcome Forecasting
+            <p class="text-xl text-purple-200 font-light mb-6">
+                A Robust Machine Learning Model for Patient Outcome Forecasting
             </p>
             <!-- GitHub Link -->
-            <a href="https://github.com/BhuvanPS/Machine-Learning-/blob/main/Prediction/Task_6.2C.ipynb" target="_blank" class="inline-block mt-3 text-sm font-medium text-blue-400 hover:text-blue-300 transition duration-150 p-2 rounded-lg bg-gray-800 hover:bg-gray-700/50 shadow-md">
-                View Repository on GitHub
-                <!-- GitHub Icon (SVG for better aesthetic and dark mode compatibility) -->
-                <svg class="w-4 h-4 inline-block ml-2 -mt-0.5" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.418 2.864 8.136 6.83 9.492.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.465-1.11-1.465-.908-.62.068-.608.068-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.64.359-1.088.653-1.332-2.22-.251-4.555-1.116-4.555-4.943 0-1.096.39-1.988 1.029-2.688-.103-.254-.448-1.274.097-2.659 0 0 .84-.27 2.75 1.026A9.584 9.584 0 0112 5.018c.85.002 1.7.12 2.493.363 1.91-1.296 2.75-1.026 2.75-1.026.546 1.385.202 2.405.1 2.659.64.7.973 1.592.973 2.688 0 3.831-2.339 4.681-4.92.359.308.678.917.678 1.854 0 1.334-.012 2.41-.012 2.727 0 .266.183.575.688.481C19.136 20.153 22 16.435 22 12.017 22 6.484 17.523 2 12 2z" clip-rule="evenodd" />
+            <a href="https://github.com/BhuvanPS/Machine-Learning-/blob/main/Prediction/Task_6.2C.ipynb" target="_blank" class="inline-flex items-center text-sm font-semibold text-white bg-purple-600 hover:bg-purple-700 transition duration-300 py-2.5 px-6 rounded-full shadow-lg shadow-purple-500/50">
+                <svg class="w-4 h-4 mr-2" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.418 2.864 8.136 6.83 9.492.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.465-1.11-1.465-.908-.62.068-.608.068-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.64.359-1.088.653-1.332-2.22-.251-4.555-1.116-4.555-4.943 0-1.096.39-1.988 1.029-2.688-.103-.254-.448-1.274.097-2.659 0 0 .84-.27 2.75 1.026A9.584 9.584 0 0112 5.018c.85.002 1.7.12 2.493.363 1.91-1.296 2.75-1.026 2.75-1.026.546 1.385.202 2.405.1 2.659.64.7.973 1.592.973 2.688 0 3.831-2.339 4.681-4.92.359.308.678.917.678 1.854 0 1.334-.012 2.41-.012 2.727 0 .266.183.575.688.481C19.136 20.153 22 16.435 22 12.017 22 6.484 17.523 2 12 2z" clip-rule="evenodd" />
                 </svg>
+                Full Analysis on GitHub
             </a>
         </header>
 
-        <!-- Project Overview -->
-        <section class="bg-gray-800 p-6 sm:p-8 rounded-xl shadow-2xl">
-            <h2 class="text-2xl font-semibold mb-4 text-purple-400 border-b border-gray-700 pb-2">Project Goal</h2>
-            <p class="text-gray-300 leading-relaxed">
-                The objective of this project was to build and evaluate predictive models for forecasting the survival outcome of patients with liver cirrhosis. This involved extensive data cleaning, feature engineering, and rigorous model selection to identify the most accurate and reliable classification method. The final model predicts one of three survival outcomes: **D** (Death), **C** (Censored/Transplant), or **O** (Censored/No Transplant).
+        <!-- Problem & Data Context Section -->
+        <section class="bg-gray-800 p-8 rounded-xl shadow-lg border-l-4 border-purple-500">
+            <h2 class="text-3xl font-bold mb-4 text-purple-400">The Problem & Data Context</h2>
+            <p class="text-gray-300 leading-relaxed mb-4">
+                Liver cirrhosis is a progressive disease with high mortality rates. Predicting patient survival—whether a patient will die (D), be censored due to a liver transplant (C), or be censored without a transplant (O)—is crucial for timely clinical interventions and resource allocation. This project applies advanced classification techniques to complex clinical data to provide early, accurate prognostic assessments.
             </p>
-        </section>
-
-        <!-- Methodology Cards -->
-        <section class="space-y-6">
-            <h2 class="text-2xl font-semibold text-center text-purple-400">Methodology & Workflow</h2>
-            <div class="grid md:grid-cols-3 gap-6">
-
-                <!-- Card 1: Data Preprocessing -->
-                <div class="bg-gray-800 p-6 rounded-xl shadow-lg border-t-4 border-indigo-500 hover:shadow-indigo-500/50 transition duration-300">
-                    <h3 class="text-xl font-bold mb-3 text-white flex items-center">
-                        <svg class="w-6 h-6 mr-2 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10M10 5l4 4m0 0l-4 4m0-4h12"></path></svg>
-                        Data Preparation
-                    </h3>
-                    <ul class="list-disc list-inside text-gray-400 space-y-1 text-sm">
-                        <li>Handling missing values and outliers.</li>
-                        <li>Categorical feature encoding (One-Hot, Label).</li>
-                        <li>Feature scaling using `StandardScaler`.</li>
-                        <li>70/30 Train-Test split for robust evaluation.</li>
-                    </ul>
-                </div>
-
-                <!-- Card 2: Model Training & Selection -->
-                <div class="bg-gray-800 p-6 rounded-xl shadow-lg border-t-4 border-pink-500 hover:shadow-pink-500/50 transition duration-300">
-                    <h3 class="text-xl font-bold mb-3 text-white flex items-center">
-                        <svg class="w-6 h-6 mr-2 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                        Model Selection
-                    </h3>
-                    <ul class="list-disc list-inside text-gray-400 space-y-1 text-sm">
-                        <li>Tested models: Logistic Regression, Ridge Classifier, SVC.</li>
-                        <li>Class imbalance addressed with class weighting.</li>
-                        <li>Hyperparameter tuning using `GridSearchCV`.</li>
-                        <li>5-Fold Cross-Validation for unbiased scoring.</li>
-                    </ul>
-                </div>
-
-                <!-- Card 3: Feature Analysis -->
-                <div class="bg-gray-800 p-6 rounded-xl shadow-lg border-t-4 border-teal-500 hover:shadow-teal-500/50 transition duration-300">
-                    <h3 class="text-xl font-bold mb-3 text-white flex items-center">
-                        <svg class="w-6 h-6 mr-2 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                        Feature Importance
-                    </h3>
-                    <ul class="list-disc list-inside text-gray-400 space-y-1 text-sm">
-                        <li>ANOVA F-value (SelectKBest) for univariate selection.</li>
-                        <li>Permutation Importance for model-agnostic feature ranking.</li>
-                        <li>Reduced feature set from 20+ to 35 encoded features.</li>
-                        <li>Identified key clinical indicators for survival.</li>
-                    </ul>
-                </div>
+            <div class="bg-gray-700/50 p-4 rounded-lg text-sm text-gray-300">
+                <span class="font-semibold text-purple-200">Dataset Snapshot:</span> 418 Total Samples, 19 Features (after encoding), 3 Target Classes (D, C, O), and a significant Class Imbalance Ratio of 9.25.
             </div>
         </section>
 
-        <!-- Key Results Section -->
-        <section class="bg-gray-800 p-6 sm:p-8 rounded-xl shadow-2xl border border-gray-700">
-            <h2 class="text-2xl font-semibold mb-6 text-purple-400 text-center">Key Results Summary</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+        <!-- Key Results Section (Prominent) -->
+        <section class="bg-gray-800 p-8 rounded-xl shadow-2xl border border-gray-700/50">
+            <h2 class="text-3xl font-bold mb-8 text-center text-purple-400">Core Model Performance Summary</h2>
+            <div class="grid md:grid-cols-4 gap-8 text-center">
 
                 <!-- Metric 1: Best Model -->
-                <div class="p-4 bg-gray-700 rounded-lg transform hover:scale-105 transition duration-300 border-b-4 border-yellow-500">
-                    <p class="text-sm uppercase font-medium text-yellow-300">Best Model</p>
-                    <p class="text-2xl font-extrabold mt-1 text-white">SVC</p>
+                <div class="p-6 bg-gray-700 rounded-xl transform transition duration-300 data-card border-b-4 border-indigo-500">
+                    <p class="text-sm uppercase font-medium text-indigo-300">Best Classifier</p>
+                    <p class="text-4xl font-extrabold mt-2 text-white">LogReg</p>
+                    <p class="text-xs text-gray-400 mt-1">(Logistic Regression, Balanced)</p>
                 </div>
 
-                <!-- Metric 2: Test Accuracy -->
-                <div class="p-4 bg-gray-700 rounded-lg transform hover:scale-105 transition duration-300 border-b-4 border-green-500">
+                <!-- Metric 2: Best CV Score -->
+                <div class="p-6 bg-gray-700 rounded-xl transform transition duration-300 data-card border-b-4 border-cyan-500">
+                    <p class="text-sm uppercase font-medium text-cyan-300">Best CV Score</p>
+                    <p class="text-4xl font-extrabold mt-2 text-white">0.7436</p>
+                    <p class="text-xs text-gray-400 mt-1">Cross-Validation Performance</p>
+                </div>
+
+                <!-- Metric 3: Test Accuracy -->
+                <div class="p-6 bg-gray-700 rounded-xl transform transition duration-300 data-card border-b-4 border-green-500">
                     <p class="text-sm uppercase font-medium text-green-300">Test Accuracy</p>
-                    <p class="text-2xl font-extrabold mt-1 text-white">85.50%</p>
+                    <p class="text-4xl font-extrabold mt-2 text-white">69.05%</p>
+                    <p class="text-xs text-gray-400 mt-1">Final Classification Performance</p>
                 </div>
 
-                <!-- Metric 3: Test F1-Score -->
-                <div class="p-4 bg-gray-700 rounded-lg transform hover:scale-105 transition duration-300 border-b-4 border-red-500">
-                    <p class="text-sm uppercase font-medium text-red-300">Test F1-Score</p>
-                    <p class="text-2xl font-extrabold mt-1 text-white">0.83</p>
-                </div>
-
-                <!-- Metric 4: Total Samples -->
-                <div class="p-4 bg-gray-700 rounded-lg transform hover:scale-105 transition duration-300 border-b-4 border-blue-500">
-                    <p class="text-sm uppercase font-medium text-blue-300">Total Samples</p>
-                    <p class="text-2xl font-extrabold mt-1 text-white">418</p>
+                <!-- Metric 4: Test F1-Score -->
+                <div class="p-6 bg-gray-700 rounded-xl transform transition duration-300 data-card border-b-4 border-yellow-500">
+                    <p class="text-sm uppercase font-medium text-yellow-300">Test F1-Score</p>
+                    <p class="text-4xl font-extrabold mt-2 text-white">0.693</p>
+                    <p class="text-xs text-gray-400 mt-1">Harmonic mean of Precision/Recall</p>
                 </div>
 
             </div>
+        </section>
 
-            <!-- Feature Insights -->
-            <div class="mt-8 pt-6 border-t border-gray-700">
-                <h3 class="text-xl font-semibold mb-4 text-purple-300">Top Predictive Features</h3>
-                <div class="grid sm:grid-cols-2 gap-4">
-                    <div class="bg-gray-700 p-4 rounded-lg flex justify-between items-center">
-                        <span class="text-lg text-gray-200">ANOVA (Univariate):</span>
-                        <span class="text-lg font-bold text-yellow-400">Bilirubin</span>
+        <!-- Model Selection & Benchmarking Section -->
+        <section class="bg-gray-800 p-8 rounded-xl shadow-lg border-t-4 border-cyan-500">
+            <h2 class="text-3xl font-bold mb-4 text-cyan-400 flex items-center">
+                <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                Model Selection & Benchmarking
+            </h2>
+            <p class="text-gray-300 mb-6 leading-relaxed">
+                Six classifier variants were benchmarked using cross-validation to ensure model robustness and to mitigate the effects of class imbalance. The models were ranked based on their **cross-validation F1-weighted score**.
+            </p>
+
+            <div class="overflow-x-auto rounded-lg mb-6">
+                <table class="w-full text-sm text-left text-gray-400 ranking-table">
+                    <thead class="text-xs uppercase bg-gray-700">
+                        <tr>
+                            <th scope="col" class="py-3 px-6">Rank</th>
+                            <th scope="col" class="py-3 px-6">Model Variant</th>
+                            <th scope="col" class="py-3 px-6">Best CV Score (F1-Weighted)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bg-gray-800 font-semibold text-purple-300">
+                            <td class="py-4 px-6">1</td>
+                            <td class="py-4 px-6">Logistic Regression (Balanced)</td>
+                            <td class="py-4 px-6">0.7436</td>
+                        </tr>
+                        <tr class="bg-gray-800">
+                            <td class="py-4 px-6">2</td>
+                            <td class="py-4 px-6">Logistic Regression (Original)</td>
+                            <td class="py-4 px-6">0.7377</td>
+                        </tr>
+                        <tr class="bg-gray-800">
+                            <td class="py-4 px-6">3</td>
+                            <td class="py-4 px-6">SVM (Original)</td>
+                            <td class="py-4 px-6">0.7275</td>
+                        </tr>
+                        <tr class="bg-gray-800">
+                            <td class="py-4 px-6">4</td>
+                            <td class="py-4 px-6">SVM (Balanced)</td>
+                            <td class="py-4 px-6">0.7185</td>
+                        </tr>
+                        <tr class="bg-gray-800">
+                            <td class="py-4 px-6">5</td>
+                            <td class="py-4 px-6">Ridge Classifier (Original)</td>
+                            <td class="py-4 px-6">0.7180</td>
+                        </tr>
+                        <tr class="bg-gray-800">
+                            <td class="py-4 px-6">6</td>
+                            <td class="py-4 px-6">Ridge Classifier (Balanced)</td>
+                            <td class="py-4 px-6">0.7180</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="bg-purple-900/40 p-4 rounded-lg border-l-4 border-purple-500 text-sm text-gray-200">
+                <p class="font-bold text-lg text-purple-300 mb-1">Justification for Selection:</p>
+                <p>The Logistic Regression (Balanced) model was chosen due to achieving the **highest F1-weighted cross-validation score (0.7436)**. The F1-weighted metric ensures performance is accurately assessed across all three imbalanced classes, providing the most reliable estimate of the model's true predictive capability.</p>
+            </div>
+        </section>
+
+
+        <!-- Methodology & Feature Importance -->
+        <section class="grid lg:grid-cols-2 gap-10">
+
+            <!-- Column 1: Methodology -->
+            <div class="bg-gray-800 p-8 rounded-xl shadow-lg border-t-4 border-indigo-500">
+                <h2 class="text-3xl font-bold mb-4 text-indigo-400 flex items-center">
+                    <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37a1.724 1.724 0 002.572-1.065z"></path></svg>
+                    Technical Approach & Preprocessing
+                </h1>
+                <ul class="space-y-4 text-gray-300">
+                    <li class="p-3 bg-gray-700 rounded-lg shadow-inner">
+                        <span class="font-semibold text-purple-300">Preprocessing Pipeline:</span> Data was cleaned using imputation for missing values, skewness correction, and `StandardScaler` for feature normalization. Categorical features were one-hot encoded.
+                    </li>
+                    <li class="p-3 bg-gray-700 rounded-lg shadow-inner">
+                        <span class="font-semibold text-purple-300">Model Selection:</span> Benchmarking included Logistic Regression, Ridge Classifier, and SVC. **Logistic Regression** with `class_weight='balanced'` was selected for its superior cross-validation score and interpretability.
+                    </li>
+                    <li class="p-3 bg-gray-700 rounded-lg shadow-inner">
+                        <span class="font-semibold text-purple-300">Validation:</span> Performance was optimized using **5-fold Cross-Validation** via `GridSearchCV` for robust parameter tuning, followed by final evaluation on a separate 84-sample Test set.
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Column 2: Feature Importance Analysis -->
+            <div class="bg-gray-800 p-8 rounded-xl shadow-lg border-t-4 border-yellow-500">
+                <h2 class="text-3xl font-bold mb-4 text-yellow-400 flex items-center">
+                    <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v16L9 19zm0 0h10a2 2 0 002-2v-3M9 19h-3a2 2 0 01-2-2V8a2 2 0 012-2h3m-3 3h10M9 12h10m-10 4h10m-3-4h1v4h-1v-4z"></path></svg>
+                    Dual Feature Importance Methodology
+                </h2>
+                <div class="space-y-4 text-gray-300">
+                    <p class="font-semibold text-lg text-purple-300">Commonly Important Features (Both Methods):</p>
+                    <div class="grid grid-cols-2 gap-2 text-center text-sm">
+                        <span class="p-2 bg-gray-700 rounded-lg font-mono text-white">N_Days (Rank 1, 1)</span>
+                        <span class="p-2 bg-gray-700 rounded-lg font-mono text-white">Bilirubin (Rank 3, 3)</span>
+                        <span class="p-2 bg-gray-700 rounded-lg font-mono text-white">Copper (Rank 6, 6)</span>
+                        <span class="p-2 bg-gray-700 rounded-lg font-mono text-white">Stage (Rank 12, 12)</span>
                     </div>
-                    <div class="bg-gray-700 p-4 rounded-lg flex justify-between items-center">
-                        <span class="text-lg text-gray-200">Permutation (Model-Based):</span>
-                        <span class="text-lg font-bold text-yellow-400">Prothrombin Time</span>
-                    </div>
+
+                    <p class="pt-4 font-semibold text-lg text-yellow-300">Method-Specific Insights:</p>
+                    <ul class="list-disc ml-6 space-y-2 text-sm">
+                        <li><span class="font-bold text-cyan-300">ANOVA F-test:</span> Identified **Bilirubin** as the single most important feature based on its strong *univariate* statistical relationship with the target.</li>
+                        <li><span class="font-bold text-red-300">Permutation Importance:</span> Identified **SGOT** as the most influential feature on model performance, capturing *interaction effects* within the LogReg model.</li>
+                    </ul>
+
+                    <p class="pt-2 text-xs text-gray-500 italic">
+                        Conclusion: Moderate agreement between statistical (ANOVA) and model-driven (Permutation) importance suggests complex feature interactions. 17/19 features were found to be statistically significant (p&lt;0.05).
+                    </p>
                 </div>
             </div>
         </section>
 
-        <!-- Conclusion -->
-        <footer class="text-center pt-8 border-t border-purple-700/50">
-            <p class="text-sm text-gray-500">
-                Data Science Portfolio Showcase.
-            </p>
-        </footer>
+        <!-- Technologies Used Section -->
+        <section class="text-center pt-8">
+            <h2 class="text-3xl font-bold mb-6 text-purple-400">Technologies Used</h2>
+            <div class="flex flex-wrap justify-center gap-4">
+                <span class="px-4 py-2 bg-green-700/50 text-green-200 rounded-full font-medium text-sm border border-green-600">Python</span>
+                <span class="px-4 py-2 bg-blue-700/50 text-blue-200 rounded-full font-medium text-sm border border-blue-600">Logistic Regression</span>
+                <span class="px-4 py-2 bg-red-700/50 text-red-200 rounded-full font-medium text-sm border border-red-600">Machine Learning</span>
+                <span class="px-4 py-2 bg-indigo-700/50 text-indigo-200 rounded-full font-medium text-sm border border-indigo-600">Classification</span>
+                <span class="px-4 py-2 bg-yellow-700/50 text-yellow-200 rounded-full font-medium text-sm border border-yellow-600">Scikit-learn</span>
+                <span class="px-4 py-2 bg-pink-700/50 text-pink-200 rounded-full font-medium text-sm border border-pink-600">Pandas/NumPy</span>
+            </div>
+        </section>
 
     </div>
 
