@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liver Cirrhosis Survival Prediction Analysis</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* Custom font for the page */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar for aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4f46e5;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1f2937;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen p-4 md:p-8">
+
+    <div class="max-w-6xl mx-auto space-y-12">
+
+        <!-- Header Section -->
+        <header class="text-center pb-6 border-b border-purple-700/50">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
+                Liver Cirrhosis Survival Prediction Analysis
+            </h1>
+            <p class="mt-2 text-lg text-purple-300">
+                A Machine Learning Approach to Patient Outcome Forecasting
+            </p>
+            <!-- GitHub Link -->
+            <a href="https://github.com/BhuvanPS/Machine-Learning-/blob/main/Prediction/Task_6.2C.ipynb" target="_blank" class="inline-block mt-3 text-sm font-medium text-blue-400 hover:text-blue-300 transition duration-150 p-2 rounded-lg bg-gray-800 hover:bg-gray-700/50 shadow-md">
+                View Repository on GitHub
+                <!-- GitHub Icon (SVG for better aesthetic and dark mode compatibility) -->
+                <svg class="w-4 h-4 inline-block ml-2 -mt-0.5" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.418 2.864 8.136 6.83 9.492.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.465-1.11-1.465-.908-.62.068-.608.068-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.64.359-1.088.653-1.332-2.22-.251-4.555-1.116-4.555-4.943 0-1.096.39-1.988 1.029-2.688-.103-.254-.448-1.274.097-2.659 0 0 .84-.27 2.75 1.026A9.584 9.584 0 0112 5.018c.85.002 1.7.12 2.493.363 1.91-1.296 2.75-1.026 2.75-1.026.546 1.385.202 2.405.1 2.659.64.7.973 1.592.973 2.688 0 3.831-2.339 4.681-4.92.359.308.678.917.678 1.854 0 1.334-.012 2.41-.012 2.727 0 .266.183.575.688.481C19.136 20.153 22 16.435 22 12.017 22 6.484 17.523 2 12 2z" clip-rule="evenodd" />
+                </svg>
+            </a>
+        </header>
+
+        <!-- Project Overview -->
+        <section class="bg-gray-800 p-6 sm:p-8 rounded-xl shadow-2xl">
+            <h2 class="text-2xl font-semibold mb-4 text-purple-400 border-b border-gray-700 pb-2">Project Goal</h2>
+            <p class="text-gray-300 leading-relaxed">
+                The objective of this project was to build and evaluate predictive models for forecasting the survival outcome of patients with liver cirrhosis. This involved extensive data cleaning, feature engineering, and rigorous model selection to identify the most accurate and reliable classification method. The final model predicts one of three survival outcomes: **D** (Death), **C** (Censored/Transplant), or **O** (Censored/No Transplant).
+            </p>
+        </section>
+
+        <!-- Methodology Cards -->
+        <section class="space-y-6">
+            <h2 class="text-2xl font-semibold text-center text-purple-400">Methodology & Workflow</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+
+                <!-- Card 1: Data Preprocessing -->
+                <div class="bg-gray-800 p-6 rounded-xl shadow-lg border-t-4 border-indigo-500 hover:shadow-indigo-500/50 transition duration-300">
+                    <h3 class="text-xl font-bold mb-3 text-white flex items-center">
+                        <svg class="w-6 h-6 mr-2 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10M10 5l4 4m0 0l-4 4m0-4h12"></path></svg>
+                        Data Preparation
+                    </h3>
+                    <ul class="list-disc list-inside text-gray-400 space-y-1 text-sm">
+                        <li>Handling missing values and outliers.</li>
+                        <li>Categorical feature encoding (One-Hot, Label).</li>
+                        <li>Feature scaling using `StandardScaler`.</li>
+                        <li>70/30 Train-Test split for robust evaluation.</li>
+                    </ul>
+                </div>
+
+                <!-- Card 2: Model Training & Selection -->
+                <div class="bg-gray-800 p-6 rounded-xl shadow-lg border-t-4 border-pink-500 hover:shadow-pink-500/50 transition duration-300">
+                    <h3 class="text-xl font-bold mb-3 text-white flex items-center">
+                        <svg class="w-6 h-6 mr-2 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        Model Selection
+                    </h3>
+                    <ul class="list-disc list-inside text-gray-400 space-y-1 text-sm">
+                        <li>Tested models: Logistic Regression, Ridge Classifier, SVC.</li>
+                        <li>Class imbalance addressed with class weighting.</li>
+                        <li>Hyperparameter tuning using `GridSearchCV`.</li>
+                        <li>5-Fold Cross-Validation for unbiased scoring.</li>
+                    </ul>
+                </div>
+
+                <!-- Card 3: Feature Analysis -->
+                <div class="bg-gray-800 p-6 rounded-xl shadow-lg border-t-4 border-teal-500 hover:shadow-teal-500/50 transition duration-300">
+                    <h3 class="text-xl font-bold mb-3 text-white flex items-center">
+                        <svg class="w-6 h-6 mr-2 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        Feature Importance
+                    </h3>
+                    <ul class="list-disc list-inside text-gray-400 space-y-1 text-sm">
+                        <li>ANOVA F-value (SelectKBest) for univariate selection.</li>
+                        <li>Permutation Importance for model-agnostic feature ranking.</li>
+                        <li>Reduced feature set from 20+ to 35 encoded features.</li>
+                        <li>Identified key clinical indicators for survival.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Results Section -->
+        <section class="bg-gray-800 p-6 sm:p-8 rounded-xl shadow-2xl border border-gray-700">
+            <h2 class="text-2xl font-semibold mb-6 text-purple-400 text-center">Key Results Summary</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+
+                <!-- Metric 1: Best Model -->
+                <div class="p-4 bg-gray-700 rounded-lg transform hover:scale-105 transition duration-300 border-b-4 border-yellow-500">
+                    <p class="text-sm uppercase font-medium text-yellow-300">Best Model</p>
+                    <p class="text-2xl font-extrabold mt-1 text-white">SVC</p>
+                </div>
+
+                <!-- Metric 2: Test Accuracy -->
+                <div class="p-4 bg-gray-700 rounded-lg transform hover:scale-105 transition duration-300 border-b-4 border-green-500">
+                    <p class="text-sm uppercase font-medium text-green-300">Test Accuracy</p>
+                    <p class="text-2xl font-extrabold mt-1 text-white">85.50%</p>
+                </div>
+
+                <!-- Metric 3: Test F1-Score -->
+                <div class="p-4 bg-gray-700 rounded-lg transform hover:scale-105 transition duration-300 border-b-4 border-red-500">
+                    <p class="text-sm uppercase font-medium text-red-300">Test F1-Score</p>
+                    <p class="text-2xl font-extrabold mt-1 text-white">0.83</p>
+                </div>
+
+                <!-- Metric 4: Total Samples -->
+                <div class="p-4 bg-gray-700 rounded-lg transform hover:scale-105 transition duration-300 border-b-4 border-blue-500">
+                    <p class="text-sm uppercase font-medium text-blue-300">Total Samples</p>
+                    <p class="text-2xl font-extrabold mt-1 text-white">418</p>
+                </div>
+
+            </div>
+
+            <!-- Feature Insights -->
+            <div class="mt-8 pt-6 border-t border-gray-700">
+                <h3 class="text-xl font-semibold mb-4 text-purple-300">Top Predictive Features</h3>
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <div class="bg-gray-700 p-4 rounded-lg flex justify-between items-center">
+                        <span class="text-lg text-gray-200">ANOVA (Univariate):</span>
+                        <span class="text-lg font-bold text-yellow-400">Bilirubin</span>
+                    </div>
+                    <div class="bg-gray-700 p-4 rounded-lg flex justify-between items-center">
+                        <span class="text-lg text-gray-200">Permutation (Model-Based):</span>
+                        <span class="text-lg font-bold text-yellow-400">Prothrombin Time</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusion -->
+        <footer class="text-center pt-8 border-t border-purple-700/50">
+            <p class="text-sm text-gray-500">
+                Data Science Portfolio Showcase.
+            </p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
