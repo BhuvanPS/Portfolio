@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Loan Analysis: Data Storytelling Portfolio</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configure Tailwind for a clean, dark theme and modern font -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        // Custom Palette for a Professional Look (Dark Blue/Gold)
+                        'primary-bg': '#0F172A',     // Slate-900: Deep Dark Blue/Black
+                        'secondary-bg': '#1E293B',   // Slate-800: Slightly Lighter Dark
+                        'accent-main': '#F59E0B',    // Amber-500: Professional Gold/Orange accent
+                        'text-light': '#E2E8F0',     // Slate-200: Light text on dark background
+                        'detail-border': '#334155',  // Slate-700: Subtle separator
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom styles for professional image placeholders/containers */
+        .placeholder {
+            /* We remove the placeholder styling but keep the structure */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: transparent; 
+            border: none;
+            border-radius: 0.75rem;
+            min-height: auto;
+        }
+        .section-heading {
+            border-bottom: 2px solid #F59E0B;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        /* Style for narrative headings */
+        .narrative-heading {
+            color: #F59E0B;
+            font-weight: 700;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+        /* Ensure strong text within the narrative and descriptions stands out */
+        strong {
+            font-weight: 700; /* Bold for emphasis */
+            color: #FFF; /* Pure white for maximum visibility on dark background */
+        }
+    </style>
+</head>
+<body class="bg-primary-bg font-sans text-text-light antialiased">
+
+    <!-- Header Section (Fixed to top for a professional feel) -->
+    <header class="bg-secondary-bg text-white p-4 shadow-xl sticky top-0 z-10 border-b border-detail-border">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-extrabold tracking-wider text-accent-main">DATA ANALYTICS PORTFOLIO</h1>
+            <span class="text-lg font-light text-slate-300">Power BI: Bank Loan Performance</span>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto p-6 lg:p-12">
+
+        <!-- Project Overview Section -->
+        <section class="mb-16 pt-8">
+            <h2 class="text-5xl font-extrabold mb-4 tracking-tight">Bank Loan Analysis Report</h2>
+            <p class="text-xl text-slate-400 max-w-4xl">A comprehensive, three-tier dashboard designed to transform raw financial data into a guided and actionable executive narrative, monitoring lending health and risk exposure.</p>
+        </section>
+
+        <!-- Data Storytelling Narrative Section -->
+        <section class="mb-16 bg-secondary-bg p-8 lg:p-10 rounded-2xl shadow-2xl border border-detail-border">
+            <h2 class="text-3xl font-bold section-heading text-accent-main">Executive Data Storytelling Narrative</h2>
+            <p class="text-lg text-slate-300 mb-6 border-b border-detail-border pb-4">
+                This narrative highlights the core findings for the quarter, guiding stakeholders through performance, risk, and growth drivers.
+            </p>
+
+            <div class="space-y-6 text-slate-400">
+                <h3 class="narrative-heading">I. Portfolio Performance: Strong Momentum</h3>
+                <p>
+                    The loan portfolio demonstrates <strong>robust lending momentum</strong>. The total funded amount shows a significant MoM increase of <strong>13.0%</strong>, reflecting accelerated demand and successful disbursement. Despite this rapid growth, the portfolio remains highly stable: <strong>86.2% of all loans are categorized as "Good Loans."</strong> The Average Interest Rate is also slightly up at <strong>12.0%</strong>, indicating effective risk pricing alongside volume growth.
+                </p>
+
+                <h3 class="narrative-heading">II. Applicant Profile and Risk Management</h3>
+                <p>
+                    Analysis of the <strong>Overview</strong> dashboard reveals a highly desirable core borrower profile. The largest segment of applicants demonstrates significant stability, with the majority having <strong>10+ years of employment length</strong>. The primary driver for new applications is **Debt Consolidation**, accounting for over <strong>16,000 applications</strong>. While the <strong>Average Debt-to-Income (DTI) ratio</strong> is at <strong>13.3%</strong>, the <strong>Details</strong> page is crucial for monitoring outliers and ensuring the <strong>13.8% "Bad Loan" segment</strong> (Charged Off) is managed aggressively.
+                </p>
+
+                <h3 class="narrative-heading">III. Actionable Insights</h3>
+                <ul class="list-disc list-inside space-y-2 pl-4">
+                    <li><strong>Growth Strategy:</strong> Continue to target the Debt Consolidation segment, leveraging the strong demand confirmed by the <strong>75.85% preference for 60-month loan terms</strong>, securing longer-term interest revenue.</li>
+                    <li><strong>Risk Focus:</strong> Utilize the <strong>Loan Status Grid</strong> on the Summary page to immediately flag and investigate the <strong>Current</strong> and <strong>Charged Off</strong> status categories to contain the <strong>$65.53M funded for Bad Loans</strong>.</li>
+                </ul>
+            </div>
+        </section>
+
+
+        <!-- Skills Demonstration Section -->
+        <section class="mb-16 bg-secondary-bg p-8 lg:p-10 rounded-2xl shadow-2xl border border-detail-border">
+            <h2 class="text-3xl font-bold section-heading text-accent-main">Core Competencies Demonstrated</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- Skill Card 1: Data Modeling & ETL -->
+                <div class="p-6 rounded-lg bg-primary-bg shadow-xl border-l-4 border-accent-main transform hover:scale-[1.02] transition duration-300">
+                    <div class="text-3xl mb-2 text-accent-main">⚙️</div>
+                    <h3 class="font-bold text-xl mb-2 text-text-light">Data Modeling & ETL</h3>
+                    <p class="text-sm text-slate-400">Structured complex, transactional loan data, established robust relationships, and applied necessary <strong>Power Query</strong> transformations for optimal efficiency and integrity.</p>
+                </div>
+
+                <!-- Skill Card 2: Advanced DAX & Calculation Groups -->
+                <div class="p-6 rounded-lg bg-primary-bg shadow-xl border-l-4 border-accent-main transform hover:scale-[1.02] transition duration-300">
+                    <div class="text-3xl mb-2 text-accent-main">📊</div>
+                    <h3 class="font-bold text-xl mb-2 text-text-light">Advanced DAX & KPIs</h3>
+                    <p class="text-sm text-slate-400">Engineered complex financial calculations: <strong>Month-to-Date (MTD)</strong>, <strong>Month-over-Month (MoM) Variance</strong>, and dynamically calculated financial ratios like <strong>Average DTI</strong> for performance management.</p>
+                </div>
+
+                <!-- Skill Card 3: Information Design & UX -->
+                <div class="p-6 rounded-lg bg-primary-bg shadow-xl border-l-4 border-accent-main transform hover:scale-[1.02] transition duration-300">
+                    <div class="text-3xl mb-2 text-accent-main">📐</div>
+                    <h3 class="font-bold text-xl mb-2 text-text-light">Information Design & UX</h3>
+                    <p class="text-sm text-slate-400">Implemented a three-tiered structure (<strong>Summary</strong>, <strong>Overview</strong>, <strong>Details</strong>) guiding users from high-level performance metrics down to granular transactional data for deep analysis.</p>
+                </div>
+
+                <!-- Skill Card 4: Data Storytelling & Narrative -->
+                <div class="p-6 rounded-lg bg-primary-bg shadow-xl border-l-4 border-accent-main transform hover:scale-[1.02] transition duration-300">
+                    <div class="text-3xl mb-2 text-accent-main">🗣️</div>
+                    <h3 class="font-bold text-xl mb-2 text-text-light">Data Storytelling & Narrative</h3>
+                    <p class="text-sm text-slate-400">Translated quantitative insights (e.g., <strong>86.2% Good Loan rate</strong>, <strong>13.0% MoM Funding Growth</strong>) into clear, decisive narratives for executive stakeholders.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Dashboard Screenshots Section -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold section-heading text-accent-main">Dashboard Visualizations</h2>
+            <p class="text-slate-400 mb-8">Replace the generic image source below with the actual file path of your uploaded dashboard screenshots.</p>
+            
+            <!-- Summary Dashboard Image -->
+            <div class="mb-10 p-6 bg-secondary-bg rounded-xl shadow-xl border border-detail-border">
+                <h3 class="text-2xl font-semibold mb-3">1. Summary Dashboard: Portfolio Health</h3>
+                <p class="text-slate-400 mb-4">Displays high-level KPIs, including <strong>Total Funded Amount</strong> and <strong>Average Interest Rate</strong>, and provides the critical split between <strong>Good Loans (86.2%)</strong> and <strong>Bad Loans (13.8%)</strong>.</p>
+                <div class="placeholder">
+                    <!-- Image tag for Summary -->
+                    <img src="image-summary.png" alt="Screenshot of the Bank Loan Analysis Summary Dashboard with key KPIs" class="w-full h-auto rounded-lg border-2 border-detail-border shadow-xl">
+                    
+                </div>
+            </div>
+
+            <!-- Overview Dashboard Image -->
+            <div class="mb-10 p-6 bg-secondary-bg rounded-xl shadow-xl border border-detail-border">
+                <h3 class="text-2xl font-semibold mb-3">2. Overview Dashboard: Market & Borrower Segmentation</h3>
+                <p class="text-slate-400 mb-4">Provides context for the summary metrics, breaking down applications by <strong>Loan Term</strong>, <strong>Employment Length (e.g., 10+ years)</strong>, <strong>Loan Purpose (e.g., Debt Consolidation)</strong>, and <strong>Home Ownership</strong> status.</p>
+                <div class="placeholder">
+                    <!-- Image tag for Overview -->
+                    <img src="image-overview.png" alt="Screenshot of the Bank Loan Analysis Overview Dashboard showing market segmentation charts" class="w-full h-auto rounded-lg border-2 border-detail-border shadow-xl">
+                    
+                </div>
+            </div>
+
+            <!-- Details Dashboard Image -->
+            <div class="mb-10 p-6 bg-secondary-bg rounded-xl shadow-xl border border-detail-border">
+                <h3 class="text-2xl font-semibold mb-3">3. Details Dashboard: Transactional Auditing</h3>
+                <p class="text-slate-400 mb-4">Offers the lowest level of detail, enabling users to audit specific transactions. Includes $\text{ID}$, $\text{grade}$, $\text{issue date}$, $\text{funded amount}$, and $\text{installment}$ for targeted risk review.</p>
+                <div class="placeholder">
+                    <!-- Image tag for Details -->
+                    <img src="image-details.png" alt="Screenshot of the Bank Loan Analysis Details Dashboard showing granular loan transaction data" class="w-full h-auto rounded-lg border-2 border-detail-border shadow-xl">
+                    
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-primary-bg text-slate-500 text-center p-6 border-t border-detail-border">
+        <p class="text-sm">&copy; 2025 Financial Data Analytics | Developed with Power BI and Tailwind CSS</p>
+    </footer>
+
+</body>
+</html>
