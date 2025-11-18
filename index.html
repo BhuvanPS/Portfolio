@@ -5,22 +5,19 @@
     <meta name="google-site-verification" content="w0YQjVpGVj-D4KuO7PzQsZ1kTxQnBGds4gDBbsilhFE" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bhuvan Subramani - Professional Portfolio</title>
+    <title>Bhuvan Subramani - Data Science & Software Engineering Portfolio</title>
     <meta name="description"
-        content="Bhuvan Subramani's professional portfolio showcasing expertise in Data Science, Mobile App Development (Flutter), AI solutions, and impactful projects.">
+        content="Bhuvan Subramani - Data Scientist, AI/ML Engineer & Flutter Developer specializing in data analytics, machine learning, and mobile app development.">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            darkMode: 'class', // Configure Tailwind to use 'class' strategy for dark mode
+            darkMode: 'class',
             theme: {
-                extend: {
-                    // You can extend your theme here if needed
-                }
+                extend: {}
             }
         }
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-        xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
@@ -29,12 +26,10 @@
             font-family: 'Inter', sans-serif;
         }
 
-        /* Animations */
         @keyframes fadeIn {
             from {
                 opacity: 0;
             }
-
             to {
                 opacity: 1;
             }
@@ -45,46 +40,9 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateX(0);
             }
         }
 
@@ -92,31 +50,23 @@
             0% {
                 transform: translate(0px, 0px) scale(1);
             }
-
             33% {
                 transform: translate(30px, -50px) scale(1.1);
             }
-
             66% {
                 transform: translate(-20px, 20px) scale(0.9);
             }
-
             100% {
                 transform: translate(0px, 0px) scale(1);
             }
         }
 
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
             }
-
             50% {
-                transform: scale(1.02);
-            }
-
-            100% {
-                transform: scale(1);
+                transform: translateY(-20px);
             }
         }
 
@@ -128,26 +78,13 @@
             animation: fadeInUp 0.8s ease-out forwards;
         }
 
-        .animate-fade-in-down {
-            animation: fadeInDown 0.8s ease-out forwards;
-        }
-
-        .animate-fade-in-left {
-            animation: fadeInLeft 0.8s ease-out forwards;
-        }
-
-        .animate-fade-in-right {
-            animation: fadeInRight 0.8s ease-out forwards;
-        }
-
         .animate-blob {
             animation: blob 7s infinite;
         }
 
-        .animate-pulse-hover:hover {
-            animation: pulse 1s infinite;
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
         }
-
 
         .animation-delay-200 {
             animation-delay: 0.2s;
@@ -157,77 +94,18 @@
             animation-delay: 0.4s;
         }
 
-        .animation-delay-500 {
-            animation-delay: 0.5s;
-        }
-
         .animation-delay-600 {
             animation-delay: 0.6s;
-        }
-
-        .animation-delay-1000 {
-            animation-delay: 1s;
         }
 
         .animation-delay-2000 {
             animation-delay: 2s;
         }
 
-        .animation-delay-3000 {
-            animation-delay: 3s;
-        }
-
         .animation-delay-4000 {
             animation-delay: 4s;
         }
 
-        .animation-delay-5000 {
-            animation-delay: 5s;
-        }
-
-        /* Ensure animations don't run on initial load for all elements */
-        body *:not(.hero-section-element) {
-            animation-fill-mode: backwards;
-        }
-
-        /* Font Awesome icons sizing */
-        .fa-icon-large {
-            font-size: 32px;
-            /* For section headers */
-        }
-
-        .fa-icon-medium {
-            font-size: 20px;
-            /* For contact info */
-        }
-
-        .fa-icon-small {
-            font-size: 16px;
-            /* For external links */
-        }
-
-        .fa-icon-skill {
-            font-size: 48px;
-            /* For skill cards */
-        }
-
-        /* Micro-interactions */
-
-        /* Button Active State */
-        .btn-primary:active {
-            transform: scale(0.98) translateY(0);
-            /* Slightly smaller on press */
-            background-color: var(--tw-indigo-800, #3730a3);
-            /* Darker shade of indigo */
-            box-shadow: none;
-        }
-
-        .dark .btn-primary:active {
-            background-color: var(--tw-indigo-700, #4f46e5);
-            /* Darker shade for dark mode */
-        }
-
-        /* Nav Link Underline Effect */
         .nav-link {
             position: relative;
         }
@@ -241,7 +119,6 @@
             left: 50%;
             transform: translateX(-50%);
             background-color: currentColor;
-            /* Inherits color from parent */
             transition: width 0.3s ease-out;
         }
 
@@ -249,168 +126,132 @@
             width: 100%;
         }
 
-        .nav-link:hover {
-            transform: scale(1.02);
-            /* Subtle text size increase */
-            transition: transform 0.2s ease-out;
+        .skill-card {
+            transition: all 0.3s ease;
         }
 
-        /* Skill Card Icon Hover Effect */
-        .skill-card-icon {
-            transition: color 0.3s ease-out, transform 0.3s ease-out;
+        .skill-card:hover {
+            transform: translateY(-5px);
         }
 
-        .skill-card:hover .skill-card-icon {
-            color: var(--tw-indigo-500, #6366f1);
-            /* Change icon color on hover */
-            transform: rotate(5deg);
-            /* Subtle rotation */
+        .project-card {
+            transition: all 0.4s ease;
         }
 
-        .dark .skill-card:hover .skill-card-icon {
-            color: var(--tw-indigo-300, #a5b4fc);
+        .project-card:hover {
+            transform: translateY(-8px);
         }
 
-        /* Form Input Focus Border */
-        input:focus,
-        textarea:focus {
-            outline: none;
-            border-color: var(--tw-indigo-500, #6366f1);
-            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.5);
-            /* Custom focus ring */
+        .metric-card {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            border: 1px solid rgba(99, 102, 241, 0.2);
         }
 
-        /* Back to Top Button Animation */
+        .dark .metric-card {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
         #backToTopBtn {
             transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-            transform: translateY(20px) rotate(-90deg);
-            /* Initial state for appearance animation */
+            transform: translateY(20px);
             opacity: 0;
         }
 
         #backToTopBtn.show {
-            transform: translateY(0) rotate(0deg);
+            transform: translateY(0);
             opacity: 1;
-        }
-
-        #backToTopBtn:hover {
-            transform: translateY(0) rotate(15deg) scale(1.1);
-            /* Subtle hover rotation and scale */
-        }
-
-        /* Hover effect for individual list items in Experience/Education/Certificates */
-        .timeline-item {
-            transition: background-color 0.3s ease-out, transform 0.2s ease-out;
-        }
-
-        .timeline-item:hover {
-            background-color: rgba(99, 102, 241, 0.05);
-            /* Light indigo background on hover */
-            transform: translateX(5px);
-            /* Slight shift to the right */
-        }
-
-        .dark .timeline-item:hover {
-            background-color: rgba(99, 102, 241, 0.1);
-            /* Darker indigo for dark mode */
         }
     </style>
 </head>
 
-<body
-    class="min-h-screen bg-gray-50 dark:bg-gray-950 font-sans text-gray-800 dark:text-gray-200 antialiased transition-colors duration-500">
+<body class="min-h-screen bg-gray-50 dark:bg-gray-950 text-gray-800 dark:text-gray-200 antialiased transition-colors duration-500">
 
-    <header
-        class="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm shadow-lg transition-colors duration-500">
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg transition-colors duration-500">
         <nav class="container mx-auto flex items-center justify-between p-4 md:p-6">
             <div class="text-2xl font-extrabold text-indigo-700 dark:text-indigo-400">Bhuvan.dev</div>
             <ul class="hidden space-x-8 md:flex items-center">
-                <li><button data-section="home"
-                        class="nav-link text-lg font-medium hover:text-indigo-700 dark:hover:text-indigo-400 transition-colors duration-300">Home</button>
-                </li>
-                <li><button data-section="about"
-                        class="nav-link text-lg font-medium hover:text-indigo-700 dark:hover:text-indigo-400 transition-colors duration-300">About</button>
-                </li>
-                <li><button data-section="skills"
-                        class="nav-link text-lg font-medium hover:text-indigo-700 dark:hover:text-indigo-400 transition-colors duration-300">Skills</button>
-                </li>
-                <li><button data-section="projects"
-                        class="nav-link text-lg font-medium hover:text-indigo-700 dark:hover:text-indigo-400 transition-colors duration-300">Projects</button>
-                </li>
-                <li><button data-section="contact"
-                        class="nav-link text-lg font-medium hover:text-indigo-700 dark:hover:text-indigo-400 transition-colors duration-300">Contact</button>
-                </li>
+                <li><button data-section="home" class="nav-link text-lg font-medium hover:text-indigo-700 dark:hover:text-indigo-400 transition-colors duration-300">Home</button></li>
+                <li><button data-section="about" class="nav-link text-lg font-medium hover:text-indigo-700 dark:hover:text-indigo-400 transition-colors duration-300">About</button></li>
+                <li><button data-section="expertise" class="nav-link text-lg font-medium hover:text-indigo-700 dark:hover:text-indigo-400 transition-colors duration-300">Expertise</button></li>
+                <li><button data-section="projects" class="nav-link text-lg font-medium hover:text-indigo-700 dark:hover:text-indigo-400 transition-colors duration-300">Projects</button></li>
+                <li><button data-section="contact" class="nav-link text-lg font-medium hover:text-indigo-700 dark:hover:text-indigo-400 transition-colors duration-300">Contact</button></li>
                 <li class="ml-6">
-                    <button id="darkModeToggleDesktop"
-                        class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300"
-                        aria-label="Toggle dark mode">
+                    <button id="darkModeToggleDesktop" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300" aria-label="Toggle dark mode">
                         <i class="fa-solid fa-sun h-5 w-5 hidden"></i>
                         <i class="fa-solid fa-moon h-5 w-5"></i>
                     </button>
                 </li>
             </ul>
             <div class="md:hidden flex items-center">
-                <button id="darkModeToggleMobile"
-                    class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300 mr-4"
-                    aria-label="Toggle dark mode">
+                <button id="darkModeToggleMobile" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300 mr-4" aria-label="Toggle dark mode">
                     <i class="fa-solid fa-sun h-5 w-5 hidden"></i>
                     <i class="fa-solid fa-moon h-5 w-5"></i>
                 </button>
-                <button id="mobileMenuButton"
-                    class="text-gray-600 dark:text-gray-300 hover:text-indigo-700 dark:hover:text-indigo-400 focus:outline-none">
+                <button id="mobileMenuButton" class="text-gray-600 dark:text-gray-300 hover:text-indigo-700 dark:hover:text-indigo-400 focus:outline-none">
                     <i class="fa-solid fa-bars menu-icon w-7 h-7"></i>
                     <i class="fa-solid fa-xmark close-icon w-7 h-7 hidden"></i>
                 </button>
             </div>
         </nav>
-        <div id="mobileMenuOverlay"
-            class="md:hidden bg-white dark:bg-gray-900 absolute top-full left-0 w-full shadow-lg pb-4 hidden transition-all duration-300 ease-in-out">
+        <div id="mobileMenuOverlay" class="md:hidden bg-white dark:bg-gray-900 absolute top-full left-0 w-full shadow-lg pb-4 hidden transition-all duration-300 ease-in-out">
             <nav class="flex flex-col items-center space-y-4">
-                <button data-section="home"
-                    class="nav-link-mobile w-full text-center py-2 text-lg font-medium hover:text-indigo-700 dark:hover:text-indigo-400 transition-colors duration-300">Home</button>
-                <button data-section="about"
-                    class="nav-link-mobile w-full text-center py-2 text-lg font-medium hover:text-indigo-700 dark:hover:text-indigo-400 transition-colors duration-300">About</button>
-                <button data-section="skills"
-                    class="nav-link-mobile w-full text-center py-2 text-lg font-medium hover:text-indigo-700 transition-colors duration-300">Skills</button>
-                <button data-section="projects"
-                    class="nav-link-mobile w-full text-center py-2 text-lg font-medium hover:text-indigo-700 transition-colors duration-300">Projects</button>
-                <button data-section="contact"
-                    class="nav-link-mobile w-full text-center py-2 text-lg font-medium hover:text-indigo-700 transition-colors duration-300">Contact</button>
+                <button data-section="home" class="nav-link-mobile w-full text-center py-2 text-lg font-medium hover:text-indigo-700 dark:hover:text-indigo-400 transition-colors duration-300">Home</button>
+                <button data-section="about" class="nav-link-mobile w-full text-center py-2 text-lg font-medium hover:text-indigo-700 dark:hover:text-indigo-400 transition-colors duration-300">About</button>
+                <button data-section="expertise" class="nav-link-mobile w-full text-center py-2 text-lg font-medium hover:text-indigo-700 transition-colors duration-300">Expertise</button>
+                <button data-section="projects" class="nav-link-mobile w-full text-center py-2 text-lg font-medium hover:text-indigo-700 transition-colors duration-300">Projects</button>
+                <button data-section="contact" class="nav-link-mobile w-full text-center py-2 text-lg font-medium hover:text-indigo-700 transition-colors duration-300">Contact</button>
             </nav>
         </div>
     </header>
 
-    <section id="home"
-        class="relative flex min-h-screen items-center justify-center bg-gradient-to-br from-indigo-700 to-purple-800 text-white overflow-hidden pt-16">
-        <div class="absolute inset-0 z-0 opacity-10">
-            <div
-                class="absolute top-1/4 left-1/4 w-72 h-72 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob">
-            </div>
-            <div
-                class="absolute top-1/2 right-1/4 w-72 h-72 bg-indigo-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000">
-            </div>
-            <div
-                class="absolute bottom-1/4 left-1/2 w-72 h-72 bg-pink-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000">
-            </div>
+    <section id="home" class="relative flex min-h-screen items-center justify-center bg-gradient-to-br from-indigo-700 via-purple-700 to-pink-600 text-white overflow-hidden pt-16">
+        <div class="absolute inset-0 z-0 opacity-20">
+            <div class="absolute top-1/4 left-1/4 w-72 h-72 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+            <div class="absolute top-1/2 right-1/4 w-72 h-72 bg-indigo-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+            <div class="absolute bottom-1/4 left-1/2 w-72 h-72 bg-pink-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
         </div>
 
         <div class="container mx-auto px-4 py-16 text-center z-10 relative">
-            <img src="https://placehold.co/180x180/FFFFFF/4A5568?text=BHUVAN" alt="Profile Picture of Bhuvan Subramani"
-                class="mx-auto mb-8 h-44 w-44 rounded-full border-4 border-white shadow-2xl object-cover transform transition-transform duration-500 hover:scale-110" />
+            <div class="animate-float mb-8">
+                <img src="https://placehold.co/180x180/667EEA/FFFFFF?text=BS" alt="Bhuvan Subramani" class="mx-auto h-44 w-44 rounded-full border-4 border-white shadow-2xl object-cover" />
+            </div>
             <h1 class="mb-4 text-5xl md:text-6xl font-extrabold leading-tight animate-fade-in-up">
-                Hi, I'm <span class="text-yellow-300">Bhuvan Subramani</span>
+                <span class="text-yellow-300">Bhuvan Subramani</span>
             </h1>
-            <p class="mb-10 text-xl md:text-2xl font-light max-w-3xl mx-auto animate-fade-in-up animation-delay-500">
-                A passionate <span class="font-semibold">Data Scientist & Mobile App Developer</span> creating <span
-                    class="font-semibold">impactful software solutions and data-driven insights</span>.
+            <div class="mb-6 text-2xl md:text-3xl font-light animate-fade-in-up animation-delay-200">
+                <span class="font-semibold">Data Scientist</span> • <span class="font-semibold">ML Engineer</span> • <span class="font-semibold">Flutter Developer</span>
+            </div>
+            <p class="mb-10 text-xl md:text-2xl font-light max-w-3xl mx-auto animate-fade-in-up animation-delay-400">
+                Transforming data into actionable insights and building intelligent applications that solve real-world problems
             </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-6 animate-fade-in-up animation-delay-1000">
-                <button data-section="projects"
-                    class="scroll-button btn-primary rounded-full bg-white px-10 py-4 text-lg font-semibold text-indigo-700 shadow-xl transition-all duration-300 hover:scale-105 hover:bg-gray-100 transform hover:-translate-y-1 animate-pulse-hover">
+            
+            <!-- Key Metrics -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-10 animate-fade-in-up animation-delay-600">
+    <div class="metric-card rounded-lg p-4">
+        <div class="text-3xl font-bold text-yellow-300">8+</div>
+        <div class="text-sm text-gray-200">End-to-End Projects</div>
+    </div>
+    <div class="metric-card rounded-lg p-4">
+        <div class="text-3xl font-bold text-yellow-300">5000+</div>
+        <div class="text-sm text-gray-200">Active Users Impacted</div>
+    </div>
+    <div class="metric-card rounded-lg p-4">
+        <div class="text-3xl font-bold text-yellow-300">10+</div>
+        <div class="text-sm text-gray-200">Data Pipelines Built</div>
+    </div>
+    <div class="metric-card rounded-lg p-4">
+        <div class="text-3xl font-bold text-yellow-300">5</div>
+        <div class="text-sm text-gray-200">Data Visualizations/Dashboards</div>
+    </div>
+</div>
+
+
+            <div class="flex flex-col sm:flex-row justify-center gap-6 animate-fade-in-up animation-delay-600">
+                <button data-section="projects" class="scroll-button rounded-full bg-white px-10 py-4 text-lg font-semibold text-indigo-700 shadow-xl transition-all duration-300 hover:scale-105 hover:bg-gray-100 transform hover:-translate-y-1">
                     View My Work
                 </button>
-                <a href="/Resume.pdf" download="Bhuvan_Purushothaman_Subramani_Resume.pdf"
-                    class="rounded-full border-2 border-white px-10 py-4 text-lg font-semibold text-white shadow-xl transition-all duration-300 hover:scale-105 hover:bg-white hover:text-indigo-700 transform hover:-translate-y-1 animate-pulse-hover">
+                <a href="/Resume.pdf" download="Bhuvan_Purushothaman_Subramani_Resume.pdf" class="rounded-full border-2 border-white px-10 py-4 text-lg font-semibold text-white shadow-xl transition-all duration-300 hover:scale-105 hover:bg-white hover:text-indigo-700 transform hover:-translate-y-1">
                     Download Resume
                 </a>
             </div>
@@ -419,415 +260,377 @@
 
     <section id="about" class="bg-white dark:bg-gray-900 py-20 md:py-24 transition-colors duration-500">
         <div class="container mx-auto px-4 max-w-6xl">
-            <h2 class="mb-16 text-center text-4xl md:text-5xl font-bold text-indigo-700 dark:text-indigo-400">About Me
-            </h2>
-            <div class="text-lg leading-relaxed text-gray-700 dark:text-gray-300 mb-12">
-                <p class="mb-6">
-                    Hello! I'm <span class="font-semibold">Bhuvan Purushothaman Subramani</span>, a motivated Computer
-                    Science graduate with a B.Tech (Honors) and a current Master's in Data Science from Deakin
-                    University. I possess strong expertise in Data Structures, SQL, and Firebase.
-                </p>
-                <p class="mb-6">
-                    I have demonstrated success in mobile application development with a focus on creating engaging,
-                    user-centric solutions. I am looking to contribute skills in software development, data analytics,
-                    and system integration to drive impactful change in organizations and communities.
-                </p>
-                <p>
-                    My commitment extends to continuous improvement by staying updated with the latest industry trends
-                    and technologies, and prioritizing the development of strong interpersonal skills to collaborate
-                    effectively in diverse team environments.
-                </p>
-                <div class="mt-12 text-center md:text-left">
-                    <button data-section="projects"
-                        class="scroll-button btn-primary rounded-full bg-indigo-600 dark:bg-indigo-500 px-8 py-3 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-indigo-700 dark:hover:bg-indigo-600 transform hover:-translate-y-1">
-                        Explore My Projects
-                    </button>
+            <h2 class="mb-16 text-center text-4xl md:text-5xl font-bold text-indigo-700 dark:text-indigo-400">About Me</h2>
+            
+            <div class="grid md:grid-cols-2 gap-12 mb-16">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200">Who I Am</h3>
+                    <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300 mb-4">
+                        I'm <span class="font-semibold text-indigo-600 dark:text-indigo-400">Bhuvan Purushothaman Subramani</span>, a results-driven Data Scientist and Software Engineer with a unique blend of analytical expertise and mobile development skills.
+                    </p>
+                    <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300 mb-4">
+                        Currently pursuing my <span class="font-semibold">Master's in Data Science at Deakin University</span>, I bring hands-on experience in building AI-powered solutions, predictive models, and user-centric mobile applications.
+                    </p>
+                    <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+                        My passion lies in leveraging data analytics, machine learning, and modern development frameworks to create impactful solutions that drive business value and improve user experiences.
+                    </p>
+                </div>
+                
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200">What I Offer</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <i class="fa-solid fa-chart-line text-2xl text-indigo-600 dark:text-indigo-400 mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 dark:text-gray-200">Data Analysis & Visualization</h4>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm">Power BI dashboards, statistical analysis, and actionable business insights</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fa-solid fa-brain text-2xl text-indigo-600 dark:text-indigo-400 mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 dark:text-gray-200">Machine Learning & AI</h4>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm">Predictive modeling, classification, fraud detection, and deep learning</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fa-solid fa-mobile-alt text-2xl text-indigo-600 dark:text-indigo-400 mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 dark:text-gray-200">Mobile App Development</h4>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm">Cross-platform Flutter apps with Firebase integration and AI features</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fa-solid fa-database text-2xl text-indigo-600 dark:text-indigo-400 mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 dark:text-gray-200">Data Engineering</h4>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm">SQL optimization, data pipelines, and big data processing</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="w-full space-y-10">
-                <h3 class="text-3xl font-bold text-indigo-700 dark:text-indigo-400 text-center mb-8">My Journey</h3>
-                <div
-                    class="group bg-gray-50 dark:bg-gray-800 rounded-xl p-8 shadow-xl border border-gray-200 dark:border-gray-700 transform transition-all duration-300 hover:scale-[1.01] hover:shadow-2xl hover:border-indigo-500">
-                    <div class="flex items-center mb-6">
-                        <i class="fa-solid fa-briefcase fa-icon-large text-indigo-600 dark:text-indigo-400 mr-4"></i>
-                        <h4 class="text-2xl font-bold text-gray-800 dark:text-gray-200">Experience</h4>
-                    </div>
-                    <ul class="space-y-6">
-                        <li class="timeline-item border-l-4 border-indigo-500 pl-4 py-2">
-                            <h5 class="text-xl font-semibold text-gray-800 dark:text-gray-200">Software Consultant <span
-                                    class="text-gray-600 dark:text-gray-400 text-sm ml-2 inline-flex items-center"><i
-                                        class="fa-solid fa-calendar-alt mr-1"></i>05/2024 – 07/2024</span></h5>
-                            <p class="text-md font-medium text-indigo-700 dark:text-indigo-400 mb-1">RADSTEC</p>
-                            <p class="text-gray-700 dark:text-gray-300 text-sm">Engineered an AI appointment booking
-                                solution, streamlining scheduling processes and improving user accessibility by
-                                implementing intuitive user interfaces. Collaborated with cross-functional teams to
-                                design and deploy the appointment booking system, ensuring seamless integration with
-                                existing platforms which resulted in a 20% increase in booking efficiency.</p>
-                        </li>
-                        <li class="timeline-item border-l-4 border-indigo-500 pl-4 py-2">
-                            <h5 class="text-xl font-semibold text-gray-800 dark:text-gray-200">Flutter Development
-                                Intern <span
-                                    class="text-gray-600 dark:text-gray-400 text-sm ml-2 inline-flex items-center"><i
-                                        class="fa-solid fa-calendar-alt mr-1"></i>01/2024 – 05/2024</span></h5>
-                            <p class="text-md font-medium text-indigo-700 dark:text-indigo-400 mb-1">CUROWEBS,
-                                COIMBATORE INDIA</p>
-                            <p class="text-gray-700 dark:text-gray-300 text-sm">Design, developed, and launched C-Meds,
-                                an AI powered medication reminder app, on the Google Play Store, achieving significant
-                                downloads. Implemented key features such as custom reminders, medication tracking, and
-                                high-accuracy auto prescription scanner, reducing prescription entry time by 90%.
-                                Co-ordinated and conducted testing with the QA team to ensure high app performance and
-                                reliability across devices.</p>
-                        </li>
-                        <li class="timeline-item border-l-4 border-indigo-500 pl-4 py-2">
-                            <h5 class="text-xl font-semibold text-gray-800 dark:text-gray-200">Technical Coordinator
-                                <span class="text-gray-600 dark:text-gray-400 text-sm ml-2 inline-flex items-center"><i
-                                        class="fa-solid fa-calendar-alt mr-1"></i>07/2023 – 12/2023</span></h5>
-                            <p class="text-md font-medium text-indigo-700 dark:text-indigo-400 mb-1">E-CELL SASTRA</p>
-                            <p class="text-gray-700 dark:text-gray-300 text-sm">Spearheading technical initiatives and
-                                serving as a key contributor to the success of E-Cell-Sastra, focusing on fostering
-                                innovation and entrepreneurship. Led mobile application development projects by
-                                following software lifecycles and using Flutter and Dart, achieving 500+ downloads and
-                                enhancing user engagement through strategic implementation of interactive features.
-                                Reduced manual communication by 40% through the introduction of networking features,
-                                improving team collaboration.</p>
-                        </li>
-                    </ul>
-                </div>
-
-                <div
-                    class="group bg-gray-50 dark:bg-gray-800 rounded-xl p-8 shadow-xl border border-gray-200 dark:border-gray-700 transform transition-all duration-300 hover:scale-[1.01] hover:shadow-2xl hover:border-indigo-500">
-                    <div class="flex items-center mb-6">
-                        <i
-                            class="fa-solid fa-graduation-cap fa-icon-large text-indigo-600 dark:text-indigo-400 mr-4"></i>
-                        <h4 class="text-2xl font-bold text-gray-800 dark:text-gray-200">Education</h4>
-                    </div>
-                    <ul class="space-y-6">
-                        <li class="timeline-item border-l-4 border-indigo-500 pl-4 py-2">
-                            <h5 class="text-xl font-semibold text-gray-800 dark:text-gray-200">Master of Science (Data
-                                Science) <span
-                                    class="text-gray-600 dark:text-gray-400 text-sm ml-2 inline-flex items-center"><i
-                                        class="fa-solid fa-calendar-alt mr-1"></i>Present</span></h5>
-                            <p class="text-md font-medium text-indigo-700 dark:text-indigo-400 mb-1">DEAKIN UNIVERSITY,
-                                Melbourne</p>
-                            <p class="text-gray-700 dark:text-gray-300 text-sm">Specializing in advanced data analysis
-                                techniques and data-driven decision-making. Gaining expertise in statistical methods,
-                                machine learning, and data visualization.</p>
-                        </li>
-                        <li class="timeline-item border-l-4 border-indigo-500 pl-4 py-2">
-                            <h5 class="text-xl font-semibold text-gray-800 dark:text-gray-200">Bachelor of Technology
-                                with Hons (Computer Science & Engineering) <span
-                                    class="text-gray-600 dark:text-gray-400 text-sm ml-2 inline-flex items-center"><i
-                                        class="fa-solid fa-calendar-alt mr-1"></i>05/2024</span></h5>
-                            <p class="text-md font-medium text-indigo-700 dark:text-indigo-400 mb-1">SASTRA DEEMED
-                                UNIVERSITY, Thanjavur</p>
-                            <p class="text-gray-700 dark:text-gray-300 text-sm">Scored a stellar CGPA of 8.62,
-                                showcasing consistent dedication to academic achievement.</p>
-                        </li>
-                    </ul>
-                </div>
-
-                <div
-                    class="group bg-gray-50 dark:bg-gray-800 rounded-xl p-8 shadow-xl border border-gray-200 dark:border-gray-700 transform transition-all duration-300 hover:scale-[1.01] hover:shadow-2xl hover:border-indigo-500">
-                    <div class="flex items-center mb-6">
-                        <i class="fa-solid fa-award fa-icon-large text-indigo-600 dark:text-indigo-400 mr-4"></i>
-                        <h4 class="text-2xl font-bold text-gray-800 dark:text-gray-200">Certificates</h4>
-                    </div>
-                    <ul class="space-y-6">
-                        <li class="timeline-item border-l-4 border-indigo-500 pl-4 py-2">
-                            <h5 class="text-xl font-semibold text-gray-800 dark:text-gray-200">Getting Started with
-                                Artificial Intelligence <span class="text-gray-600 dark:text-gray-400 text-sm ml-2">IBM
-                                    SkillsBuild</span></h5>
-                            <a href="#" target="_blank" rel="noopener noreferrer"
-                                class="inline-flex items-center text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-medium text-sm mt-1">View
-                                Certificate <i class="fa-solid fa-external-link-alt fa-icon-small ml-1"></i></a>
-                        </li>
-                        <li class="timeline-item border-l-4 border-indigo-500 pl-4 py-2">
-                            <h5 class="text-xl font-semibold text-gray-800 dark:text-gray-200">Industrial Internet Of
-                                Things <span class="text-gray-600 dark:text-gray-400 text-sm ml-2">NPTEL</span></h5>
-                            <a href="#" target="_blank" rel="noopener noreferrer"
-                                class="inline-flex items-center text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-medium text-sm mt-1">View
-                                Certificate <i class="fa-solid fa-external-link-alt fa-icon-small ml-1"></i></a>
-                        </li>
-                        <li class="timeline-item border-l-4 border-indigo-500 pl-4 py-2">
-                            <h5 class="text-xl font-semibold text-gray-800 dark:text-gray-200">Privacy and Security in
-                                Online Social Media <span
-                                    class="text-gray-600 dark:text-gray-400 text-sm ml-2">NPTEL</span></h5>
-                            <a href="#" target="_blank" rel="noopener noreferrer"
-                                class="inline-flex items-center text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-medium text-sm mt-1">View
-                                Certificate <i class="fa-solid fa-external-link-alt fa-icon-small ml-1"></i></a>
-                        </li>
-                        <li class="timeline-item border-l-4 border-indigo-500 pl-4 py-2">
-                            <h5 class="text-xl font-semibold text-gray-800 dark:text-gray-200">Flutter and Dart <span
-                                    class="text-gray-600 dark:text-gray-400 text-sm ml-2">NPTEL</span></h5>
-                            <a href="#" target="_blank" rel="noopener noreferrer"
-                                class="inline-flex items-center text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-medium text-sm mt-1">View
-                                Certificate <i class="fa-solid fa-external-link-alt fa-icon-small ml-1"></i></a>
-                        </li>
-                        <li class="timeline-item border-l-4 border-indigo-500 pl-4 py-2">
-                            <h5 class="text-xl font-semibold text-gray-800 dark:text-gray-200">Deep Learning <span
-                                    class="text-gray-600 dark:text-gray-400 text-sm ml-2">NPTEL</span></h5>
-                            <a href="#" target="_blank" rel="noopener noreferrer"
-                                class="inline-flex items-center text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-medium text-sm mt-1">View
-                                Certificate <i class="fa-solid fa-external-link-alt fa-icon-small ml-1"></i></a>
-                        </li>
-                    </ul>
-                </div>
+            <div class="text-center mb-12">
+                <button data-section="projects" class="scroll-button rounded-full bg-indigo-600 dark:bg-indigo-500 px-8 py-3 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-indigo-700 dark:hover:bg-indigo-600 transform hover:-translate-y-1">
+                    Explore My Projects
+                </button>
             </div>
+
+            <div class="space-y-8" id="journey-section"></div>
         </div>
     </section>
 
-    <section id="skills" class="bg-gray-100 dark:bg-gray-900 py-20 md:py-24 transition-colors duration-500">
+    <section id="expertise" class="bg-gray-100 dark:bg-gray-900 py-20 md:py-24 transition-colors duration-500">
         <div class="container mx-auto px-4 max-w-6xl">
-            <h2 class="mb-16 text-center text-4xl md:text-5xl font-bold text-indigo-700 dark:text-indigo-400">My Skills
-            </h2>
+            <h2 class="mb-16 text-center text-4xl md:text-5xl font-bold text-indigo-700 dark:text-indigo-400">My Skills</h2>
 
             <div class="mb-16">
-                <h3
-                    class="text-3xl font-bold text-gray-800 dark:text-gray-200 text-center mb-10 flex items-center justify-center">
-                    <i class="fa-solid fa-code fa-icon-large mr-3 text-indigo-600 dark:text-indigo-400"></i>
+                <h3 class="text-3xl font-bold text-gray-800 dark:text-gray-200 text-center mb-10 flex items-center justify-center">
+                    <i class="fa-solid fa-code text-3xl mr-3 text-indigo-600 dark:text-indigo-400"></i>
                     Languages & Frameworks
                 </h3>
-                <div id="languages-skills" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-                </div>
+                <div id="languages-skills" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6"></div>
             </div>
 
             <div class="mb-16">
-                <h3
-                    class="text-3xl font-bold text-gray-800 dark:text-gray-200 text-center mb-10 flex items-center justify-center">
-                    <i class="fa-solid fa-database fa-icon-large mr-3 text-indigo-600 dark:text-indigo-400"></i>
+                <h3 class="text-3xl font-bold text-gray-800 dark:text-gray-200 text-center mb-10 flex items-center justify-center">
+                    <i class="fa-solid fa-database text-3xl mr-3 text-indigo-600 dark:text-indigo-400"></i>
                     Databases
                 </h3>
-                <div id="databases-skills" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-                </div>
+                <div id="databases-skills" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6"></div>
             </div>
 
             <div class="mb-16">
-                <h3
-                    class="text-3xl font-bold text-gray-800 dark:text-gray-200 text-center mb-10 flex items-center justify-center">
-                    <i class="fa-solid fa-wrench fa-icon-large mr-3 text-indigo-600 dark:text-indigo-400"></i>
+                <h3 class="text-3xl font-bold text-gray-800 dark:text-gray-200 text-center mb-10 flex items-center justify-center">
+                    <i class="fa-solid fa-wrench text-3xl mr-3 text-indigo-600 dark:text-indigo-400"></i>
                     Tools & Platforms
                 </h3>
-                <div id="tools-skills" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-                </div>
+                <div id="tools-skills" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6"></div>
             </div>
 
             <div>
-                <h3
-                    class="text-3xl font-bold text-gray-800 dark:text-gray-200 text-center mb-10 flex items-center justify-center">
-                    <i class="fa-solid fa-layer-group fa-icon-large mr-3 text-indigo-600 dark:text-indigo-400"></i>
+                <h3 class="text-3xl font-bold text-gray-800 dark:text-gray-200 text-center mb-10 flex items-center justify-center">
+                    <i class="fa-solid fa-layer-group text-3xl mr-3 text-indigo-600 dark:text-indigo-400"></i>
                     Other Skills
                 </h3>
-                <div id="other-skills" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-                </div>
+                <div id="other-skills" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6"></div>
             </div>
         </div>
     </section>
 
     <section id="projects" class="bg-white dark:bg-gray-950 py-20 md:py-24 transition-colors duration-500">
         <div class="container mx-auto px-4 max-w-6xl">
-            <h2 class="mb-16 text-center text-4xl md:text-5xl font-bold text-indigo-700 dark:text-indigo-400">My
-                Projects</h2>
-            <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <h2 class="mb-8 text-center text-4xl md:text-5xl font-bold text-indigo-700 dark:text-indigo-400">Featured Projects</h2>
+            <p class="text-center text-gray-600 dark:text-gray-400 mb-12 text-lg max-w-3xl mx-auto">
+                A showcase of my work in data science, machine learning, and mobile development
+            </p>
+            
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-3 mb-12">
+                <button class="filter-btn active px-6 py-2 rounded-full bg-indigo-600 text-white font-medium transition-all duration-300 hover:bg-indigo-700" data-filter="all">All Projects</button>
+                <button class="filter-btn px-6 py-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 font-medium transition-all duration-300 hover:bg-indigo-600 hover:text-white" data-filter="data">Data</button>
+                <button class="filter-btn px-6 py-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 font-medium transition-all duration-300 hover:bg-indigo-600 hover:text-white" data-filter="ml-ai">ML & AI</button>
+                <button class="filter-btn px-6 py-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 font-medium transition-all duration-300 hover:bg-indigo-600 hover:text-white" data-filter="mobile">Mobile Dev</button>
             </div>
+
+            <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
         </div>
     </section>
 
-    <section id="contact"
-        class="bg-gradient-to-br from-indigo-700 to-purple-800 py-20 md:py-24 text-white text-center relative overflow-hidden">
+    <section id="contact" class="bg-gradient-to-br from-indigo-700 to-purple-800 py-20 md:py-24 text-white text-center relative overflow-hidden">
         <div class="absolute inset-0 z-0 opacity-10">
-            <div
-                class="absolute top-1/4 left-1/4 w-72 h-72 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-1000">
-            </div>
-            <div
-                class="absolute top-1/2 right-1/4 w-72 h-72 bg-indigo-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-3000">
-            </div>
-            <div
-                class="absolute bottom-1/4 left-1/2 w-72 h-72 bg-pink-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-5000">
-            </div>
+            <div class="absolute top-1/4 left-1/4 w-72 h-72 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+            <div class="absolute top-1/2 right-1/4 w-72 h-72 bg-indigo-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+            <div class="absolute bottom-1/4 left-1/2 w-72 h-72 bg-pink-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
         </div>
 
         <div class="container mx-auto px-4 max-w-4xl z-10 relative">
-            <h2 class="mb-8 text-4xl md:text-5xl font-bold">Ready to Collaborate?</h2>
+            <h2 class="mb-8 text-4xl md:text-5xl font-bold">Let's Work Together</h2>
             <p class="mb-12 text-xl md:text-2xl font-light max-w-2xl mx-auto">
-                I'm always excited to work on new and challenging projects. Let's build something amazing together!
+                Open to Data Science, ML Engineering, and Flutter Development opportunities
             </p>
 
-            <h3 class="mb-8 text-3xl font-bold" id="contact-form-section">Get in Touch Directly</h3>
-            <p class="mb-10 text-lg max-w-xl mx-auto">
-                Feel free to reach out using the form below or my direct contact information.
-            </p>
-            <div class="mx-auto max-w-lg bg-white dark:bg-gray-800 p-8 rounded-xl shadow-2xl">
+            <div class="mx-auto max-w-lg bg-white dark:bg-gray-800 p-8 rounded-xl shadow-2xl mb-12">
                 <form id="contactForm" class="space-y-6">
                     <div>
-                        <label for="name" class="sr-only">Name</label>
-                        <input type="text" id="name" name="name" placeholder="Your Name"
-                            class="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 px-5 py-3 text-gray-800 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 transition-colors duration-300" />
+                        <input type="text" id="name" name="name" placeholder="Your Name" class="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 px-5 py-3 text-gray-800 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 transition-colors duration-300" required />
                     </div>
                     <div>
-                        <label for="email" class="sr-only">Email</label>
-                        <input type="email" id="email" name="email" placeholder="Your Email"
-                            class="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 px-5 py-3 text-gray-800 dark:text-gray-200 placeholder-gray-500 dark:placeholder-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 transition-colors duration-300" />
+                        <input type="email" id="email" name="email" placeholder="Your Email" class="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 px-5 py-3 text-gray-800 dark:text-gray-200 placeholder-gray-500 dark:placeholder-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 transition-colors duration-300" required />
                     </div>
                     <div>
-                        <label for="message" class="sr-only">Message</label>
-                        <textarea id="message" name="message" rows="6" placeholder="Your Message"
-                            class="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 px-5 py-3 text-gray-800 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 transition-colors duration-300"></textarea>
+                        <textarea id="message" name="message" rows="6" placeholder="Your Message" class="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 px-5 py-3 text-gray-800 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 transition-colors duration-300" required></textarea>
                     </div>
-                    <button type="submit"
-                        class="w-full rounded-lg bg-indigo-600 dark:bg-indigo-500 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:scale-[1.02] hover:bg-indigo-700 dark:hover:bg-indigo-600 transform hover:-translate-y-0.5 btn-primary">
+                    <button type="submit" class="w-full rounded-lg bg-indigo-600 dark:bg-indigo-500 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:scale-[1.02] hover:bg-indigo-700 dark:hover:bg-indigo-600 transform hover:-translate-y-0.5">
                         Send Message
                     </button>
                 </form>
             </div>
-            <div class="mt-12 text-lg flex flex-col sm:flex-row justify-center items-center gap-6">
-                <p class="flex items-center">
-                    <i class="fa-solid fa-envelope fa-icon-medium mr-2 text-indigo-300"></i>
-                    <a href="mailto:psbhuvan2002@gmail.com"
-                        class="text-indigo-300 hover:underline">psbhuvan2002@gmail.com</a>
-                </p>
-                <p class="flex items-center">
-                    <i class="fa-solid fa-phone fa-icon-medium mr-2 text-indigo-300"></i>
-                    0451 412 465
-                </p>
-                <p class="flex items-center">
-                    <i class="fa-brands fa-linkedin fa-icon-medium mr-2 text-indigo-300"></i>
-                    <a href="https://www.linkedin.com/in/bhuvan-ps" target="_blank" rel="noopener noreferrer"
-                        class="text-indigo-300 hover:underline">linkedin.com/in/bhuvan-ps</a>
-                </p>
+
+            <div class="grid md:grid-cols-3 gap-6 text-lg">
+                <div class="flex flex-col items-center">
+                    <i class="fa-solid fa-envelope text-3xl mb-2 text-indigo-300"></i>
+                    <a href="mailto:psbhuvan2002@gmail.com" class="text-indigo-300 hover:underline">psbhuvan2002@gmail.com</a>
+                </div>
+                <div class="flex flex-col items-center">
+                    <i class="fa-solid fa-phone text-3xl mb-2 text-indigo-300"></i>
+                    <span>0451 412 465</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <i class="fa-brands fa-linkedin text-3xl mb-2 text-indigo-300"></i>
+                    <a href="https://www.linkedin.com/in/bhuvan-ps" target="_blank" rel="noopener noreferrer" class="text-indigo-300 hover:underline">linkedin.com/in/bhuvan-ps</a>
+                </div>
             </div>
         </div>
     </section>
 
-    <footer
-        class="bg-gray-900 dark:bg-gray-950 py-8 text-center text-gray-400 dark:text-gray-500 transition-colors duration-500">
+    <footer class="bg-gray-900 dark:bg-gray-950 py-8 text-center text-gray-400 dark:text-gray-500 transition-colors duration-500">
         <div class="container mx-auto px-4">
             <p>&copy; <span id="currentYear"></span> Bhuvan Purushothaman Subramani. All rights reserved.</p>
         </div>
     </footer>
 
-    <button id="backToTopBtn"
-        class="fixed bottom-6 right-6 z-50 p-3 rounded-full bg-indigo-600 text-white shadow-lg transition-all duration-300 hover:bg-indigo-700 focus:outline-none hidden"
-        aria-label="Back to top">
+    <button id="backToTopBtn" class="fixed bottom-6 right-6 z-50 p-3 rounded-full bg-indigo-600 text-white shadow-lg transition-all duration-300 hover:bg-indigo-700 focus:outline-none hidden" aria-label="Back to top">
         <i class="fa-solid fa-arrow-up"></i>
     </button>
 
-    <div id="messageBox"
-        class="fixed bottom-1/2 left-1/2 -translate-x-1/2 translate-y-1/2 bg-green-500 text-white p-4 rounded-lg shadow-xl z-[100] hidden transition-all duration-300 ease-in-out transform scale-0 opacity-0">
+    <div id="messageBox" class="fixed bottom-1/2 left-1/2 -translate-x-1/2 translate-y-1/2 bg-green-500 text-white p-4 rounded-lg shadow-xl z-[100] hidden transition-all duration-300 ease-in-out transform scale-0 opacity-0">
         Message sent successfully!
     </div>
 
     <script>
-        // Data for projects and skills (moved from React component)
         const projects = [
             {
-    "id": "bank-loan-analysis-report",
-    "title": "Bank Loan Performance Analysis (Power BI)",
-    "description": "Designed a three-tier financial dashboard (Summary, Overview, Details) to monitor loan portfolio health. Implemented complex DAX measures (MTD, MoM) and utilized data storytelling to deliver actionable insights on risk exposure (86.2% Good Loan rate) and growth strategy (Debt Consolidation focus).",
-    "image": "https://placehold.co/400x250/F59E0B/0F172A?text=Power+BI+Loan+Dashboard",
-    "tags": ["Power BI", "DAX", "Data Modeling", "Financial Analysis", "KPIs", "Data Storytelling", "Executive Reporting", "Power Query"],
-    "link": "https://bhuvanps.github.io/Portfolio/Loan_Analysis_Report/"
-},
-            {
-                id: 'victoria-transit',
-                title: 'Victoria Green Transit Strategy',
-                description: 'Developed a strategy that could generate $15 million in regenerative economy through improved urban mobility and sustainability. Reduced potential environmental impact by 25% by leveraging smart data and infrastructure for the movement of people and goods.',
-                image: 'https://placehold.co/400x250/4A5568/CBD5E0?text=Transit+Strategy',
-                tags: ['Data Analytics', 'Urban Mobility', 'Sustainability'],
-                link: '#', // Placeholder link
+                id: 'bank-loan-analysis',
+                title: 'Bank Loan Performance Analysis',
+                description: 'Designed a three-tier Power BI dashboard monitoring $435.8M in loans. Implemented complex DAX measures for MTD/MoM tracking. Achieved 86.2% Good Loan rate with data-driven insights on risk exposure and debt consolidation strategy.',
+                image: 'https://placehold.co/400x300/6366F1/FFFFFF?text=Power+BI+Dashboard',
+                tags: ['Power BI', 'DAX', 'Financial Analysis', 'KPIs'],
+                category: ['data'],
+                metrics: ['$435.8M Portfolio', '86.2% Success Rate'],
+                link: 'https://bhuvanps.github.io/Portfolio/Loan_Analysis_Report/'
             },
             {
                 id: 'fraud-detection',
-                title: 'Financial Fraud Detection',
-                description: 'Applied Big Data Analytics in Python to uncover fraudulent transactions. Processed a dataset of 1 million nodes and 10 million edges. Enhanced fraud detection accuracy by 15%, reducing false positives and strengthening security measures.',
-                image: 'https://placehold.co/400x250/4A5568/CBD5E0?text=Fraud+Detection',
-                tags: ['Python', 'Big Data Analytics', 'Machine Learning'],
-                link: '#', // Placeholder link
-            },
-            {
-                id: 'e-cell-app',
-                title: 'E-Cell Sastra Mobile App',
-                description: 'Orchestrated the development and launch of the E-Cell Sastra mobile app on the Play Store. Seamlessly managed over 1000+ event registrations, feedback submissions, and additional interactive features. Incorporated advanced networking functionalities to facilitate effective communication and collaboration.',
-                image: 'https://placehold.co/400x250/4A5568/CBD5E0?text=Mobile+App',
-                tags: ['Flutter', 'Dart', 'Mobile Development'],
-                link: '#', // Placeholder link
-            },
-            {
-                id: 'wine-quality-prediction',
-                title: 'Wine Quality Prediction (R)',
-                description: 'Developed a machine learning model in R to predict wine quality. Utilized WAM, WPM, OWA, and Choquet Integral models, with the Choquet model selected as the best fit. Key tasks included feature selection, skewness correction, and importance interpretation.',
-                image: 'https://placehold.co/400x250/6B46C1/FFFFFF?text=Wine+Quality+Prediction',
-                tags: ['R', 'Machine Learning', 'Data Science', 'Predictive Modeling'],
-                link: '#', // Placeholder link
-            },
-            {
-                id: 'game-theory-solver',
-                title: 'Game Theory Solver (R Shiny)',
-                description: 'An interactive R Shiny application designed to solve two-player zero-sum games. Users can input the dimensions and values of a payoff matrix. The application then calculates and displays the optimal strategies for both players (either pure or mixed) and the value of the game. It also includes explanations of fundamental game theory concepts and uses custom CSS for a better user interface. Essentially, it\'s a tool to find the best way to play and the expected outcome of a strategic game defined by a payoff matrix.',
-                image: 'https://placehold.co/400x250/3498DB/FFFFFF?text=Game+Theory+Solver',
-                tags: ['R Shiny', 'Game Theory', 'Optimization', 'Interactive Application'],
-                link: '#', // Placeholder link
+                title: 'Financial Fraud Detection System',
+                description: 'Built a Big Data Analytics solution in Python processing 1M nodes and 10M edges. Enhanced fraud detection accuracy by 15%, reduced false positives, and strengthened security measures using advanced graph algorithms.',
+                image: 'https://placehold.co/400x300/8B5CF6/FFFFFF?text=Fraud+Detection',
+                tags: ['Python', 'Big Data', 'Machine Learning', 'Graph Analytics'],
+                category: ['ml-ai', 'data'],
+                metrics: ['1M+ Nodes', '15% Accuracy Boost'],
+                link: '#'
             },
             {
                 id: 'liver-cirrhosis-prediction',
                 title: 'Liver Cirrhosis Survival Prediction',
-                description: 'Developed an SVC machine learning model for multiclass prediction of liver cirrhosis patient outcomes (Death, Transplant, No Transplant). Achieved 85.5% accuracy using feature engineering, class weighting, and cross-validation on clinical data.',
-                image: 'https://placehold.co/400x250/6B46C1/FFFFFF?text=Cirrhosis+Prediction+Model',
-                tags: ['Python', 'Machine Learning', 'Classification', 'Healthcare', 'Predictive Modeling', 'SVC'],
-                link: 'https://bhuvanps.github.io/Portfolio/prediction/',
+                description: 'Developed an SVC multiclass classification model predicting patient outcomes (Death, Transplant, No Transplant). Achieved 85.5% accuracy using feature engineering, class weighting, and cross-validation on clinical data.',
+                image: 'https://placehold.co/400x300/EC4899/FFFFFF?text=Healthcare+ML',
+                tags: ['Python', 'SVC', 'Healthcare', 'Classification'],
+                category: ['ml-ai'],
+                metrics: ['85.5% Accuracy', '3-Class Problem'],
+                link: 'https://bhuvanps.github.io/Portfolio/prediction/'
+            },
+            {
+                id: 'wine-quality-prediction',
+                title: 'Wine Quality Prediction Model',
+                description: 'Developed ML model in R comparing WAM, WPM, OWA, and Choquet Integral algorithms. Selected Choquet model as optimal. Performed feature selection, skewness correction, and comprehensive importance interpretation.',
+                image: 'https://placehold.co/400x300/10B981/FFFFFF?text=Wine+Quality+R',
+                tags: ['R', 'Machine Learning', 'Feature Engineering'],
+                category: ['ml-ai', 'data'],
+                metrics: ['4 Models Compared', 'Feature Optimization'],
+                link: '#'
+            },
+            {
+                id: 'game-theory-solver',
+                title: 'Game Theory Solver (R Shiny)',
+                description: 'Interactive R Shiny application solving two-player zero-sum games. Calculates optimal strategies (pure/mixed) and game values. Features custom UI, educational content, and real-time payoff matrix analysis.',
+                image: 'https://placehold.co/400x300/3B82F6/FFFFFF?text=R+Shiny+App',
+                tags: ['R Shiny', 'Game Theory', 'Optimization', 'Interactive UI'],
+                category: ['data'],
+                metrics: ['Real-time Solving', 'Interactive Dashboard'],
+                link: '#'
+            },
+            {
+                id: 'victoria-transit',
+                title: 'Victoria Green Transit Strategy',
+                description: 'Data-driven urban mobility strategy generating $15M in regenerative economy potential. Reduced environmental impact by 25% through smart infrastructure analysis and movement optimization.',
+                image: 'https://placehold.co/400x300/059669/FFFFFF?text=Transit+Strategy',
+                tags: ['Data Analytics', 'Urban Planning', 'Sustainability'],
+                category: ['data'],
+                metrics: ['$15M Impact', '25% Emission Reduction'],
+                link: '#'
+            },
+            {
+                id: 'c-meds-app',
+                title: 'C-Meds: AI Medication Reminder',
+                description: 'AI-powered Flutter app on Google Play with significant downloads. Features custom reminders, medication tracking, and 90% faster prescription entry via high-accuracy auto-scanner. Coordinated QA testing for multi-device reliability.',
+                image: 'https://placehold.co/400x300/F59E0B/FFFFFF?text=C-Meds+App',
+                tags: ['Flutter', 'Dart', 'AI/ML', 'Firebase', 'Mobile'],
+                category: ['mobile', 'ml-ai'],
+                metrics: ['90% Time Saved', 'Multi-platform'],
+                link: '#'
+            },
+            {
+                id: 'e-cell-app',
+                title: 'E-Cell Sastra Mobile Platform',
+                description: 'Led development and Play Store launch managing 1000+ event registrations. Implemented networking features reducing manual communication by 40%. Achieved 500+ downloads with enhanced user engagement.',
+                image: 'https://placehold.co/400x300/6366F1/FFFFFF?text=E-Cell+App',
+                tags: ['Flutter', 'Dart', 'Firebase', 'Event Management'],
+                category: ['mobile'],
+                metrics: ['1000+ Registrations', '500+ Downloads'],
+                link: '#'
+            },
+            {
+                id: 'ai-appointment-booking',
+                title: 'AI Appointment Booking System',
+                description: 'Engineered AI-powered scheduling solution improving booking efficiency by 20%. Streamlined processes with intuitive UI and seamless platform integration. Collaborated cross-functionally for optimal deployment.',
+                image: 'https://placehold.co/400x300/8B5CF6/FFFFFF?text=AI+Booking',
+                tags: ['AI', 'Flutter', 'System Integration', 'UX Design'],
+                category: ['mobile', 'ml-ai'],
+                metrics: ['20% Efficiency Gain', 'Cross-platform'],
+                link: '#'
             }
-
         ];
 
-        // Skill data with Font Awesome classes and proficiency levels (1-10)
         const skillData = {
             'Languages & Frameworks': [
-                { name: 'Flutter', iconClass: 'fa-brands fa-dev fa-icon-skill', color: 'blue-500', level: 9 },
-                { name: 'Dart', iconClass: 'fa-solid fa-code fa-icon-skill', color: 'blue-700', level: 9 },
-                { name: 'C#', iconClass: 'fa-solid fa-code fa-icon-skill', color: 'purple-600', level: 7 },
-                { name: 'Python', iconClass: 'fa-brands fa-python fa-icon-skill', color: 'green-600', level: 8 },
-                { name: 'HTML', iconClass: 'fa-brands fa-html5 fa-icon-skill', color: 'orange-500', level: 8 },
-                { name: 'CSS', iconClass: 'fa-brands fa-css3-alt fa-icon-skill', color: 'blue-400', level: 7 },
-                { name: 'JavaScript', iconClass: 'fa-brands fa-js fa-icon-skill', color: 'yellow-500', level: 7 },
+                { name: 'Flutter', iconClass: 'fa-brands fa-dev', color: 'blue-500' },
+                { name: 'Dart', iconClass: 'fa-solid fa-code', color: 'blue-700' },
+                { name: 'Python', iconClass: 'fa-brands fa-python', color: 'green-600' },
+                { name: 'R', iconClass: 'fa-solid fa-chart-line', color: 'blue-600' },
+                { name: 'C#', iconClass: 'fa-solid fa-code', color: 'purple-600' },
+                { name: 'HTML', iconClass: 'fa-brands fa-html5', color: 'orange-500' },
+                { name: 'CSS', iconClass: 'fa-brands fa-css3-alt', color: 'blue-400' },
+                { name: 'JavaScript', iconClass: 'fa-brands fa-js', color: 'yellow-500' },
             ],
             'Databases': [
-                { name: 'Firebase', iconClass: 'fa-solid fa-fire fa-icon-skill', color: 'red-500', level: 8 },
-                { name: 'MongoDB', iconClass: 'fa-solid fa-leaf fa-icon-skill', color: 'gray-700', level: 6 },
-                { name: 'SQL', iconClass: 'fa-solid fa-database fa-icon-skill', color: 'blue-800', level: 8 },
+                { name: 'Firebase', iconClass: 'fa-solid fa-fire', color: 'red-500' },
+                { name: 'MongoDB', iconClass: 'fa-solid fa-leaf', color: 'gray-700' },
+                { name: 'SQL', iconClass: 'fa-solid fa-database', color: 'blue-800' },
+                { name: 'PostgreSQL', iconClass: 'fa-solid fa-database', color: 'blue-700' },
             ],
             'Tools & Platforms': [
-                { name: 'Vertex AI', iconClass: 'fa-solid fa-brain fa-icon-skill', color: 'green-500', level: 7 },
-                { name: 'Genkit', iconClass: 'fa-solid fa-sparkles fa-icon-skill', color: 'indigo-500', level: 6 },
-                { name: 'Git', iconClass: 'fa-solid fa-code-branch fa-icon-skill', color: 'gray-900', level: 8 },
-                { name: 'GitHub', iconClass: 'fa-brands fa-github fa-icon-skill', color: 'gray-700', level: 8 },
-                { name: 'API Development', iconClass: 'fa-solid fa-server fa-icon-skill', color: 'purple-500', level: 7 },
-                { name: 'CI/CD for Mobile Apps', iconClass: 'fa-solid fa-arrows-rotate fa-icon-skill', color: 'blue-600', level: 6 },
-                { name: 'Firebase Integration', iconClass: 'fa-solid fa-cloud fa-icon-skill', color: 'teal-500', level: 8 },
-                { name: 'Cross-Platform Mobile Dev', iconClass: 'fa-solid fa-mobile-alt fa-icon-skill', color: 'yellow-600', level: 9 },
+                { name: 'Power BI', iconClass: 'fa-solid fa-chart-bar', color: 'yellow-600' },
+                { name: 'Vertex AI', iconClass: 'fa-solid fa-brain', color: 'green-500' },
+                { name: 'Git', iconClass: 'fa-solid fa-code-branch', color: 'gray-900' },
+                { name: 'GitHub', iconClass: 'fa-brands fa-github', color: 'gray-700' },
+                { name: 'Google Cloud', iconClass: 'fa-brands fa-google', color: 'blue-500' },
+                { name: 'R Shiny', iconClass: 'fa-solid fa-chart-area', color: 'blue-600' },
+                { name: 'Jupyter', iconClass: 'fa-solid fa-book', color: 'orange-600' },
+                { name: 'API Development', iconClass: 'fa-solid fa-server', color: 'purple-500' },
             ],
             'Other Skills': [
-                { name: 'Project Management', iconClass: 'fa-solid fa-clipboard-list fa-icon-skill', color: 'indigo-500', level: 8 },
-                { name: 'Agile Methodologies', iconClass: 'fa-solid fa-redo-alt fa-icon-skill', color: 'pink-500', level: 7 },
-                { name: 'Problem-solving', iconClass: 'fa-solid fa-lightbulb fa-icon-skill', color: 'gray-600', level: 9 },
-                { name: 'Optimization', iconClass: 'fa-solid fa-gauge-high fa-icon-skill', color: 'green-700', level: 7 },
-                { name: 'Automation of workflows', iconClass: 'fa-solid fa-robot fa-icon-skill', color: 'blue-900', level: 7 },
+                { name: 'Machine Learning', iconClass: 'fa-solid fa-robot', color: 'purple-600' },
+                { name: 'Deep Learning', iconClass: 'fa-solid fa-brain', color: 'pink-600' },
+                { name: 'Data Visualization', iconClass: 'fa-solid fa-chart-pie', color: 'blue-500' },
+                { name: 'Statistical Analysis', iconClass: 'fa-solid fa-calculator', color: 'indigo-600' },
+                { name: 'Feature Engineering', iconClass: 'fa-solid fa-sliders', color: 'green-600' },
+                { name: 'Big Data Analytics', iconClass: 'fa-solid fa-database', color: 'purple-700' },
+                { name: 'Project Management', iconClass: 'fa-solid fa-clipboard-list', color: 'indigo-500' },
+                { name: 'Agile Methodologies', iconClass: 'fa-solid fa-redo-alt', color: 'pink-500' },
             ],
         };
 
-        // Function to create a skill card element
+        const journeyData = {
+            experience: [
+                {
+                    title: 'Software Consultant',
+                    company: 'RADSTEC',
+                    period: '05/2024 – 07/2024',
+                    description: 'Engineered AI appointment booking solution improving efficiency by 20%. Collaborated cross-functionally for seamless integration.',
+                    highlights: ['AI Integration', '20% Efficiency Boost', 'Cross-functional Leadership']
+                },
+                {
+                    title: 'Flutter Development Intern',
+                    company: 'CUROWEBS, Coimbatore',
+                    period: '01/2024 – 05/2024',
+                    description: 'Designed and launched C-Meds on Google Play. Implemented AI auto-scanner reducing prescription entry time by 90%.',
+                    highlights: ['Play Store Launch', '90% Time Reduction', 'AI Implementation']
+                },
+                {
+                    title: 'Technical Coordinator',
+                    company: 'E-CELL SASTRA',
+                    period: '07/2023 – 12/2023',
+                    description: 'Led mobile app development achieving 500+ downloads. Reduced manual communication by 40% through networking features.',
+                    highlights: ['500+ Downloads', '40% Communication Improvement', 'Team Leadership']
+                }
+            ],
+            education: [
+                {
+                    degree: 'Master of Data Science',
+                    institution: 'Deakin University, Melbourne',
+                    period: 'Present',
+                    description: 'Specializing in advanced analytics, machine learning, statistical methods, and data visualization.'
+                },
+                {
+                    degree: 'B.Tech (Hons) Computer Science & Engineering',
+                    institution: 'SASTRA Deemed University',
+                    period: 'Graduated 06/2024',
+                    description: 'CGPA: 8.62/10. Strong foundation in data structures, algorithms, and software engineering.'
+                }
+            ],
+            certificates: [
+                { name: 'Getting Started with Artificial Intelligence', issuer: 'IBM SkillsBuild' },
+                { name: 'Industrial Internet Of Things', issuer: 'NPTEL' },
+                { name: 'Privacy and Security in Online Social Media', issuer: 'NPTEL' },
+                { name: 'Flutter and Dart', issuer: 'NPTEL' },
+                { name: 'Deep Learning', issuer: 'NPTEL' }
+            ]
+        };
+
         function createSkillCard(skill) {
             const div = document.createElement('div');
-            div.className = `skill-card flex flex-col items-center justify-center rounded-lg bg-white dark:bg-gray-700 p-6 text-center shadow-md transition-all duration-300 hover:scale-105 hover:shadow-xl border border-gray-200 dark:border-gray-700`;
+            div.className = 'skill-card flex flex-col items-center justify-center rounded-lg bg-white dark:bg-gray-700 p-6 text-center shadow-md transition-all duration-300 hover:scale-105 hover:shadow-xl border border-gray-200 dark:border-gray-700';
             div.innerHTML = `
                 <div class="mb-3 h-12 w-12 flex items-center justify-center text-${skill.color}">
-                    <i class="${skill.iconClass} skill-card-icon"></i>
+                    <i class="${skill.iconClass} text-5xl"></i>
                 </div>
                 <span class="font-semibold text-gray-800 dark:text-gray-200 text-lg">${skill.name}</span>
             `;
             return div;
         }
 
-        // Function to render skills
         function renderSkills() {
             document.getElementById('languages-skills').innerHTML = '';
             skillData['Languages & Frameworks'].forEach(skill => {
@@ -850,259 +653,264 @@
             });
         }
 
-        // Function to create a project card element
-        function createProjectCard(project, index) {
-            const div = document.createElement('div');
-            div.className = `group relative overflow-hidden rounded-xl bg-gray-50 dark:bg-gray-800 shadow-xl border border-gray-200 dark:border-gray-700 transform transition-all duration-500 hover:scale-[1.03] hover:shadow-2xl`;
-            div.style.animationDelay = `${index * 100}ms`; // Keep individual delays for projects
-
-            const tagsHtml = project.tags.map(tag => `
-                <span class="rounded-full bg-indigo-100 dark:bg-indigo-900 px-3 py-1 text-xs font-medium text-indigo-700 dark:text-indigo-300">
-                    ${tag}
-                </span>
-            `).join('');
-
-            div.innerHTML = `
-                <img
-                    src="${project.image}"
-                    alt="${project.title}"
-                    class="w-full h-56 object-cover transform transition-transform duration-500 group-hover:scale-110 group-hover:brightness-75"
-                    onerror="this.onerror=null;this.src='https://placehold.co/400x250/E0E0E0/2C3E50?text=${project.title.replace(/\s/g, '+')}'"
-                />
-                <div class="p-6">
-                    <h3 class="mb-3 text-2xl font-bold text-gray-800 dark:text-gray-200">${project.title}</h3>
-                    <p class="mb-4 text-gray-700 dark:text-gray-300 text-sm leading-relaxed">${project.description}</p>
-                    <div class="flex flex-wrap gap-2 mb-5">
-                        ${tagsHtml}
-                    </div>
-                    <div class="flex justify-end">
-                        <a
-                            href="${project.link}"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="inline-flex items-center rounded-full bg-indigo-600 dark:bg-indigo-500 px-6 py-2 text-base font-semibold text-white shadow-md transition-all duration-300 hover:scale-105 hover:bg-indigo-700 dark:hover:bg-indigo-600 transform hover:-translate-y-0.5"
-                        >
-                            Learn More <i class="fa-solid fa-external-link-alt fa-icon-small ml-2"></i>
-                        </a>
-                    </div>
+        function renderJourneySection() {
+            const container = document.getElementById('journey-section');
+            
+            const experienceSection = document.createElement('div');
+            experienceSection.className = 'bg-gray-50 dark:bg-gray-800 rounded-xl p-8 shadow-xl border border-gray-200 dark:border-gray-700';
+            experienceSection.innerHTML = `
+                <div class="flex items-center mb-6">
+                    <i class="fa-solid fa-briefcase text-3xl text-indigo-600 dark:text-indigo-400 mr-4"></i>
+                    <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-200">Experience</h3>
+                </div>
+                <div class="space-y-6">
+                    ${journeyData.experience.map(exp => `
+                        <div class="border-l-4 border-indigo-500 pl-4 py-2 hover:bg-indigo-50 dark:hover:bg-gray-700 transition-colors duration-300 rounded-r">
+                            <h4 class="text-xl font-semibold text-gray-800 dark:text-gray-200">${exp.title}</h4>
+                            <p class="text-md font-medium text-indigo-700 dark:text-indigo-400 mb-1">${exp.company}</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mb-2"><i class="fa-solid fa-calendar-alt mr-1"></i>${exp.period}</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm mb-2">${exp.description}</p>
+                            <div class="flex flex-wrap gap-2">
+                                ${exp.highlights.map(h => `<span class="text-xs bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 px-2 py-1 rounded">${h}</span>`).join('')}
+                            </div>
+                        </div>
+                    `).join('')}
                 </div>
             `;
-            return div;
+            container.appendChild(experienceSection);
+
+            const educationSection = document.createElement('div');
+            educationSection.className = 'bg-gray-50 dark:bg-gray-800 rounded-xl p-8 shadow-xl border border-gray-200 dark:border-gray-700';
+            educationSection.innerHTML = `
+                <div class="flex items-center mb-6">
+                    <i class="fa-solid fa-graduation-cap text-3xl text-indigo-600 dark:text-indigo-400 mr-4"></i>
+                    <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-200">Education</h3>
+                </div>
+                <div class="space-y-6">
+                    ${journeyData.education.map(edu => `
+                        <div class="border-l-4 border-indigo-500 pl-4 py-2 hover:bg-indigo-50 dark:hover:bg-gray-700 transition-colors duration-300 rounded-r">
+                            <h4 class="text-xl font-semibold text-gray-800 dark:text-gray-200">${edu.degree}</h4>
+                            <p class="text-md font-medium text-indigo-700 dark:text-indigo-400 mb-1">${edu.institution}</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mb-2"><i class="fa-solid fa-calendar-alt mr-1"></i>${edu.period}</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm">${edu.description}</p>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            container.appendChild(educationSection);
+
+            const certSection = document.createElement('div');
+            certSection.className = 'bg-gray-50 dark:bg-gray-800 rounded-xl p-8 shadow-xl border border-gray-200 dark:border-gray-700';
+            certSection.innerHTML = `
+                <div class="flex items-center mb-6">
+                    <i class="fa-solid fa-award text-3xl text-indigo-600 dark:text-indigo-400 mr-4"></i>
+                    <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-200">Certifications</h3>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    ${journeyData.certificates.map(cert => `
+                        <div class="border-l-4 border-indigo-500 pl-4 py-2 hover:bg-indigo-50 dark:hover:bg-gray-700 transition-colors duration-300 rounded-r">
+                            <h5 class="font-semibold text-gray-800 dark:text-gray-200">${cert.name}</h5>
+                            <p class="text-sm text-indigo-600 dark:text-indigo-400">${cert.issuer}</p>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            container.appendChild(certSection);
         }
 
-        // Function to render projects
-        function renderProjects() {
-            const projectsContainer = document.getElementById('projects-container');
-            projectsContainer.innerHTML = ''; // Clear existing content
-            projects.forEach((project, index) => {
-                projectsContainer.appendChild(createProjectCard(project, index));
+        function createProjectCard(project) {
+            const card = document.createElement('div');
+            card.className = `project-card ${project.category.join(' ')} bg-gray-50 dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-300`;
+            card.innerHTML = `
+                <div class="relative overflow-hidden">
+                    <img src="${project.image}" alt="${project.title}" class="w-full h-48 object-cover transition-transform duration-500 hover:scale-110" />
+                    <div class="absolute top-3 right-3 flex gap-2">
+                        ${project.category.map(cat => {
+                            const colors = {
+                                'data': 'bg-blue-500',
+                                'ml-ai': 'bg-purple-500',
+                                'mobile': 'bg-green-500'
+                            };
+                            return `<span class="${colors[cat]} text-white text-xs px-2 py-1 rounded-full font-medium">${cat.toUpperCase().replace('-', '/')}</span>`;
+                        }).join('')}
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 dark:text-gray-200 mb-3">${project.title}</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm mb-4 leading-relaxed">${project.description}</p>
+                    
+                    ${project.metrics ? `
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            ${project.metrics.map(metric => `
+                                <span class="bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 text-xs px-3 py-1 rounded-full font-semibold">
+                                    <i class="fa-solid fa-chart-line mr-1"></i>${metric}
+                                </span>
+                            `).join('')}
+                        </div>
+                    ` : ''}
+                    
+                    <div class="flex flex-wrap gap-2 mb-5">
+                        ${project.tags.map(tag => `
+                            <span class="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs px-2 py-1 rounded">${tag}</span>
+                        `).join('')}
+                    </div>
+                    
+                    <a href="${project.link}" target="_blank" rel="noopener noreferrer" 
+                       class="inline-flex items-center text-indigo-600 dark:text-indigo-400 font-semibold hover:text-indigo-800 dark:hover:text-indigo-300 transition-colors">
+                        View Project <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            `;
+            return card;
+        }
+
+        function renderProjects(filter = 'all') {
+            const container = document.getElementById('projects-container');
+            container.innerHTML = '';
+            
+            const filteredProjects = filter === 'all' 
+                ? projects 
+                : projects.filter(p => p.category.includes(filter));
+            
+            filteredProjects.forEach(project => {
+                container.appendChild(createProjectCard(project));
             });
         }
 
-        // Dark Mode Logic
+        function initializeProjectFilters() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => {
+                        b.classList.remove('active', 'bg-indigo-600', 'text-white');
+                        b.classList.add('bg-gray-200', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300');
+                    });
+                    btn.classList.add('active', 'bg-indigo-600', 'text-white');
+                    btn.classList.remove('bg-gray-200', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300');
+                    
+                    const filter = btn.getAttribute('data-filter');
+                    renderProjects(filter);
+                });
+            });
+        }
+
         function initializeDarkMode() {
-            const darkModeToggleDesktop = document.getElementById('darkModeToggleDesktop');
-            const darkModeToggleMobile = document.getElementById('darkModeToggleMobile');
+            const toggles = [
+                document.getElementById('darkModeToggleDesktop'),
+                document.getElementById('darkModeToggleMobile')
+            ];
             const sunIcons = document.querySelectorAll('.fa-sun');
             const moonIcons = document.querySelectorAll('.fa-moon');
 
-            const isDarkMode = localStorage.getItem('theme') === 'dark' ||
-                (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            const isDark = localStorage.getItem('theme') === 'dark' ||
+                (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
 
-            if (isDarkMode) {
+            if (isDark) {
                 document.documentElement.classList.add('dark');
                 sunIcons.forEach(icon => icon.classList.remove('hidden'));
                 moonIcons.forEach(icon => icon.classList.add('hidden'));
-            } else {
-                document.documentElement.classList.remove('dark');
-                sunIcons.forEach(icon => icon.classList.add('hidden'));
-                moonIcons.forEach(icon => icon.classList.remove('hidden'));
             }
 
             function toggleDarkMode() {
-                if (document.documentElement.classList.contains('dark')) {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('theme', 'light');
-                    sunIcons.forEach(icon => icon.classList.add('hidden'));
-                    moonIcons.forEach(icon => icon.classList.remove('hidden'));
-                } else {
-                    document.documentElement.classList.add('dark');
-                    localStorage.setItem('theme', 'dark');
-                    sunIcons.forEach(icon => icon.classList.remove('hidden'));
-                    moonIcons.forEach(icon => icon.classList.add('hidden'));
-                }
+                document.documentElement.classList.toggle('dark');
+                const isDarkNow = document.documentElement.classList.contains('dark');
+                localStorage.setItem('theme', isDarkNow ? 'dark' : 'light');
+                
+                sunIcons.forEach(icon => icon.classList.toggle('hidden'));
+                moonIcons.forEach(icon => icon.classList.toggle('hidden'));
             }
 
-            if (darkModeToggleDesktop) {
-                darkModeToggleDesktop.addEventListener('click', toggleDarkMode);
-            }
-            if (darkModeToggleMobile) {
-                darkModeToggleMobile.addEventListener('click', toggleDarkMode);
-            }
+            toggles.forEach(toggle => {
+                if (toggle) toggle.addEventListener('click', toggleDarkMode);
+            });
         }
 
-        // Mobile Menu Logic
         function initializeMobileMenu() {
-            const mobileMenuButton = document.getElementById('mobileMenuButton');
-            const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+            const menuBtn = document.getElementById('mobileMenuButton');
+            const overlay = document.getElementById('mobileMenuOverlay');
             const menuIcon = document.querySelector('.menu-icon');
             const closeIcon = document.querySelector('.close-icon');
-            const mobileNavLinks = document.querySelectorAll('.nav-link-mobile');
+            const mobileLinks = document.querySelectorAll('.nav-link-mobile');
 
-            if (mobileMenuButton) {
-                mobileMenuButton.addEventListener('click', () => {
-                    const isOpen = mobileMenuOverlay.classList.toggle('hidden');
-                    if (isOpen) {
-                        menuIcon.classList.remove('hidden');
-                        closeIcon.classList.add('hidden');
-                    } else {
-                        menuIcon.classList.add('hidden');
-                        closeIcon.classList.remove('hidden');
-                    }
+            if (menuBtn) {
+                menuBtn.addEventListener('click', () => {
+                    overlay.classList.toggle('hidden');
+                    menuIcon.classList.toggle('hidden');
+                    closeIcon.classList.toggle('hidden');
                 });
             }
 
-            mobileNavLinks.forEach(link => {
+            mobileLinks.forEach(link => {
                 link.addEventListener('click', () => {
-                    mobileMenuOverlay.classList.add('hidden');
+                    overlay.classList.add('hidden');
                     menuIcon.classList.remove('hidden');
                     closeIcon.classList.add('hidden');
                 });
             });
         }
 
-        // Smooth Scrolling for Navigation
         function initializeSmoothScrolling() {
-            document.querySelectorAll('.nav-link, .scroll-button').forEach(button => {
-                button.addEventListener('click', function (event) {
-                    event.preventDefault();
-                    const sectionId = this.dataset.section;
-                    const targetSection = document.getElementById(sectionId);
-                    if (targetSection) {
-                        targetSection.scrollIntoView({ behavior: 'smooth' });
-                        // Update active class for desktop nav links
-                        document.querySelectorAll('.nav-link').forEach(link => {
-                            if (link.dataset.section === sectionId) {
-                                link.classList.add('text-indigo-700', 'dark:text-indigo-400', 'border-b-2', 'border-indigo-700', 'dark:border-indigo-400');
-                                link.classList.remove('text-gray-600', 'dark:text-gray-300');
-                            } else {
-                                link.classList.remove('text-indigo-700', 'dark:text-indigo-400', 'border-b-2', 'border-indigo-700', 'dark:border-indigo-400');
-                                link.classList.add('text-gray-600', 'dark:text-gray-300');
-                            }
-                        });
+            document.querySelectorAll('.nav-link, .nav-link-mobile, .scroll-button').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const section = document.getElementById(this.dataset.section);
+                    if (section) {
+                        section.scrollIntoView({ behavior: 'smooth' });
                     }
                 });
             });
         }
 
-        // Set current year in footer
-        function setCurrentYear() {
-            const currentYearSpan = document.getElementById('currentYear');
-            if (currentYearSpan) {
-                currentYearSpan.textContent = new Date().getFullYear();
-            }
-        }
-
-        // Back to Top Button Logic
         function initializeBackToTop() {
-            const backToTopBtn = document.getElementById('backToTopBtn');
-
+            const btn = document.getElementById('backToTopBtn');
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 300) {
-                    backToTopBtn.classList.remove('hidden');
-                    backToTopBtn.classList.add('show'); // Add 'show' class for animation
+                    btn.classList.remove('hidden');
+                    btn.classList.add('show');
                 } else {
-                    backToTopBtn.classList.remove('show'); // Remove 'show' class
-                    backToTopBtn.classList.add('hidden');
+                    btn.classList.remove('show');
+                    setTimeout(() => btn.classList.add('hidden'), 300);
                 }
             });
 
-            backToTopBtn.addEventListener('click', () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
+            btn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         }
 
-        // Form Submission Handling
-        function handleContactFormSubmission() {
-            const contactForm = document.getElementById('contactForm');
-            const messageBox = document.getElementById('messageBox');
+        function handleContactForm() {
+            const form = document.getElementById('contactForm');
+            const msgBox = document.getElementById('messageBox');
 
-            if (contactForm) {
-                contactForm.addEventListener('submit', function (event) {
-                    event.preventDefault(); // Prevent actual form submission
-
-                    // Simulate sending message
-                    setTimeout(() => {
-                        messageBox.textContent = 'Message sent successfully!';
-                        messageBox.classList.remove('hidden', 'scale-0', 'opacity-0', 'bg-red-500');
-                        messageBox.classList.add('bg-green-500', 'scale-100', 'opacity-100');
-
-                        // Clear form fields
-                        contactForm.reset();
-
-                        // Hide message after 3 seconds
-                        setTimeout(() => {
-                            messageBox.classList.remove('scale-100', 'opacity-100');
-                            messageBox.classList.add('scale-0', 'opacity-0');
-                            setTimeout(() => {
-                                messageBox.classList.add('hidden');
-                            }, 300); // Allow transition to finish
-                        }, 3000);
-                    }, 500); // Simulate network delay
-                });
-            }
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                msgBox.classList.remove('hidden', 'scale-0', 'opacity-0');
+                msgBox.classList.add('scale-100', 'opacity-100');
+                
+                form.reset();
+                
+                setTimeout(() => {
+                    msgBox.classList.remove('scale-100', 'opacity-100');
+                    msgBox.classList.add('scale-0', 'opacity-0');
+                    setTimeout(() => msgBox.classList.add('hidden'), 300);
+                }, 3000);
+            });
         }
 
-        // Initial render and event listeners on DOMContentLoaded
         document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
             renderSkills();
+            renderJourneySection();
             renderProjects();
+            initializeProjectFilters();
             initializeDarkMode();
             initializeMobileMenu();
             initializeSmoothScrolling();
-            setCurrentYear();
             initializeBackToTop();
-            handleContactFormSubmission();
-
-            // Set initial active section for desktop nav on load
-            const initialSection = window.location.hash ? window.location.hash.substring(1) : 'home';
-            document.querySelectorAll('.nav-link').forEach(link => {
-                if (link.dataset.section === initialSection) {
-                    link.classList.add('text-indigo-700', 'dark:text-indigo-400', 'border-b-2', 'border-indigo-700', 'dark:border-indigo-400');
-                    link.classList.remove('text-gray-600', 'dark:text-gray-300');
-                } else {
-                    link.classList.remove('text-indigo-700', 'dark:text-indigo-400', 'border-b-2', 'border-indigo-700', 'dark:border-indigo-400');
-                    link.classList.add('text-gray-600', 'dark:text-gray-300');
-                }
-            });
-        });
-
-        // Update active nav link on scroll
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section');
-            let currentActiveSection = 'home';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - document.querySelector('header').offsetHeight; // Adjust for fixed header
-                const sectionBottom = sectionTop + section.offsetHeight;
-                if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
-                    currentActiveSection = section.id;
-                }
-            });
-
-            document.querySelectorAll('.nav-link').forEach(link => {
-                if (link.dataset.section === currentActiveSection) {
-                    link.classList.add('text-indigo-700', 'dark:text-indigo-400', 'border-b-2', 'border-indigo-700', 'dark:border-indigo-400');
-                    link.classList.remove('text-gray-600', 'dark:text-gray-300');
-                } else {
-                    link.classList.remove('text-indigo-700', 'dark:text-indigo-400', 'border-b-2', 'border-indigo-700', 'dark:border-indigo-400');
-                    link.classList.add('text-gray-600', 'dark:text-gray-300');
-                }
-            });
+            handleContactForm();
         });
     </script>
 </body>
-
 </html>
