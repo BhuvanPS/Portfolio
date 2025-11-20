@@ -495,9 +495,15 @@ function handleContactForm() {
                 form.reset();
             } else {
                 // Error from server
+                console.error('Form submission failed with status:', response.status);
+                const data = await response.json();
+                if (Object.hasOwn(data, 'errors')) {
+                    console.error(data["errors"].map(error => error["message"]).join(", "))
+                }
                 throw new Error('Form submission failed');
             }
         } catch (error) {
+            console.error('Form submission error:', error);
             // Network error or other
             msgBox.textContent = "Oops! There was a problem sending your message.";
             msgBox.classList.remove('bg-green-500');
