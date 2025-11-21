@@ -1,5 +1,19 @@
 const projects = [
     {
+        "id": "hyperscale-retail-command-center",
+        "title": "HyperScale Retail Command Center",
+        "description": "Implemented an end-to-end Real-Time Analytics solution on Microsoft Fabric. The project unifies historical sales data and real-time order streams into a Medallion Architecture, utilizing PySpark for ETL and Facebook Prophet for accurate 30-day demand forecasting. It closes the loop with Fabric Activator to deliver stockout alerts in under one minute, turning passive data into proactive, actionable business intelligence.",
+        "image": "https://placehold.co/400x300/06B6D4/1E293B?text=Fabric+Command+Center",
+        "tags": ["Microsoft Fabric", "PySpark", "Facebook Prophet", "Real-Time Streaming", "Power BI", "Delta Lake", "Data Engineering", "Time-Series ML"],
+        "category": ["data", "ml-ai"],
+        "metrics": [
+            "Alert Latency < 1 Minute",
+            "30 Day Demand Forecast",
+            "100% Automated Pipeline"
+        ],
+        "link": "https://bhuvanps.github.io/Portfolio/Hyperscale/"
+    },
+    {
         id: 'bank-loan-analysis',
         title: 'Bank Loan Performance Analysis',
         description: 'Designed a three-tier Power BI dashboard monitoring $435.8M in loans. Implemented complex DAX measures for MTD/MoM tracking. Achieved 86.2% Good Loan rate with data-driven insights on risk exposure and debt consolidation strategy.',
