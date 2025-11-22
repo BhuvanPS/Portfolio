@@ -298,9 +298,10 @@ function handleContactForm() {
         e.preventDefault();
 
         const formData = new FormData(form);
+        const formAction = form.action;
 
         try {
-            const response = await fetch(form.action, {
+            const response = await fetch(formAction, {
                 method: 'POST',
                 body: formData,
                 headers: {
@@ -309,7 +310,6 @@ function handleContactForm() {
             });
 
             if (response.ok) {
-                // Success
                 msgBox.textContent = "Message sent successfully!";
                 msgBox.classList.remove('bg-red-500');
                 msgBox.classList.add('bg-green-500');
@@ -317,8 +317,6 @@ function handleContactForm() {
                 msgBox.classList.add('scale-100', 'opacity-100');
                 form.reset();
             } else {
-                // Error from server
-                console.error('Form submission failed with status:', response.status);
                 const data = await response.json();
                 if (Object.hasOwn(data, 'errors')) {
                     console.error(data["errors"].map(error => error["message"]).join(", "))
@@ -430,7 +428,10 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('currentYear').textContent = new Date().getFullYear();
 
     initializeSkillTabs();
+    // Initialize Personal Details
     renderPersonalDetails();
+    // Initialize Chatbot
+    initializeChatbot();
     renderSkills();
     renderJourneySection();
     renderProjects();
@@ -441,3 +442,133 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeBackToTop();
     handleContactForm();
 });
+
+function initializeChatbot() {
+    const chatWidget = document.getElementById('chat-widget');
+    const chatWindow = document.getElementById('chat-window');
+    const chatToggle = document.getElementById('chat-toggle');
+    const closeChat = document.getElementById('close-chat');
+    const chatForm = document.getElementById('chat-form');
+    const chatInput = document.getElementById('chat-input');
+    const chatMessages = document.getElementById('chat-messages');
+    const toggleIcon = chatToggle.querySelector('i');
+
+    let isOpen = false;
+
+    function toggleChat() {
+        isOpen = !isOpen;
+        if (isOpen) {
+            chatWindow.classList.remove('hidden');
+            // Small delay to allow display:block to apply before opacity transition
+            setTimeout(() => {
+                chatWindow.classList.remove('opacity-0', 'scale-95');
+                chatWindow.classList.add('opacity-100', 'scale-100');
+            }, 10);
+            toggleIcon.classList.remove('fa-message');
+            toggleIcon.classList.add('fa-times');
+            chatInput.focus();
+        } else {
+            chatWindow.classList.remove('opacity-100', 'scale-100');
+            chatWindow.classList.add('opacity-0', 'scale-95');
+            setTimeout(() => {
+                chatWindow.classList.add('hidden');
+            }, 300);
+            toggleIcon.classList.remove('fa-times');
+            toggleIcon.classList.add('fa-message');
+        }
+    }
+
+    chatToggle.addEventListener('click', toggleChat);
+    closeChat.addEventListener('click', toggleChat);
+
+    function addMessage(text, isUser = false) {
+        const div = document.createElement('div');
+        div.className = `flex items-start space-x-2 ${isUser ? 'flex-row-reverse space-x-reverse' : ''}`;
+
+        const icon = isUser ?
+            `<div class="w-8 h-8 bg-gray-200 dark:bg-slate-700 rounded-full flex-shrink-0 flex items-center justify-center">
+                <i class="fa-solid fa-user text-gray-500 dark:text-gray-400 text-xs"></i>
+             </div>` :
+            `<div class="w-8 h-8 bg-indigo-100 dark:bg-indigo-900/50 rounded-full flex-shrink-0 flex items-center justify-center">
+                <i class="fa-solid fa-robot text-indigo-600 dark:text-indigo-400 text-xs"></i>
+             </div>`;
+
+        const messageClass = isUser ?
+            'bg-indigo-600 text-white rounded-tr-none' :
+            'bg-white dark:bg-slate-800 text-gray-600 dark:text-gray-300 rounded-tl-none border border-gray-100 dark:border-slate-700';
+
+        div.innerHTML = `
+            ${icon}
+            <div class="${messageClass} p-3 rounded-2xl shadow-sm max-w-[85%] prose dark:prose-invert prose-sm">
+                ${isUser ? `<p class="text-sm">${text}</p>` : marked.parse(text)}
+            </div>
+        `;
+
+        chatMessages.appendChild(div);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function addTypingIndicator() {
+        const div = document.createElement('div');
+        div.id = 'typing-indicator';
+        div.className = 'flex items-start space-x-2';
+        div.innerHTML = `
+            <div class="w-8 h-8 bg-indigo-100 dark:bg-indigo-900/50 rounded-full flex-shrink-0 flex items-center justify-center">
+                <i class="fa-solid fa-robot text-indigo-600 dark:text-indigo-400 text-xs"></i>
+            </div>
+            <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl rounded-tl-none shadow-sm border border-gray-100 dark:border-slate-700">
+                <div class="flex space-x-1">
+                    <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                    <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+                    <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.4s"></div>
+                </div>
+            </div>
+        `;
+        chatMessages.appendChild(div);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function removeTypingIndicator() {
+        const indicator = document.getElementById('typing-indicator');
+        if (indicator) indicator.remove();
+    }
+
+    chatForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const message = chatInput.value.trim();
+        if (!message) return;
+
+        // Add user message
+        addMessage(message, true);
+        chatInput.value = '';
+
+        // Show typing indicator
+        addTypingIndicator();
+
+        try {
+            const response = await fetch('http://localhost:5001/api/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message }),
+            });
+
+            const data = await response.json();
+
+            // Remove typing indicator and add bot response
+            removeTypingIndicator();
+
+            if (data.error) {
+                addMessage("Sorry, I encountered an error. Please try again later.");
+                console.error('Chat error:', data.error);
+            } else {
+                addMessage(data.response);
+            }
+        } catch (error) {
+            removeTypingIndicator();
+            addMessage("Sorry, I cannot connect to the server. Please ensure the backend is running.");
+            console.error('Network error:', error);
+        }
+    });
+}
