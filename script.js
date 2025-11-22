@@ -546,7 +546,7 @@ function initializeChatbot() {
         addTypingIndicator();
 
         try {
-            const response = await fetch('http://localhost:5001/api/chat', {
+            const response = await fetch('https://rag-chatbot-w241.onrender.com/api/chat', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
