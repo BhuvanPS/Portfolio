@@ -78,9 +78,11 @@ function renderJourneySection() {
         <div class="space-y-6">
             ${journeyData.experience.map(exp => `
                 <div class="border-l-4 border-indigo-500 pl-4 py-2 hover:bg-indigo-50 dark:hover:bg-gray-700 transition-colors duration-300 rounded-r">
-                    <h4 class="text-xl font-semibold text-gray-800 dark:text-gray-200">${exp.title}</h4>
+                    <div class="flex justify-between items-start">
+                        <h4 class="text-xl font-semibold text-gray-800 dark:text-gray-200">${exp.title}</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 ml-4 flex-shrink-0"><i class="fa-solid fa-calendar-alt mr-1"></i>${exp.period}</p>
+                    </div>
                     <p class="text-md font-medium text-indigo-700 dark:text-indigo-400 mb-1">${exp.company}</p>
-                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-2"><i class="fa-solid fa-calendar-alt mr-1"></i>${exp.period}</p>
                     <p class="text-gray-700 dark:text-gray-300 text-sm mb-2">${exp.description}</p>
                     <div class="flex flex-wrap gap-2">
                         ${exp.highlights.map(h => `<span class="text-xs bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 px-2 py-1 rounded">${h}</span>`).join('')}
@@ -101,9 +103,11 @@ function renderJourneySection() {
         <div class="space-y-6">
             ${journeyData.education.map(edu => `
                 <div class="border-l-4 border-indigo-500 pl-4 py-2 hover:bg-indigo-50 dark:hover:bg-gray-700 transition-colors duration-300 rounded-r">
-                    <h4 class="text-xl font-semibold text-gray-800 dark:text-gray-200">${edu.degree}</h4>
+                    <div class="flex justify-between items-start">
+                        <h4 class="text-xl font-semibold text-gray-800 dark:text-gray-200">${edu.degree}</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 ml-4 flex-shrink-0"><i class="fa-solid fa-calendar-alt mr-1"></i>${edu.period}</p>
+                    </div>
                     <p class="text-md font-medium text-indigo-700 dark:text-indigo-400 mb-1">${edu.institution}</p>
-                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-2"><i class="fa-solid fa-calendar-alt mr-1"></i>${edu.period}</p>
                     <p class="text-gray-700 dark:text-gray-300 text-sm">${edu.description}</p>
                 </div>
             `).join('')}
@@ -149,7 +153,12 @@ function createProjectCard(project) {
         </div>
         <div class="p-6">
             <h3 class="text-xl font-bold text-gray-800 dark:text-gray-200 mb-3">${project.title}</h3>
-            <p class="text-gray-700 dark:text-gray-300 text-sm mb-4 leading-relaxed">${project.description}</p>
+            ${Array.isArray(project.description)
+            ? `<ul class="text-gray-700 dark:text-gray-300 text-sm mb-4 leading-relaxed list-disc list-inside space-y-1">
+                    ${project.description.map(item => `<li>${item}</li>`).join('')}
+                   </ul>`
+            : `<p class="text-gray-700 dark:text-gray-300 text-sm mb-4 leading-relaxed">${project.description}</p>`
+        }
             
             ${project.metrics ? `
                 <div class="flex flex-wrap gap-2 mb-4">
@@ -217,11 +226,19 @@ function initializeDarkMode() {
     const isDark = localStorage.getItem('theme') === 'dark' ||
         (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
 
+    function updateHomeBackground(isDark) {
+        const homeSection = document.getElementById('home');
+        if (homeSection) {
+            homeSection.style.backgroundImage = isDark ? "url('bg.webp')" : "url('bglight.webp')";
+        }
+    }
+
     if (isDark) {
         document.documentElement.classList.add('dark');
         sunIcons.forEach(icon => icon.classList.remove('hidden'));
         moonIcons.forEach(icon => icon.classList.add('hidden'));
     }
+    updateHomeBackground(isDark);
 
     function toggleDarkMode() {
         document.documentElement.classList.toggle('dark');
@@ -230,6 +247,7 @@ function initializeDarkMode() {
 
         sunIcons.forEach(icon => icon.classList.toggle('hidden'));
         moonIcons.forEach(icon => icon.classList.toggle('hidden'));
+        updateHomeBackground(isDarkNow);
     }
 
     toggles.forEach(toggle => {
@@ -373,8 +391,8 @@ function renderPersonalDetails() {
     const metricsContainer = document.getElementById('hero-metrics');
     metricsContainer.innerHTML = personalDetails.metrics.map(metric => `
         <div class="metric-card rounded-lg p-4 text-center">
-            <div class="text-3xl font-bold text-yellow-300">${metric.value}</div>
-            <div class="text-sm text-gray-200">${metric.label}</div>
+            <div class="text-3xl font-bold text-indigo-700 dark:text-yellow-300">${metric.value}</div>
+            <div class="text-sm text-gray-700 dark:text-gray-200">${metric.label}</div>
         </div>
     `).join('');
 

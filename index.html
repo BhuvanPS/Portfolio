@@ -18,7 +18,7 @@
         }
     </script>
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <!-- Marked.js for Markdown parsing -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -91,8 +91,8 @@
     </header>
 
     <section id="home"
-        class="relative flex min-h-screen items-center justify-center bg-gradient-to-br from-indigo-700 via-purple-700 to-pink-600 text-white overflow-hidden pt-16">
-        <div class="absolute inset-0 z-0 opacity-20">
+        class="relative flex min-h-screen items-center justify-center bg-cover bg-center bg-no-repeat text-gray-900 dark:text-white overflow-hidden pt-16">
+        <div class="absolute inset-0 z-0 bg-white/80 dark:bg-black/50">
             <div
                 class="absolute top-1/4 left-1/4 w-72 h-72 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob">
             </div>
@@ -109,7 +109,7 @@
                 <!-- Text Content -->
                 <div class="md:w-1/2 text-center md:text-left">
                     <h1 class="mb-4 text-5xl md:text-6xl font-extrabold leading-tight animate-fade-in-up">
-                        <span id="hero-name" class="text-yellow-300"></span>
+                        <span id="hero-name" class="text-indigo-700 dark:text-yellow-300"></span>
                     </h1>
                     <div class="mb-6 text-xl md:text-2xl font-light animate-fade-in-up animation-delay-200">
                         <span class="font-semibold">Data Scientist</span> • <span class="font-semibold">ML
@@ -129,11 +129,11 @@
                     <div
                         class="flex flex-col sm:flex-row justify-center md:justify-start gap-6 animate-fade-in-up animation-delay-600">
                         <button data-section="projects"
-                            class="scroll-button rounded-full bg-white px-10 py-4 text-lg font-semibold text-indigo-700 shadow-xl transition-all duration-300 hover:scale-105 hover:bg-gray-100 transform hover:-translate-y-1">
+                            class="scroll-button rounded-full bg-indigo-600 dark:bg-white px-10 py-4 text-lg font-semibold text-white dark:text-indigo-700 shadow-xl transition-all duration-300 hover:scale-105 hover:bg-indigo-700 dark:hover:bg-gray-100 transform hover:-translate-y-1">
                             View My Work
                         </button>
                         <a id="resume-btn" href="#" download
-                            class="rounded-full border-2 border-white px-10 py-4 text-lg font-semibold text-white shadow-xl transition-all duration-300 hover:scale-105 hover:bg-white hover:text-indigo-700 transform hover:-translate-y-1">
+                            class="rounded-full border-2 border-indigo-600 dark:border-white px-10 py-4 text-lg font-semibold text-indigo-700 dark:text-white shadow-xl transition-all duration-300 hover:scale-105 hover:bg-indigo-600 hover:text-white dark:hover:bg-white dark:hover:text-indigo-700 transform hover:-translate-y-1">
                             Download Resume
                         </a>
                     </div>
@@ -275,7 +275,9 @@
     <footer
         class="bg-gray-900 dark:bg-gray-950 py-8 text-center text-gray-300 dark:text-gray-400 transition-colors duration-500">
         <div class="container mx-auto px-4">
-            <p>&copy; <span id="currentYear"></span> <span id="footer-name"></span>. All rights reserved.</p>
+            <p>&copy; <span id="currentYear"></span> <span id="footer-name"></span>. All rights reserved. | <a
+                    href="https://www.vecteezy.com/free-vector/background" target="_blank" rel="noopener noreferrer"
+                    class="hover:text-white transition-colors">Background by Vecteezy.com</a></p>
         </div>
     </footer>
 
