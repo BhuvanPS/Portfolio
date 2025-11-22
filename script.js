@@ -143,9 +143,9 @@ function createProjectCard(project) {
             <div class="absolute top-3 right-3 flex gap-2">
                 ${project.category.map(cat => {
         const colors = {
-            'data': 'bg-blue-500',
-            'ml-ai': 'bg-purple-500',
-            'mobile': 'bg-green-500'
+            'data': 'bg-blue-700',
+            'ml-ai': 'bg-purple-700',
+            'mobile': 'bg-green-700'
         };
         return `<span class="${colors[cat]} text-white text-xs px-2 py-1 rounded-full font-medium">${cat.toUpperCase().replace('-', '/')}</span>`;
     }).join('')}
