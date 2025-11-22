@@ -8,15 +8,9 @@
     <title>Bhuvan Subramani - Data Science & Software Engineering Portfolio</title>
     <meta name="description"
         content="Bhuvan Subramani - Data Scientist, AI/ML Engineer & Flutter Developer specializing in data analytics, machine learning, and mobile app development.">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {}
-            }
-        }
-    </script>
+    <meta name="description"
+        content="Bhuvan Subramani - Data Scientist, AI/ML Engineer & Flutter Developer specializing in data analytics, machine learning, and mobile app development.">
+    <link href="./dist/output.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Marked.js for Markdown parsing -->
@@ -66,7 +60,8 @@
                     <i class="fa-solid fa-moon h-5 w-5"></i>
                 </button>
                 <button id="mobileMenuButton"
-                    class="text-gray-600 dark:text-gray-300 hover:text-indigo-700 dark:hover:text-indigo-400 focus:outline-none">
+                    class="text-gray-600 dark:text-gray-300 hover:text-indigo-700 dark:hover:text-indigo-400 focus:outline-none"
+                    aria-label="Toggle mobile menu">
                     <i class="fa-solid fa-bars menu-icon w-7 h-7"></i>
                     <i class="fa-solid fa-xmark close-icon w-7 h-7 hidden"></i>
                 </button>
@@ -246,17 +241,17 @@
                 <form id="contactForm" action="" method="POST" class="space-y-6">
                     <div>
                         <input type="text" id="name" name="name" placeholder="Your Name"
-                            class="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 px-5 py-3 text-gray-800 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 transition-colors duration-300"
+                            class="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 px-5 py-3 text-gray-800 dark:text-gray-200 placeholder-gray-600 dark:placeholder-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 transition-colors duration-300"
                             required />
                     </div>
                     <div>
                         <input type="email" id="email" name="email" placeholder="Your Email"
-                            class="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 px-5 py-3 text-gray-800 dark:text-gray-200 placeholder-gray-500 dark:placeholder-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 transition-colors duration-300"
+                            class="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 px-5 py-3 text-gray-800 dark:text-gray-200 placeholder-gray-600 dark:placeholder-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 transition-colors duration-300"
                             required />
                     </div>
                     <div>
                         <textarea id="message" name="message" rows="6" placeholder="Your Message"
-                            class="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 px-5 py-3 text-gray-800 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 transition-colors duration-300"
+                            class="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 px-5 py-3 text-gray-800 dark:text-gray-200 placeholder-gray-600 dark:placeholder-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 transition-colors duration-300"
                             required></textarea>
                     </div>
                     <button type="submit"
@@ -272,7 +267,7 @@
     </section>
 
     <footer
-        class="bg-gray-900 dark:bg-gray-950 py-8 text-center text-gray-400 dark:text-gray-500 transition-colors duration-500">
+        class="bg-gray-900 dark:bg-gray-950 py-8 text-center text-gray-300 dark:text-gray-400 transition-colors duration-500">
         <div class="container mx-auto px-4">
             <p>&copy; <span id="currentYear"></span> <span id="footer-name"></span>. All rights reserved.</p>
         </div>
@@ -300,13 +295,14 @@
                     </div>
                     <div>
                         <h3 class="text-white font-semibold text-sm">Portfolio Assistant</h3>
-                        <p class="text-indigo-200 text-xs flex items-center">
+                        <p class="text-indigo-100 text-xs flex items-center">
                             <span class="w-2 h-2 bg-green-400 rounded-full mr-1.5"></span>
                             Online
                         </p>
                     </div>
                 </div>
-                <button id="close-chat" class="text-white/80 hover:text-white transition-colors">
+                <button id="close-chat" class="text-white/80 hover:text-white transition-colors"
+                    aria-label="Close chat">
                     <i class="fa-solid fa-times"></i>
                 </button>
             </div>
@@ -336,7 +332,8 @@
                         class="flex-1 bg-gray-100 dark:bg-slate-900 text-gray-800 dark:text-gray-200 text-sm rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 border border-transparent dark:border-slate-700"
                         autocomplete="off">
                     <button type="submit"
-                        class="w-10 h-10 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full flex items-center justify-center transition-colors shadow-lg shadow-indigo-600/20 disabled:opacity-50 disabled:cursor-not-allowed">
+                        class="w-10 h-10 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full flex items-center justify-center transition-colors shadow-lg shadow-indigo-600/20 disabled:opacity-50 disabled:cursor-not-allowed"
+                        aria-label="Send message">
                         <i class="fa-solid fa-paper-plane text-sm"></i>
                     </button>
                 </form>
@@ -350,7 +347,8 @@
 
         <!-- Toggle Button -->
         <button id="chat-toggle"
-            class="w-14 h-14 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full shadow-lg shadow-indigo-600/30 flex items-center justify-center transition-all duration-300 hover:scale-110 group">
+            class="w-14 h-14 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full shadow-lg shadow-indigo-600/30 flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+            aria-label="Open chat">
             <i class="fa-solid fa-message text-xl group-hover:scale-110 transition-transform duration-300"></i>
         </button>
     </div>

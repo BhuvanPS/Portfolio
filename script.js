@@ -121,7 +121,7 @@ function renderJourneySection() {
         <div class="grid md:grid-cols-2 gap-4">
             ${journeyData.certificates.map(cert => `
                 <div class="border-l-4 border-indigo-500 pl-4 py-2 hover:bg-indigo-50 dark:hover:bg-gray-700 transition-colors duration-300 rounded-r">
-                    <h5 class="font-semibold text-gray-800 dark:text-gray-200">${cert.name}</h5>
+                    <h4 class="font-semibold text-gray-800 dark:text-gray-200">${cert.name}</h4>
                     <p class="text-sm text-indigo-600 dark:text-indigo-400">${cert.issuer}</p>
                 </div>
             `).join('')}
