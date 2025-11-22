@@ -28,7 +28,7 @@
     <header
         class="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg transition-colors duration-500">
         <nav class="container mx-auto flex items-center justify-between py-3 px-4 md:py-4 md:px-6">
-            <div class="text-2xl font-extrabold text-indigo-700 dark:text-indigo-400">Bhuvan.dev</div>
+            <div id="nav-brand" class="text-2xl font-extrabold text-indigo-700 dark:text-indigo-400"></div>
             <ul class="hidden space-x-8 md:flex items-center">
                 <li><button data-section="home"
                         class="nav-link text-lg font-medium hover:text-indigo-700 dark:hover:text-indigo-400 transition-colors duration-300">Home</button>
@@ -104,33 +104,20 @@
                 <!-- Text Content -->
                 <div class="md:w-1/2 text-center md:text-left">
                     <h1 class="mb-4 text-5xl md:text-6xl font-extrabold leading-tight animate-fade-in-up">
-                        <span class="text-yellow-300">Bhuvan Subramani</span>
+                        <span id="hero-name" class="text-yellow-300"></span>
                     </h1>
                     <div class="mb-6 text-xl md:text-2xl font-light animate-fade-in-up animation-delay-200">
                         <span class="font-semibold">Data Scientist</span> • <span class="font-semibold">ML
                             Engineer</span> •
                         <span class="font-semibold">Flutter Developer</span>
                     </div>
-                    <p
+                    <p id="hero-desc"
                         class="mb-8 text-lg md:text-xl font-light max-w-2xl mx-auto md:mx-0 animate-fade-in-up animation-delay-400">
-                        Transforming data into actionable insights and building intelligent applications that solve
-                        real-world
-                        problems
                     </p>
 
                     <!-- Social Links -->
-                    <div
+                    <div id="hero-socials"
                         class="flex justify-center md:justify-start gap-8 mb-10 animate-fade-in-up animation-delay-400">
-                        <a href="https://github.com/BhuvanPS" target="_blank" rel="noopener noreferrer"
-                            aria-label="GitHub Profile"
-                            class="text-white/80 hover:text-white transition-all duration-300 transform hover:scale-110 hover:-translate-y-1">
-                            <i class="fa-brands fa-github text-4xl drop-shadow-md"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/bhuvan-ps" target="_blank" rel="noopener noreferrer"
-                            aria-label="LinkedIn Profile"
-                            class="text-white/80 hover:text-white transition-all duration-300 transform hover:scale-110 hover:-translate-y-1">
-                            <i class="fa-brands fa-linkedin text-4xl drop-shadow-md"></i>
-                        </a>
                     </div>
 
                     <!-- Buttons -->
@@ -140,7 +127,7 @@
                             class="scroll-button rounded-full bg-white px-10 py-4 text-lg font-semibold text-indigo-700 shadow-xl transition-all duration-300 hover:scale-105 hover:bg-gray-100 transform hover:-translate-y-1">
                             View My Work
                         </button>
-                        <a href="/Resume.pdf" download="Bhuvan_Purushothaman_Subramani_Resume.pdf"
+                        <a id="resume-btn" href="#" download
                             class="rounded-full border-2 border-white px-10 py-4 text-lg font-semibold text-white shadow-xl transition-all duration-300 hover:scale-105 hover:bg-white hover:text-indigo-700 transform hover:-translate-y-1">
                             Download Resume
                         </a>
@@ -149,29 +136,14 @@
 
                 <!-- Image -->
                 <div class="md:w-1/2 flex justify-center animate-float order-first md:order-last mb-8 md:mb-0">
-                    <img src="https://placehold.co/180x180/667EEA/FFFFFF?text=BS" alt="Bhuvan Subramani"
+                    <img id="profile-img" src="" alt=""
                         class="h-64 w-64 md:h-80 md:w-80 rounded-full border-4 border-white shadow-2xl object-cover" />
                 </div>
             </div>
 
             <!-- Key Metrics -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto animate-fade-in-up animation-delay-600">
-                <div class="metric-card rounded-lg p-4 text-center">
-                    <div class="text-3xl font-bold text-yellow-300">8+</div>
-                    <div class="text-sm text-gray-200">End-to-End Projects</div>
-                </div>
-                <div class="metric-card rounded-lg p-4 text-center">
-                    <div class="text-3xl font-bold text-yellow-300">5000+</div>
-                    <div class="text-sm text-gray-200">Active Users Impacted</div>
-                </div>
-                <div class="metric-card rounded-lg p-4 text-center">
-                    <div class="text-3xl font-bold text-yellow-300">10+</div>
-                    <div class="text-sm text-gray-200">Data Pipelines Built</div>
-                </div>
-                <div class="metric-card rounded-lg p-4 text-center">
-                    <div class="text-3xl font-bold text-yellow-300">5+</div>
-                    <div class="text-sm text-gray-200">Data Visualizations</div>
-                </div>
+            <div id="hero-metrics"
+                class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto animate-fade-in-up animation-delay-600">
             </div>
         </div>
     </section>
@@ -182,61 +154,10 @@
             </h2>
 
             <div class="grid md:grid-cols-2 gap-12 mb-16">
-                <div>
-                    <h3 class="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200">Who I Am</h3>
-                    <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300 mb-4">
-                        I'm <span class="font-semibold text-indigo-600 dark:text-indigo-400">Bhuvan Purushothaman
-                            Subramani</span>, a results-driven Data Scientist and Software Engineer with a unique blend
-                        of analytical expertise and mobile development skills.
-                    </p>
-                    <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300 mb-4">
-                        Currently pursuing my <span class="font-semibold">Master's in Data Science at Deakin
-                            University</span>, I bring hands-on experience in building AI-powered solutions, predictive
-                        models, and user-centric mobile applications.
-                    </p>
-                    <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-                        My passion lies in leveraging data analytics, machine learning, and modern development
-                        frameworks to create impactful solutions that drive business value and improve user experiences.
-                    </p>
+                <div id="about-content">
                 </div>
 
-                <div class="space-y-6">
-                    <h3 class="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200">What I Offer</h3>
-                    <div class="space-y-4">
-                        <div class="flex items-start space-x-3">
-                            <i class="fa-solid fa-chart-line text-2xl text-indigo-600 dark:text-indigo-400 mt-1"></i>
-                            <div>
-                                <h4 class="font-semibold text-gray-800 dark:text-gray-200">Data Analysis & Visualization
-                                </h4>
-                                <p class="text-gray-600 dark:text-gray-400 text-sm">Power BI dashboards, statistical
-                                    analysis, and actionable business insights</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start space-x-3">
-                            <i class="fa-solid fa-brain text-2xl text-indigo-600 dark:text-indigo-400 mt-1"></i>
-                            <div>
-                                <h4 class="font-semibold text-gray-800 dark:text-gray-200">Machine Learning & AI</h4>
-                                <p class="text-gray-600 dark:text-gray-400 text-sm">Predictive modeling, classification,
-                                    fraud detection, and deep learning</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start space-x-3">
-                            <i class="fa-solid fa-mobile-alt text-2xl text-indigo-600 dark:text-indigo-400 mt-1"></i>
-                            <div>
-                                <h4 class="font-semibold text-gray-800 dark:text-gray-200">Mobile App Development</h4>
-                                <p class="text-gray-600 dark:text-gray-400 text-sm">Cross-platform Flutter apps with
-                                    Firebase integration and AI features</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start space-x-3">
-                            <i class="fa-solid fa-database text-2xl text-indigo-600 dark:text-indigo-400 mt-1"></i>
-                            <div>
-                                <h4 class="font-semibold text-gray-800 dark:text-gray-200">Data Engineering</h4>
-                                <p class="text-gray-600 dark:text-gray-400 text-sm">SQL optimization, data pipelines,
-                                    and big data processing</p>
-                            </div>
-                        </div>
-                    </div>
+                <div id="about-services" class="space-y-6">
                 </div>
             </div>
 
@@ -318,7 +239,7 @@
             </p>
 
             <div class="mx-auto max-w-lg bg-white dark:bg-gray-800 p-8 rounded-xl shadow-2xl mb-12">
-                <form id="contactForm" action="https://formspree.io/f/mqanjrvw" method="POST" class="space-y-6">
+                <form id="contactForm" action="" method="POST" class="space-y-6">
                     <div>
                         <input type="text" id="name" name="name" placeholder="Your Name"
                             class="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 px-5 py-3 text-gray-800 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 transition-colors duration-300"
@@ -341,21 +262,7 @@
                 </form>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-6 text-lg">
-                <div class="flex flex-col items-center">
-                    <i class="fa-solid fa-envelope text-3xl mb-2 text-indigo-300"></i>
-                    <a href="mailto:psbhuvan2002@gmail.com"
-                        class="text-indigo-300 hover:underline">psbhuvan2002@gmail.com</a>
-                </div>
-                <div class="flex flex-col items-center">
-                    <i class="fa-solid fa-phone text-3xl mb-2 text-indigo-300"></i>
-                    <span>0451 412 465</span>
-                </div>
-                <div class="flex flex-col items-center">
-                    <i class="fa-brands fa-linkedin text-3xl mb-2 text-indigo-300"></i>
-                    <a href="https://www.linkedin.com/in/bhuvan-ps" target="_blank" rel="noopener noreferrer"
-                        class="text-indigo-300 hover:underline">linkedin.com/in/bhuvan-ps</a>
-                </div>
+            <div id="contact-info" class="grid md:grid-cols-3 gap-6 text-lg">
             </div>
         </div>
     </section>
@@ -363,7 +270,7 @@
     <footer
         class="bg-gray-900 dark:bg-gray-950 py-8 text-center text-gray-400 dark:text-gray-500 transition-colors duration-500">
         <div class="container mx-auto px-4">
-            <p>&copy; <span id="currentYear"></span> Bhuvan Purushothaman Subramani. All rights reserved.</p>
+            <p>&copy; <span id="currentYear"></span> <span id="footer-name"></span>. All rights reserved.</p>
         </div>
     </footer>
 
@@ -378,6 +285,7 @@
         Message sent successfully!
     </div>
 
+    <script src="data.js"></script>
     <script src="script.js"></script>
 </body>
 
