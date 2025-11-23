@@ -151,7 +151,7 @@ const projects = [
         image: 'https://placehold.co/400x300/F59E0B/FFFFFF?text=C-Meds+App',
         tags: ['Flutter', 'Dart', 'AI/ML', 'Firebase', 'Mobile'],
         category: ['mobile', 'ml-ai'],
-        metrics: ['90% Time Saved', 'Multi-platform'],
+        metrics: ['90% Time Saved', 'Cross-platform'],
         link: '#'
     },
     {

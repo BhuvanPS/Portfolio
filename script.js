@@ -527,7 +527,7 @@ function renderPersonalDetails() {
     const socialContainer = document.getElementById('hero-socials');
     socialContainer.innerHTML = personalDetails.socialLinks.map(link => `
         <a href="${link.url}" target="_blank" rel="noopener noreferrer" aria-label="${link.label}"
-           class="text-white/80 hover:text-white transition-all duration-300 transform hover:scale-110 hover:-translate-y-1">
+           class="text-gray-700 dark:text-white/80 hover:text-indigo-600 dark:hover:text-white transition-all duration-300 transform hover:scale-110 hover:-translate-y-1">
             <i class="${link.icon} text-4xl drop-shadow-md"></i>
         </a>
     `).join('');
