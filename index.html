@@ -219,7 +219,23 @@
                     data-filter="mobile">Mobile Dev</button>
             </div>
 
+
             <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+
+            <!-- View More Projects Button -->
+            <div id="view-more-projects-container" class="mt-12 text-center hidden">
+                <button id="view-more-projects" data-expanded="false"
+                    class="group relative px-8 py-3 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 overflow-hidden">
+                    <span class="relative z-10 flex items-center">
+                        <span id="view-more-projects-text">View More Projects</span>
+                        <i class="fa-solid fa-chevron-down ml-2 transition-transform duration-300"
+                            id="view-more-projects-icon"></i>
+                    </span>
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-purple-600 to-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    </div>
+                </button>
+            </div>
         </div>
     </section>
 
@@ -345,7 +361,7 @@
                 </form>
                 <div class="text-center mt-2">
                     <p class="text-[10px] text-gray-400 dark:text-gray-500">
-                        Powered by Gemini AI
+                        Developed by Bhuvan
                     </p>
                 </div>
             </div>

@@ -73,6 +73,11 @@ function renderJourneySection() {
     // Experience Section with Timeline Design
     const experienceSection = document.createElement('div');
     experienceSection.className = 'relative';
+
+    const initialShowCount = 3;
+    const totalExperiences = journeyData.experience.length;
+    const hasMore = totalExperiences > initialShowCount;
+
     experienceSection.innerHTML = `
         <div class="flex items-center mb-8">
             <div class="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg">
@@ -80,9 +85,9 @@ function renderJourneySection() {
             </div>
             <h3 class="text-3xl font-bold text-gray-800 dark:text-gray-200 ml-4">Experience</h3>
         </div>
-        <div class="space-y-6 relative before:absolute before:left-0 before:top-[2rem] before:bottom-[2rem] before:w-0.5 before:bg-indigo-200 before:dark:bg-indigo-800">
+        <div class="space-y-6 relative before:absolute before:left-0 before:top-[2rem] before:bottom-[2rem] before:w-0.5 before:bg-indigo-200 before:dark:bg-indigo-800" id="experience-timeline">
             ${journeyData.experience.map((exp, index) => `
-                <div class="relative pl-8">
+                <div class="relative pl-8 experience-item ${index >= initialShowCount ? 'hidden' : ''}" data-index="${index}">
                     <div class="absolute left-0 top-[2rem] w-4 h-4 bg-indigo-600 dark:bg-indigo-500 rounded-full -ml-[7px] ring-4 ring-white dark:ring-gray-900 shadow-md z-10"></div>
                     <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:-translate-y-1 group">
                         <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 mb-3">
@@ -95,7 +100,14 @@ function renderJourneySection() {
                                 <span class="font-medium">${exp.period}</span>
                             </div>
                         </div>
-                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">${exp.description}</p>
+                        <ul class="space-y-2 mb-4">
+                            ${exp.description.map(item => `
+                                <li class="flex items-start text-gray-600 dark:text-gray-300 leading-relaxed">
+                                    <i class="fa-solid fa-circle text-indigo-500 dark:text-indigo-400 text-[6px] mr-3 mt-2 flex-shrink-0"></i>
+                                    <span>${item}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
                         <div class="flex flex-wrap gap-2">
                             ${exp.highlights.map(h => `<span class="inline-flex items-center text-xs font-semibold bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/30 dark:to-purple-900/30 text-indigo-700 dark:text-indigo-300 px-3 py-1.5 rounded-full border border-indigo-200 dark:border-indigo-700"><i class="fa-solid fa-check-circle mr-1.5 text-indigo-500 dark:text-indigo-400"></i>${h}</span>`).join('')}
                         </div>
@@ -103,8 +115,49 @@ function renderJourneySection() {
                 </div>
             `).join('')}
         </div>
+        ${hasMore ? `
+            <div class="mt-8 text-center">
+                <button id="view-more-experience" class="group relative px-8 py-3 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 overflow-hidden">
+                    <span class="relative z-10 flex items-center">
+                        <span id="view-more-text">View More Experiences</span>
+                        <i class="fa-solid fa-chevron-down ml-2 transition-transform duration-300" id="view-more-icon"></i>
+                    </span>
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </button>
+            </div>
+        ` : ''}
     `;
     container.appendChild(experienceSection);
+
+    // Add event listener for View More button
+    if (hasMore) {
+        const viewMoreBtn = document.getElementById('view-more-experience');
+        const viewMoreText = document.getElementById('view-more-text');
+        const viewMoreIcon = document.getElementById('view-more-icon');
+        let isExpanded = false;
+
+        viewMoreBtn.addEventListener('click', () => {
+            isExpanded = !isExpanded;
+            const hiddenItems = document.querySelectorAll('.experience-item.hidden');
+
+            if (isExpanded) {
+                hiddenItems.forEach(item => {
+                    item.classList.remove('hidden');
+                    item.style.animation = 'fadeInUp 0.5s ease forwards';
+                });
+                viewMoreText.textContent = 'View Less';
+                viewMoreIcon.style.transform = 'rotate(180deg)';
+            } else {
+                document.querySelectorAll(`.experience-item[data-index="${initialShowCount}"], .experience-item[data-index="${initialShowCount + 1}"], .experience-item[data-index="${initialShowCount + 2}"]`).forEach(item => {
+                    item.classList.add('hidden');
+                });
+                viewMoreText.textContent = 'View More Experiences';
+                viewMoreIcon.style.transform = 'rotate(0deg)';
+                // Scroll to experience section
+                document.getElementById('experience-timeline').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    }
 
     // Education Section with Enhanced Cards
     const educationSection = document.createElement('div');
@@ -225,15 +278,42 @@ function createProjectCard(project) {
 
 function renderProjects(filter = 'all') {
     const container = document.getElementById('projects-container');
+    const viewMoreContainer = document.getElementById('view-more-projects-container');
     container.innerHTML = '';
 
     const filteredProjects = filter === 'all'
         ? projects
         : projects.filter(p => p.category.includes(filter));
 
-    filteredProjects.forEach(project => {
-        container.appendChild(createProjectCard(project));
+    const initialShowCount = filter === 'all' ? 9 : filteredProjects.length;
+    const hasMore = filter === 'all' && filteredProjects.length > initialShowCount;
+
+    filteredProjects.forEach((project, index) => {
+        const card = createProjectCard(project);
+        if (index >= initialShowCount) {
+            card.classList.add('hidden', 'project-hidden');
+        }
+        card.setAttribute('data-project-index', index);
+        container.appendChild(card);
     });
+
+    // Show or hide View More button
+    if (viewMoreContainer) {
+        if (hasMore) {
+            viewMoreContainer.classList.remove('hidden');
+            // Reset button state
+            const viewMoreBtn = document.getElementById('view-more-projects');
+            const viewMoreText = document.getElementById('view-more-projects-text');
+            const viewMoreIcon = document.getElementById('view-more-projects-icon');
+            if (viewMoreBtn) {
+                viewMoreBtn.dataset.expanded = 'false';
+                viewMoreText.textContent = 'View More Projects';
+                viewMoreIcon.style.transform = 'rotate(0deg)';
+            }
+        } else {
+            viewMoreContainer.classList.add('hidden');
+        }
+    }
 }
 
 function initializeProjectFilters() {
@@ -251,6 +331,38 @@ function initializeProjectFilters() {
             renderProjects(filter);
         });
     });
+
+    // Initialize View More Projects button
+    const viewMoreBtn = document.getElementById('view-more-projects');
+    if (viewMoreBtn) {
+        viewMoreBtn.addEventListener('click', () => {
+            const isExpanded = viewMoreBtn.dataset.expanded === 'true';
+            const hiddenProjects = document.querySelectorAll('.project-hidden');
+            const viewMoreText = document.getElementById('view-more-projects-text');
+            const viewMoreIcon = document.getElementById('view-more-projects-icon');
+
+            if (!isExpanded) {
+                // Show all projects
+                hiddenProjects.forEach(project => {
+                    project.classList.remove('hidden');
+                    project.style.animation = 'fadeInUp 0.5s ease forwards';
+                });
+                viewMoreText.textContent = 'View Less';
+                viewMoreIcon.style.transform = 'rotate(180deg)';
+                viewMoreBtn.dataset.expanded = 'true';
+            } else {
+                // Hide projects beyond 9
+                hiddenProjects.forEach(project => {
+                    project.classList.add('hidden');
+                });
+                viewMoreText.textContent = 'View More Projects';
+                viewMoreIcon.style.transform = 'rotate(0deg)';
+                viewMoreBtn.dataset.expanded = 'false';
+                // Scroll to projects section
+                document.getElementById('projects').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    }
 }
 
 function initializeDarkMode() {

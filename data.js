@@ -48,12 +48,11 @@ const projects = [
             "Delivered stockout alerts in under one minute using Fabric Activator, enabling immediate business action."
         ],
         "image": "https://placehold.co/400x300/06B6D4/1E293B?text=Fabric+Command+Center",
-        "tags": ["Microsoft Fabric", "PySpark", "Facebook Prophet", "Real-Time Streaming", "Power BI", "Delta Lake", "Data Engineering", "Time-Series ML"],
+        "tags": ["Microsoft Fabric", "PySpark", "Power BI", "Delta Lake", "Data Engineering"],
         "category": ["data", "ml-ai"],
         "metrics": [
             "Alert Latency < 1 Minute",
-            "30 Day Demand Forecast",
-            "100% Automated Pipeline"
+            "30 Day Forecast"
         ],
         "link": "https://bhuvanps.github.io/Portfolio/Hyperscale/"
     },
@@ -191,7 +190,6 @@ const skillData = {
         { name: 'Dart', iconClass: 'fa-solid fa-code', color: 'blue-700' },
         { name: 'Python', iconClass: 'fa-brands fa-python', color: 'green-600' },
         { name: 'R', iconClass: 'fa-solid fa-chart-line', color: 'blue-600' },
-        { name: 'C#', iconClass: 'fa-solid fa-code', color: 'purple-600' },
         { name: 'HTML', iconClass: 'fa-brands fa-html5', color: 'orange-500' },
         { name: 'CSS', iconClass: 'fa-brands fa-css3-alt', color: 'blue-400' },
         { name: 'JavaScript', iconClass: 'fa-brands fa-js', color: 'yellow-500' },
@@ -199,8 +197,7 @@ const skillData = {
     'Databases': [
         { name: 'Firebase', iconClass: 'fa-solid fa-fire', color: 'red-500' },
         { name: 'MongoDB', iconClass: 'fa-solid fa-leaf', color: 'gray-700' },
-        { name: 'SQL', iconClass: 'fa-solid fa-database', color: 'blue-800' },
-        { name: 'PostgreSQL', iconClass: 'fa-solid fa-database', color: 'blue-700' },
+        { name: 'SQL', iconClass: 'fa-solid fa-database', color: 'blue-800' }
     ],
     'Tools & Platforms': [
         { name: 'Power BI', iconClass: 'fa-solid fa-chart-bar', color: 'yellow-600' },
@@ -209,7 +206,6 @@ const skillData = {
         { name: 'GitHub', iconClass: 'fa-brands fa-github', color: 'gray-700' },
         { name: 'Google Cloud', iconClass: 'fa-brands fa-google', color: 'blue-500' },
         { name: 'R Shiny', iconClass: 'fa-solid fa-chart-area', color: 'blue-600' },
-        { name: 'Jupyter', iconClass: 'fa-solid fa-book', color: 'orange-600' },
         { name: 'API Development', iconClass: 'fa-solid fa-server', color: 'purple-500' },
     ],
     'Other Skills': [
@@ -232,24 +228,51 @@ const skillData = {
 const journeyData = {
     experience: [
         {
-            title: 'Software Consultant',
-            company: 'RADSTEC',
-            period: '05/2024 – 07/2024',
-            description: 'Engineered AI appointment booking solution improving efficiency by 20%. Collaborated cross-functionally for seamless integration.',
+            title: "AI Team Lead",
+            company: "Gopher Industries, Melbourne",
+            period: "06/2025 – Present",
+            description: [
+                "Led the development of synthetic data generation pipelines to support internal ML research and model validation",
+                "Managed a small AI team and optimized data workflows for improved efficiency",
+                "Improved dataset quality for downstream analytics and model training"
+            ],
+            highlights: [
+                "Synthetic Data Generation",
+                "Team Leadership",
+                "ML Pipeline Optimization"
+            ]
+        },
+        {
+            title: 'Software Consultant (Remote)',
+            company: 'RADSTEC, California',
+            period: '05/2024 – 12/2024',
+            description: [
+                "Engineered AI appointment booking solution improving efficiency by 20%",
+                "Collaborated cross-functionally for seamless integration with existing systems",
+                "Optimized user experience through intuitive UI design"
+            ],
             highlights: ['AI Integration', '20% Efficiency Boost', 'Cross-functional Leadership']
         },
         {
             title: 'Flutter Development Intern',
             company: 'CUROWEBS, Coimbatore',
             period: '01/2024 – 05/2024',
-            description: 'Designed and launched C-Meds on Google Play. Implemented AI auto-scanner reducing prescription entry time by 90%.',
+            description: [
+                "Designed and launched C-Meds on Google Play Store",
+                "Implemented AI auto-scanner reducing prescription entry time by 90%",
+                "Coordinated QA testing for multi-device reliability"
+            ],
             highlights: ['Play Store Launch', '90% Time Reduction', 'AI Implementation']
         },
         {
             title: 'Technical Coordinator',
             company: 'E-CELL SASTRA',
             period: '07/2023 – 12/2023',
-            description: 'Led mobile app development achieving 500+ downloads. Reduced manual communication by 40% through networking features.',
+            description: [
+                "Led mobile app development achieving 500+ downloads",
+                "Reduced manual communication by 40% through networking features",
+                "Managed event registrations for 1000+ participants"
+            ],
             highlights: ['500+ Downloads', '40% Communication Improvement', 'Team Leadership']
         }
     ],
