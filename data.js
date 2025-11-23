@@ -20,13 +20,12 @@ const personalDetails = {
         { value: "5+", label: "Data Visualizations" }
     ],
     aboutLong: [
-        "I'm <span class=\"font-semibold text-indigo-600 dark:text-indigo-400\">Bhuvan Purushothaman Subramani</span>, a results-driven Data Scientist and Software Engineer with a unique blend of analytical expertise and mobile development skills.",
-        "Currently pursuing my <span class=\"font-semibold\">Master's in Data Science at Deakin University</span>, I bring hands-on experience in building AI-powered solutions, predictive models, and user-centric mobile applications.",
-        "My passion lies in leveraging data analytics, machine learning, and modern development frameworks to create impactful solutions that drive business value and improve user experiences."
+        "I'm <span class=\"font-semibold text-indigo-600 dark:text-indigo-400\">Bhuvan Purushothaman Subramani</span>, a Data Scientist and Software Engineer who transforms complex data into scalable solutions. I've delivered <span class=\"font-semibold\">$15M+ in business impact</span>, built systems serving <span class=\"font-semibold\">5,000+ users</span>, and architected ML pipelines achieving <span class=\"font-semibold\">85%+ accuracy</span> across healthcare, finance, and retail.",
+        "What sets me apart? I bridge the gap between cutting-edge AI research and production-ready applications—from real-time analytics on Microsoft Fabric to AI-powered mobile apps on Google Play. Currently pursuing my <span class=\"font-semibold\">Master's in Data Science at Deakin University</span>, I don't just build models—I deliver measurable outcomes that drive revenue, reduce costs, and enhance user experiences."
     ],
     services: [
         { title: "Data Analysis & Visualization", desc: "Power BI dashboards, statistical analysis, and actionable business insights", icon: "fa-solid fa-chart-line" },
-        { title: "Machine Learning & AI", desc: "Predictive modeling, classification, fraud detection, and deep learning", icon: "fa-solid fa-brain" },
+        { title: "Machine Learning & AI", desc: "Predictive modeling, Classification, Regression, and deep learning", icon: "fa-solid fa-brain" },
         { title: "Mobile App Development", desc: "Cross-platform Flutter apps with Firebase integration and AI features", icon: "fa-solid fa-mobile-alt" },
         { title: "Data Engineering", desc: "SQL optimization, data pipelines, and big data processing", icon: "fa-solid fa-database" }
     ],

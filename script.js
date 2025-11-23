@@ -2,12 +2,14 @@
 
 function createSkillCard(skill) {
     const div = document.createElement('div');
-    div.className = 'skill-card group flex flex-col items-center justify-center rounded-xl bg-white dark:bg-gray-800 p-5 text-center shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700 hover:-translate-y-1';
+    div.className = 'skill-card group relative overflow-hidden flex flex-col items-center justify-center rounded-2xl bg-gradient-to-br from-white via-white to-gray-50 dark:from-gray-800 dark:via-gray-800 dark:to-gray-900 p-6 text-center shadow-md hover:shadow-2xl transition-all duration-500 border-2 border-gray-100 dark:border-gray-700 hover:border-indigo-300 dark:hover:border-indigo-600 hover:-translate-y-2 hover:scale-105';
     div.innerHTML = `
-        <div class="mb-4 h-16 w-16 flex items-center justify-center rounded-full bg-gray-50 dark:bg-gray-700/50 group-hover:scale-110 transition-transform duration-300">
-            <i class="${skill.iconClass} text-3xl text-${skill.color}"></i>
+        <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/5 via-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="relative mb-4 h-20 w-20 flex items-center justify-center rounded-2xl bg-gradient-to-br from-${skill.color}/20 to-${skill.color}/10 dark:from-${skill.color}/30 dark:to-${skill.color}/20 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg group-hover:shadow-${skill.color}/50">
+            <i class="${skill.iconClass} text-4xl text-${skill.color} group-hover:scale-110 transition-transform duration-300"></i>
         </div>
-        <span class="font-medium text-gray-700 dark:text-gray-300 text-base group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">${skill.name}</span>
+        <span class="relative font-semibold text-gray-800 dark:text-gray-200 text-base group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-300">${skill.name}</span>
+        <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
     `;
     return div;
 }
@@ -38,9 +40,9 @@ function initializeSkillTabs() {
         const btn = document.createElement('button');
         const isActive = category === currentSkillCategory;
 
-        btn.className = `skill-tab px-6 py-3 rounded-full text-sm md:text-base font-semibold transition-all duration-300 ${isActive
-            ? 'bg-indigo-600 text-white shadow-lg scale-105'
-            : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
+        btn.className = `skill-tab relative px-6 py-3 rounded-full text-sm md:text-base font-bold transition-all duration-300 ${isActive
+            ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-500/50 scale-105'
+            : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 dark:hover:from-gray-700 dark:hover:to-gray-700 border-2 border-gray-200 dark:border-gray-600 hover:border-indigo-300 dark:hover:border-indigo-600'
             }`;
         btn.textContent = category;
 
@@ -52,9 +54,9 @@ function initializeSkillTabs() {
             // Update tab styles
             document.querySelectorAll('.skill-tab').forEach(t => {
                 if (t.textContent === category) {
-                    t.className = 'skill-tab px-6 py-3 rounded-full text-sm md:text-base font-semibold transition-all duration-300 bg-indigo-600 text-white shadow-lg scale-105';
+                    t.className = 'skill-tab relative px-6 py-3 rounded-full text-sm md:text-base font-bold transition-all duration-300 bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-500/50 scale-105';
                 } else {
-                    t.className = 'skill-tab px-6 py-3 rounded-full text-sm md:text-base font-semibold transition-all duration-300 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700';
+                    t.className = 'skill-tab relative px-6 py-3 rounded-full text-sm md:text-base font-bold transition-all duration-300 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 dark:hover:from-gray-700 dark:hover:to-gray-700 border-2 border-gray-200 dark:border-gray-600 hover:border-indigo-300 dark:hover:border-indigo-600';
                 }
             });
 
@@ -68,24 +70,35 @@ function initializeSkillTabs() {
 function renderJourneySection() {
     const container = document.getElementById('journey-section');
 
+    // Experience Section with Timeline Design
     const experienceSection = document.createElement('div');
-    experienceSection.className = 'bg-gray-50 dark:bg-gray-800 rounded-xl p-8 shadow-xl border border-gray-200 dark:border-gray-700';
+    experienceSection.className = 'relative';
     experienceSection.innerHTML = `
-        <div class="flex items-center mb-6">
-            <i class="fa-solid fa-briefcase text-3xl text-indigo-600 dark:text-indigo-400 mr-4"></i>
-            <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-200">Experience</h3>
+        <div class="flex items-center mb-8">
+            <div class="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg">
+                <i class="fa-solid fa-briefcase text-xl text-white"></i>
+            </div>
+            <h3 class="text-3xl font-bold text-gray-800 dark:text-gray-200 ml-4">Experience</h3>
         </div>
-        <div class="space-y-6">
-            ${journeyData.experience.map(exp => `
-                <div class="border-l-4 border-indigo-500 pl-4 py-2 hover:bg-indigo-50 dark:hover:bg-gray-700 transition-colors duration-300 rounded-r">
-                    <div class="flex justify-between items-start">
-                        <h4 class="text-xl font-semibold text-gray-800 dark:text-gray-200">${exp.title}</h4>
-                        <p class="text-sm text-gray-600 dark:text-gray-400 ml-4 flex-shrink-0"><i class="fa-solid fa-calendar-alt mr-1"></i>${exp.period}</p>
-                    </div>
-                    <p class="text-md font-medium text-indigo-700 dark:text-indigo-400 mb-1">${exp.company}</p>
-                    <p class="text-gray-700 dark:text-gray-300 text-sm mb-2">${exp.description}</p>
-                    <div class="flex flex-wrap gap-2">
-                        ${exp.highlights.map(h => `<span class="text-xs bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 px-2 py-1 rounded">${h}</span>`).join('')}
+        <div class="space-y-6 relative before:absolute before:left-0 before:top-[2rem] before:bottom-[2rem] before:w-0.5 before:bg-indigo-200 before:dark:bg-indigo-800">
+            ${journeyData.experience.map((exp, index) => `
+                <div class="relative pl-8">
+                    <div class="absolute left-0 top-[2rem] w-4 h-4 bg-indigo-600 dark:bg-indigo-500 rounded-full -ml-[7px] ring-4 ring-white dark:ring-gray-900 shadow-md z-10"></div>
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:-translate-y-1 group">
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 mb-3">
+                            <div class="flex-1">
+                                <h4 class="text-xl font-bold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">${exp.title}</h4>
+                                <p class="text-lg font-semibold text-indigo-600 dark:text-indigo-400 mt-1">${exp.company}</p>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-700/50 px-3 py-1.5 rounded-full">
+                                <i class="fa-solid fa-calendar-alt mr-2"></i>
+                                <span class="font-medium">${exp.period}</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">${exp.description}</p>
+                        <div class="flex flex-wrap gap-2">
+                            ${exp.highlights.map(h => `<span class="inline-flex items-center text-xs font-semibold bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/30 dark:to-purple-900/30 text-indigo-700 dark:text-indigo-300 px-3 py-1.5 rounded-full border border-indigo-200 dark:border-indigo-700"><i class="fa-solid fa-check-circle mr-1.5 text-indigo-500 dark:text-indigo-400"></i>${h}</span>`).join('')}
+                        </div>
                     </div>
                 </div>
             `).join('')}
@@ -93,40 +106,65 @@ function renderJourneySection() {
     `;
     container.appendChild(experienceSection);
 
+    // Education Section with Enhanced Cards
     const educationSection = document.createElement('div');
-    educationSection.className = 'bg-gray-50 dark:bg-gray-800 rounded-xl p-8 shadow-xl border border-gray-200 dark:border-gray-700';
+    educationSection.className = 'mt-12';
     educationSection.innerHTML = `
-        <div class="flex items-center mb-6">
-            <i class="fa-solid fa-graduation-cap text-3xl text-indigo-600 dark:text-indigo-400 mr-4"></i>
-            <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-200">Education</h3>
+        <div class="flex items-center mb-8">
+            <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center shadow-lg">
+                <i class="fa-solid fa-graduation-cap text-xl text-white"></i>
+            </div>
+            <h3 class="text-3xl font-bold text-gray-800 dark:text-gray-200 ml-4">Education</h3>
         </div>
-        <div class="space-y-6">
+        <div class="grid md:grid-cols-2 gap-6">
             ${journeyData.education.map(edu => `
-                <div class="border-l-4 border-indigo-500 pl-4 py-2 hover:bg-indigo-50 dark:hover:bg-gray-700 transition-colors duration-300 rounded-r">
-                    <div class="flex justify-between items-start">
-                        <h4 class="text-xl font-semibold text-gray-800 dark:text-gray-200">${edu.degree}</h4>
-                        <p class="text-sm text-gray-600 dark:text-gray-400 ml-4 flex-shrink-0"><i class="fa-solid fa-calendar-alt mr-1"></i>${edu.period}</p>
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:-translate-y-1 group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-bl-full"></div>
+                    <div class="relative">
+                        <div class="flex items-start justify-between mb-3">
+                            <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-700/50 px-3 py-1.5 rounded-full">
+                                <i class="fa-solid fa-calendar-alt mr-2"></i>
+                                <span class="font-medium">${edu.period}</span>
+                            </div>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors mb-2">${edu.degree}</h4>
+                        <p class="text-lg font-semibold text-purple-600 dark:text-purple-400 mb-3 flex items-center">
+                            <i class="fa-solid fa-university mr-2 text-base"></i>
+                            ${edu.institution}
+                        </p>
+                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed">${edu.description}</p>
                     </div>
-                    <p class="text-md font-medium text-indigo-700 dark:text-indigo-400 mb-1">${edu.institution}</p>
-                    <p class="text-gray-700 dark:text-gray-300 text-sm">${edu.description}</p>
                 </div>
             `).join('')}
         </div>
     `;
     container.appendChild(educationSection);
 
+    // Certifications Section with Grid Layout
     const certSection = document.createElement('div');
-    certSection.className = 'bg-gray-50 dark:bg-gray-800 rounded-xl p-8 shadow-xl border border-gray-200 dark:border-gray-700';
+    certSection.className = 'mt-12';
     certSection.innerHTML = `
-        <div class="flex items-center mb-6">
-            <i class="fa-solid fa-award text-3xl text-indigo-600 dark:text-indigo-400 mr-4"></i>
-            <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-200">Certifications</h3>
+        <div class="flex items-center mb-8">
+            <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center shadow-lg">
+                <i class="fa-solid fa-award text-xl text-white"></i>
+            </div>
+            <h3 class="text-3xl font-bold text-gray-800 dark:text-gray-200 ml-4">Certifications</h3>
         </div>
-        <div class="grid md:grid-cols-2 gap-4">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             ${journeyData.certificates.map(cert => `
-                <div class="border-l-4 border-indigo-500 pl-4 py-2 hover:bg-indigo-50 dark:hover:bg-gray-700 transition-colors duration-300 rounded-r">
-                    <h4 class="font-semibold text-gray-800 dark:text-gray-200">${cert.name}</h4>
-                    <p class="text-sm text-indigo-600 dark:text-indigo-400">${cert.issuer}</p>
+                <div class="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-800/50 rounded-xl p-5 border-2 border-gray-100 dark:border-gray-700 hover:border-green-400 dark:hover:border-green-500 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 group">
+                    <div class="flex items-start space-x-3">
+                        <div class="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-green-400 to-teal-500 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <i class="fa-solid fa-certificate text-white"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h4 class="font-semibold text-gray-900 dark:text-white text-sm leading-snug mb-1 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">${cert.name}</h4>
+                            <p class="text-xs text-gray-600 dark:text-gray-400 flex items-center">
+                                <i class="fa-solid fa-building mr-1.5"></i>
+                                ${cert.issuer}
+                            </p>
+                        </div>
+                    </div>
                 </div>
             `).join('')}
         </div>
