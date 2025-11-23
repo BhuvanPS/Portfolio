@@ -298,3 +298,8 @@ const journeyData = {
         { name: 'Deep Learning', issuer: 'NPTEL' }
     ]
 };
+// Freeze data objects to prevent accidental mutations
+Object.freeze(personalDetails);
+Object.freeze(projects);
+Object.freeze(skillData);
+Object.freeze(journeyData);
