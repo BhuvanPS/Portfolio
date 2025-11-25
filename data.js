@@ -43,9 +43,10 @@ const projects = [
     "id": "hr-analytics-pro",
     "title": "Advanced HR Analytics Pro",
     "description": [
-        "Developed an interactive R Shiny dashboard to visualize workforce demographics and attrition drivers in real-time.",
-        "Implemented a Random Forest machine learning model to predict employee flight risk and identify key retention factors.",
-        "Designed comprehensive visualizations using Plotly and ggplot2 to uncover insights into compensation, tenure, and job satisfaction."
+        "Built an enterprise-grade HR Analytics platform delivering real-time KPIs (attrition rate, satisfaction scores, cost metrics) with trend analysis for executive decision-making.",
+        "Designed interactive workforce overview with demographic pyramids, age/gender distribution, and role analytics to optimize talent allocation.",
+        "Delivered comprehensive compensation analysis featuring salary benchmarks, pay equity insights, and income-vs-experience trends to ensure competitive positioning.",
+        "Created deep-dive attrition analysis with correlation matrices and retention factor identification, uncovering actionable drivers of employee turnover.",
     ],
     "image": "https://placehold.co/400x300/3B82F6/FFFFFF?text=HR+Analytics+Dashboard",
     "tags": ["R Shiny", "Machine Learning", "Predictive Analytics", "Data Visualization", "Plotly"],
