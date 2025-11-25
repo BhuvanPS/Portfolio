@@ -834,7 +834,7 @@ const PortfolioApp = (() => {
         },
 
         initializeFilters() {
-            const filterContainer = document.querySelector('.flex-wrap.justify-center.gap-3.mb-12'); // Parent of filter buttons
+            const filterContainer = document.getElementById('project-filters');
             if (!filterContainer) return;
 
             filterContainer.addEventListener('click', (e) => {
