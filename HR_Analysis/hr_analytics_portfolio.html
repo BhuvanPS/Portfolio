@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Analytics Pro | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --secondary: #8b5cf6;
+            --accent: #10b981;
+            --bg-dark: #0f172a;
+            --text-light: #f8fafc;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Background Animation */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, #1e293b 0%, #0f172a 100%);
+            z-index: -1;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: float 10s infinite ease-in-out;
+        }
+
+        .orb-1 { width: 300px; height: 300px; background: var(--primary); top: -50px; left: -50px; }
+        .orb-2 { width: 400px; height: 400px; background: var(--secondary); bottom: -100px; right: -100px; animation-delay: -5s; }
+        .orb-3 { width: 200px; height: 200px; background: var(--accent); top: 40%; left: 60%; animation-delay: -2s; opacity: 0.2; }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, 50px); }
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Typography */
+        h1, h2, h3 { color: #fff; }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-align: center;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            margin-bottom: 80px;
+            padding-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #60a5fa, #c084fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #94a3b8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* STAR Section */
+        .star-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 100px;
+        }
+
+        .card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 30px;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .star-icon {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: inline-block;
+            padding: 6px 12px;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 6px;
+            letter-spacing: 1px;
+        }
+
+        .card h3 { font-size: 1.5rem; margin-bottom: 15px; }
+        .card p { color: #cbd5e1; font-size: 1.05rem; }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 100px;
+        }
+
+        .skill-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .skill-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--primary);
+        }
+
+        .skill-item h4 { color: #e2e8f0; margin-bottom: 5px; }
+        .skill-item span { font-size: 0.9rem; color: #94a3b8; }
+
+        /* Insights & Learnings Split */
+        .split-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 100px;
+        }
+
+        .insight-list { list-style: none; }
+        .insight-list li {
+            margin-bottom: 20px;
+            padding-left: 30px;
+            position: relative;
+            color: #cbd5e1;
+        }
+        .insight-list li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .learning-box {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+            border: 1px solid var(--glass-border);
+            padding: 30px;
+            border-radius: 16px;
+        }
+
+        /* Live App Embed */
+        .app-section { margin-bottom: 80px; }
+        
+        .app-container {
+            width: 100%;
+            height: 850px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .app-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .app-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .btn-launch {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        .btn-launch:hover { background: #2563eb; }
+
+        /* Tech Stack */
+        .tech-stack { text-align: center; margin-bottom: 60px; }
+        .tech-badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .badge {
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: #e2e8f0;
+        }
+
+        .btn-github {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 30px;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+        }
+
+        .btn-github:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: #64748b;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .split-section { grid-template-columns: 1fr; }
+            .app-container { height: 600px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-gradient">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <div class="container">
+        
+        <!-- Hero -->
+        <header class="hero">
+            <h1>Advanced HR Analytics</h1>
+            <p>Predicting employee attrition and optimizing workforce retention with AI-driven insights.</p>
+            <a href="https://github.com/BhuvanPS/HR_Analytics_R" target="_blank" class="btn-github">
+                <svg height="24" width="24" viewBox="0 0 16 16" fill="currentColor">
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                </svg>
+                View Code on GitHub
+            </a>
+        </header>
+
+        <!-- STAR Method -->
+        <div class="star-grid">
+            <!-- Situation -->
+            <div class="card">
+                <div class="star-icon">SITUATION</div>
+                <h3>The Challenge</h3>
+                <p>
+                    High employee turnover was leading to increased recruitment costs and loss of institutional knowledge. 
+                    HR teams lacked actionable data to identify at-risk employees and understand the underlying drivers of attrition.
+                </p>
+            </div>
+
+            <!-- Task -->
+            <div class="card">
+                <div class="star-icon">TASK</div>
+                <h3>The Objective</h3>
+                <p>
+                    Develop a comprehensive analytics platform to visualize workforce demographics, analyze compensation trends, 
+                    and build a predictive model to identify employees with a high risk of leaving the organization.
+                </p>
+            </div>
+
+            <!-- Action -->
+            <div class="card">
+                <div class="star-icon">ACTION</div>
+                <h3>The Solution</h3>
+                <p>
+                    Built an interactive dashboard using <strong>R Shiny</strong>. Implemented a Random Forest model for attrition prediction. 
+                    Designed intuitive visualizations with <strong>Plotly</strong> and <strong>ggplot2</strong> to uncover insights into salary, 
+                    satisfaction, and work-life balance.
+                </p>
+            </div>
+
+            <!-- Result -->
+            <div class="card">
+                <div class="star-icon">RESULT</div>
+                <h3>The Impact</h3>
+                <p>
+                    Delivered a tool that provides real-time visibility into workforce health. The predictive model successfully identifies 
+                    at-risk employees, enabling proactive retention strategies and data-driven decision-making for HR leadership.
+                </p>
+            </div>
+        </div>
+
+        <!-- Skills Demonstrated -->
+        <h2 class="section-title">Skills Demonstrated</h2>
+        <div class="skills-grid">
+            <div class="skill-item">
+                <h4>R Programming</h4>
+                <span>Data Manipulation & Logic</span>
+            </div>
+            <div class="skill-item">
+                <h4>Shiny Framework</h4>
+                <span>Interactive Web Apps</span>
+            </div>
+            <div class="skill-item">
+                <h4>Predictive Modeling</h4>
+                <span>Random Forest & Risk Scoring</span>
+            </div>
+            <div class="skill-item">
+                <h4>Data Visualization</h4>
+                <span>ggplot2 & Plotly</span>
+            </div>
+            <div class="skill-item">
+                <h4>UI/UX Design</h4>
+                <span>User-Centric Dashboarding</span>
+            </div>
+        </div>
+
+        <!-- Insights & Learnings -->
+        <div class="split-section">
+            <div>
+                <h2 style="margin-bottom: 25px;">Key Insights</h2>
+                <ul class="insight-list">
+                    <li><strong>Overtime Impact:</strong> Employees working frequent overtime show a 30% higher attrition rate compared to peers.</li>
+                    <li><strong>Tenure Risk:</strong> The highest risk of turnover occurs within the first 2 years of employment, suggesting a need for better onboarding.</li>
+                    <li><strong>Role-Specific Turnover:</strong> Sales Representatives have the highest turnover, correlated with lower work-life balance scores.</li>
+                    <li><strong>Compensation:</strong> Below-market salary hikes are a strong predictor of attrition, even among satisfied employees.</li>
+                </ul>
+            </div>
+            <div>
+                <h2 style="margin-bottom: 25px;">Key Learnings</h2>
+                <div class="learning-box">
+                    <p style="margin-bottom: 15px; color: #e2e8f0;">
+                        "One of the biggest takeaways was the importance of <strong>feature engineering</strong>. Creating a composite 'Risk Score' from multiple factors provided much more value to HR stakeholders than raw probabilities."
+                    </p>
+                    <p style="color: #cbd5e1;">
+                        I also learned that <strong>dashboard performance</strong> is critical. Optimizing reactive expressions in Shiny significantly reduced load times for large datasets.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Live App Embed -->
+        <section class="app-section">
+            <div class="app-header">
+                <h2>Live Dashboard Demo</h2>
+                <a href="https://bhuvanps.shinyapps.io/hr_analytics/" target="_blank" class="btn-launch">Open in New Tab ↗</a>
+            </div>
+            <div class="app-container">
+                <iframe src="https://bhuvanps.shinyapps.io/hr_analytics/" class="app-frame" title="HR Analytics Dashboard"></iframe>
+            </div>
+        </section>
+
+        <!-- Tech Stack -->
+        <section class="tech-stack">
+            <h2 style="font-size: 1.5rem; margin-bottom: 20px; opacity: 0.8;">Built With</h2>
+            <div class="tech-badges">
+                <span class="badge">R</span>
+                <span class="badge">Shiny Dashboard</span>
+                <span class="badge">Plotly</span>
+                <span class="badge">DT</span>
+                <span class="badge">Random Forest</span>
+                <span class="badge">CSS3</span>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 Bhuvan P S. All rights reserved.</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
