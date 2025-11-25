@@ -40,6 +40,23 @@ const personalDetails = {
 
 const projects = [
     {
+    "id": "hr-analytics-pro",
+    "title": "Advanced HR Analytics Pro",
+    "description": [
+        "Developed an interactive R Shiny dashboard to visualize workforce demographics and attrition drivers in real-time.",
+        "Implemented a Random Forest machine learning model to predict employee flight risk and identify key retention factors.",
+        "Designed comprehensive visualizations using Plotly and ggplot2 to uncover insights into compensation, tenure, and job satisfaction."
+    ],
+    "image": "https://placehold.co/400x300/3B82F6/FFFFFF?text=HR+Analytics+Dashboard",
+    "tags": ["R Shiny", "Machine Learning", "Predictive Analytics", "Data Visualization", "Plotly"],
+    "category": ["data", "ml-ai"],
+    "metrics": [
+        "Real-time Risk Scoring",
+        "Interactive Dashboard"
+    ],
+    "link": "https://bhuvanps.github.io/Portfolio/HR_Analysis/"
+},
+    {
         "id": "hyperscale-retail-command-center",
         "title": "HyperScale Retail Command Center",
         "description": [
