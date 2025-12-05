@@ -41,7 +41,7 @@ const personalDetails = {
 const projects = [
     {
     "id": "hr-analytics-pro",
-    "title": "Advanced HR Analytics Pro",
+    "title": "Advanced HR Analytics",
     "description": [
         "Built an enterprise-grade HR Analytics platform delivering real-time KPIs (attrition rate, satisfaction scores, cost metrics) with trend analysis for executive decision-making.",
         "Designed interactive workforce overview with demographic pyramids, age/gender distribution, and role analytics to optimize talent allocation.",
@@ -251,7 +251,7 @@ const journeyData = {
             period: "06/2025 – Present",
             description: [
                 "Led the development of synthetic data generation pipelines to support internal ML research and model validation",
-                "Managed a small AI team and optimized data workflows for improved efficiency",
+                "Managed a 12 memebered AI team and optimized data workflows for improved efficiency",
                 "Improved dataset quality for downstream analytics and model training"
             ],
             highlights: [
@@ -263,18 +263,18 @@ const journeyData = {
         {
             title: 'Software Consultant (Remote)',
             company: 'RADSTEC, California',
-            period: '05/2024 – 12/2024',
+            period: '06/2024 – 12/2024',
             description: [
                 "Engineered AI appointment booking solution improving efficiency by 20%",
-                "Collaborated cross-functionally for seamless integration with existing systems",
+                "Built a prototype of AI appointment booking system using Amazon Lex",
                 "Optimized user experience through intuitive UI design"
             ],
-            highlights: ['AI Integration', '20% Efficiency Boost', 'Cross-functional Leadership']
+            highlights: ['AI Integration', '20% Efficiency Boost']
         },
         {
             title: 'Flutter Development Intern',
             company: 'CUROWEBS, Coimbatore',
-            period: '01/2024 – 05/2024',
+            period: '01/2024 – 06/2024',
             description: [
                 "Designed and launched C-Meds on Google Play Store",
                 "Implemented AI auto-scanner reducing prescription entry time by 90%",
@@ -288,10 +288,10 @@ const journeyData = {
             period: '07/2023 – 12/2023',
             description: [
                 "Led mobile app development achieving 500+ downloads",
-                "Reduced manual communication by 40% through networking features",
+                "Reduced manual communication by 45% through networking features",
                 "Managed event registrations for 1000+ participants"
             ],
-            highlights: ['500+ Downloads', '40% Communication Improvement', 'Team Leadership']
+            highlights: ['500+ Downloads', '45% Communication Improvement', 'Team Leadership']
         }
     ],
     education: [
@@ -309,10 +309,11 @@ const journeyData = {
         }
     ],
     certificates: [
-        { name: 'Getting Started with Artificial Intelligence', issuer: 'IBM SkillsBuild' },
+        {name: 'Retrieval-Augmented Generation for Enhanced AI Outputs',issuer: 'IBM SkillsBuild',link:'https://www.credly.com/badges/f87b6be3-c1de-465a-a4a4-dddb90949c3a/linked_in_profile'},
+        { name: 'Getting Started with Artificial Intelligence', issuer: 'IBM SkillsBuild',link:'https://www.credly.com/badges/d5bc867a-6f27-4d87-afa8-9b8fcdce8187/linked_in_profile' },
         { name: 'Industrial Internet Of Things', issuer: 'NPTEL' },
         { name: 'Privacy and Security in Online Social Media', issuer: 'NPTEL' },
-        { name: 'Flutter and Dart', issuer: 'NPTEL' },
+        { name: 'Flutter and Dart', issuer: 'NPTEL',link:'https://www.udemy.com/certificate/UC-68f3e8c3-4726-4780-8720-46b3ccac3273/' },
         { name: 'Deep Learning', issuer: 'NPTEL' }
     ]
 };

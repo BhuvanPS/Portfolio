@@ -59,6 +59,8 @@ const PortfolioApp = (() => {
             this.initializeBackToTop();
             this.handleContactForm();
             this.updateCopyright();
+            this.initializeScrollReveal();
+            this.initializeParallax();
         },
 
         updateCopyright() {
@@ -356,6 +358,87 @@ const PortfolioApp = (() => {
                     setTimeout(() => msgBox.classList.add('hidden'), 300);
                 }, 5000);
             });
+        },
+
+        initializeScrollReveal() {
+            // Intersection Observer for scroll-triggered animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                        // Optionally unobserve after revealing
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe sections with a delay to allow DOM to fully render
+            setTimeout(() => {
+                // Add scroll-reveal class to major sections
+                const sections = document.querySelectorAll('section');
+                sections.forEach(section => {
+                    if (section.id && section.id !== 'home') {
+                        section.classList.add('scroll-reveal');
+                        observer.observe(section);
+                    }
+                });
+
+                // Add stagger effect to project cards
+                const projectCards = document.querySelectorAll('.project-card');
+                projectCards.forEach((card, index) => {
+                    card.classList.add('scroll-reveal-stagger');
+                    card.style.animationDelay = `${index * 0.1}s`;
+                    observer.observe(card);
+                });
+
+                // Add stagger effect to skill cards
+                const skillCards = document.querySelectorAll('.skill-card');
+                skillCards.forEach((card, index) => {
+                    card.classList.add('scroll-reveal-stagger');
+                    card.style.animationDelay = `${index * 0.05}s`;
+                    observer.observe(card);
+                });
+
+                // Add reveal to metric cards
+                const metricCards = document.querySelectorAll('.metric-card');
+                metricCards.forEach(card => {
+                    card.classList.add('scroll-reveal');
+                    observer.observe(card);
+                });
+
+                // Add reveal to experience/education items
+                const experienceItems = document.querySelectorAll('.experience-item');
+                experienceItems.forEach((item, index) => {
+                    item.classList.add('scroll-reveal-stagger');
+                    item.style.animationDelay = `${index * 0.15}s`;
+                    observer.observe(item);
+                });
+            }, 500);
+        },
+
+        initializeParallax() {
+            // Subtle parallax effect for hero section
+            const heroSection = document.getElementById('home');
+            if (!heroSection) return;
+
+            const blobs = heroSection.querySelectorAll('.animate-blob');
+            
+            const handleScroll = Utils.throttle(() => {
+                const scrolled = window.pageYOffset;
+                const parallaxSpeed = 0.5;
+                
+                blobs.forEach((blob, index) => {
+                    const speed = parallaxSpeed * (index + 1) * 0.3;
+                    blob.style.transform = `translateY(${scrolled * speed}px)`;
+                });
+            }, 16); // ~60fps
+
+            window.addEventListener('scroll', handleScroll);
         }
     };
 
@@ -589,7 +672,7 @@ const PortfolioApp = (() => {
                 </div>
                 <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     ${journeyData.certificates.map(cert => `
-                        <div class="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-800/50 rounded-xl p-5 border-2 border-gray-100 dark:border-gray-700 hover:border-green-400 dark:hover:border-green-500 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 group">
+                        <a href="${cert.link || '#'}" target="_blank" rel="noopener noreferrer" class="block bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-800/50 rounded-xl p-5 border-2 border-gray-100 dark:border-gray-700 hover:border-green-400 dark:hover:border-green-500 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 group">
                             <div class="flex items-start space-x-3">
                                 <div class="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-green-400 to-teal-500 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                                     <i class="fa-solid fa-certificate text-white"></i>
@@ -602,7 +685,7 @@ const PortfolioApp = (() => {
                                     </p>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     `).join('')}
                 </div>
             `;
