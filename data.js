@@ -16,7 +16,7 @@ const personalDetails = {
     metrics: [
         { value: "8+", label: "End-to-End Projects" },
         { value: "5000+", label: "Active Users Impacted" },
-        { value: "10+", label: "Data Pipelines Built" },
+        { value: "4+", label: "Apps Built" },
         { value: "5+", label: "Data Visualizations" }
     ],
     aboutLong: [
