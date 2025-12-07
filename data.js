@@ -170,7 +170,7 @@ const projects = [
         tags: ['Flutter', 'Dart', 'AI/ML', 'Firebase', 'Mobile'],
         category: ['mobile', 'ml-ai'],
         metrics: ['90% Time Saved', 'Cross-platform'],
-        link: '#'
+        link: 'https://apkpure.com/cmeds-ai-meds-pill-reminder/curowebs.in.cmeds3#google_vignette'
     },
     {
         id: 'e-cell-app',
@@ -272,7 +272,7 @@ const journeyData = {
             highlights: ['AI Integration', '20% Efficiency Boost']
         },
         {
-            title: 'Flutter Development Intern',
+            title: 'Software Engineer',
             company: 'CUROWEBS, Coimbatore',
             period: '01/2024 – 06/2024',
             description: [
