@@ -361,64 +361,67 @@ const PortfolioApp = (() => {
         },
 
         initializeScrollReveal() {
-            // Intersection Observer for scroll-triggered animations
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
+            // All scroll-reveal animations disabled as per user request
+            // Everything will appear immediately without fade-in effects
+            
+            // // Intersection Observer for scroll-triggered animations
+            // const observerOptions = {
+            //     threshold: 0.1,
+            //     rootMargin: '0px 0px -50px 0px'
+            // };
 
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('revealed');
-                        // Optionally unobserve after revealing
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
+            // const observer = new IntersectionObserver((entries) => {
+            //     entries.forEach(entry => {
+            //         if (entry.isIntersecting) {
+            //             entry.target.classList.add('revealed');
+            //             // Optionally unobserve after revealing
+            //             observer.unobserve(entry.target);
+            //         }
+            //     });
+            // }, observerOptions);
 
-            // Observe sections with a delay to allow DOM to fully render
-            setTimeout(() => {
-                // Add scroll-reveal class to major sections
-                const sections = document.querySelectorAll('section');
-                sections.forEach(section => {
-                    if (section.id && section.id !== 'home') {
-                        section.classList.add('scroll-reveal');
-                        observer.observe(section);
-                    }
-                });
+            // // Observe sections with a delay to allow DOM to fully render
+            // setTimeout(() => {
+            //     // Add scroll-reveal class to major sections
+            //     const sections = document.querySelectorAll('section');
+            //     sections.forEach(section => {
+            //         if (section.id && section.id !== 'home') {
+            //             section.classList.add('scroll-reveal');
+            //             observer.observe(section);
+            //         }
+            //     });
 
-                // Add stagger effect to project cards
-                const projectCards = document.querySelectorAll('.project-card');
-                projectCards.forEach((card, index) => {
-                    card.classList.add('scroll-reveal-stagger');
-                    card.style.animationDelay = `${index * 0.1}s`;
-                    observer.observe(card);
-                });
+            //     // Project cards animations removed as per user request
+            //     // const projectCards = document.querySelectorAll('.project-card');
+            //     // projectCards.forEach((card, index) => {
+            //     //     card.classList.add('scroll-reveal-stagger');
+            //     //     card.style.animationDelay = `${index * 0.1}s`;
+            //     //     observer.observe(card);
+            //     // });
 
-                // Add stagger effect to skill cards
-                const skillCards = document.querySelectorAll('.skill-card');
-                skillCards.forEach((card, index) => {
-                    card.classList.add('scroll-reveal-stagger');
-                    card.style.animationDelay = `${index * 0.05}s`;
-                    observer.observe(card);
-                });
+            //     // Add stagger effect to skill cards
+            //     const skillCards = document.querySelectorAll('.skill-card');
+            //     skillCards.forEach((card, index) => {
+            //         card.classList.add('scroll-reveal-stagger');
+            //         card.style.animationDelay = `${index * 0.05}s`;
+            //         observer.observe(card);
+            //     });
 
-                // Add reveal to metric cards
-                const metricCards = document.querySelectorAll('.metric-card');
-                metricCards.forEach(card => {
-                    card.classList.add('scroll-reveal');
-                    observer.observe(card);
-                });
+            //     // Add reveal to metric cards
+            //     const metricCards = document.querySelectorAll('.metric-card');
+            //     metricCards.forEach(card => {
+            //         card.classList.add('scroll-reveal');
+            //         observer.observe(card);
+            //     });
 
-                // Add reveal to experience/education items
-                const experienceItems = document.querySelectorAll('.experience-item');
-                experienceItems.forEach((item, index) => {
-                    item.classList.add('scroll-reveal-stagger');
-                    item.style.animationDelay = `${index * 0.15}s`;
-                    observer.observe(item);
-                });
-            }, 500);
+            //     // Add reveal to experience/education items
+            //     const experienceItems = document.querySelectorAll('.experience-item');
+            //     experienceItems.forEach((item, index) => {
+            //         item.classList.add('scroll-reveal-stagger');
+            //         item.style.animationDelay = `${index * 0.15}s`;
+            //         observer.observe(item);
+            //     });
+            // }, 500);
         },
 
         initializeParallax() {
@@ -895,7 +898,8 @@ const PortfolioApp = (() => {
                         if (!isExpanded) {
                             hiddenProjects.forEach(project => {
                                 project.classList.remove('hidden');
-                                project.style.animation = 'fadeInUp 0.5s ease forwards';
+                                // Animation removed as per user request
+                                // project.style.animation = 'fadeInUp 0.5s ease forwards';
                             });
                             text.textContent = 'View Less';
                             icon.style.transform = 'rotate(180deg)';

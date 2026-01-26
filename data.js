@@ -9,8 +9,8 @@ const personalDetails = {
         { url: "https://www.linkedin.com/in/bhuvan-ps", icon: "fa-brands fa-linkedin", label: "LinkedIn Profile" }
     ],
     resume: {
-        url: "/Resume.pdf",
-        filename: "Bhuvan_Purushothaman_Subramani_Resume.pdf"
+        url: "Bhuvan_Master_resume.pdf",
+        filename: "Bhuvan_Master_resume.pdf"
     },
     profileImage: "avatar.webp",
     metrics: [
