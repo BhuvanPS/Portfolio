@@ -246,7 +246,7 @@ const skillData = {
 const journeyData = {
     experience: [
         {
-            title: "AI Team Lead",
+            title: "Junior AI Engineer",
             company: "Gopher Industries, Melbourne",
             period: "06/2025 – Present",
             description: [
