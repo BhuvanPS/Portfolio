@@ -1015,7 +1015,7 @@ const PortfolioApp = (() => {
             div.innerHTML = `
                 ${icon}
                 <div class="${messageClass} p-3 rounded-2xl shadow-sm max-w-[85%] prose dark:prose-invert prose-sm">
-                    ${isUser ? `<p class="text-sm">${text}</p>` : marked.parse(text)}
+                    ${isUser ? `<p class="text-sm">${text || ''}</p>` : marked.parse(text || '')}
                 </div>
             `;
 
