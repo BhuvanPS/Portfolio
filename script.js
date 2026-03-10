@@ -1066,6 +1066,13 @@ const PortfolioApp = (() => {
 
                 const data = await response.json();
                 this.removeTypingIndicator();
+                
+                if (!response.ok || !data.response) {
+                    const errorMessage = data.error || "Sorry, I'm having trouble processing your request right now. Please try again later.";
+                    this.addMessage(errorMessage);
+                    return;
+                }
+                
                 this.addMessage(data.response);
             } catch (error) {
                 console.error('Chat Error:', error);
