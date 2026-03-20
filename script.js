@@ -1058,7 +1058,11 @@ const PortfolioApp = (() => {
             this.addTypingIndicator();
 
             try {
-                const response = await fetch('https://rag-chatbot-w241.onrender.com/api/chat', {
+                const apiUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname === ''
+                    ? 'http://127.0.0.1:5001/api/chat' 
+                    : 'https://rag-chatbot-w241.onrender.com/api/chat';
+
+                const response = await fetch(apiUrl, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ message })
