@@ -39,6 +39,21 @@ const personalDetails = {
 };
 
 const projects = [
+    
+    {
+        id: 'fitness-coaching-ai-platform',
+        title: 'Fitness Coaching AI Platform',
+        description: [
+            "Architected a 6-agent coaching platform using Microsoft Agent Framework and Azure OpenAI.",
+            "Designed 40 custom tool functions across workout, nutrition, billing, scheduling, progress, safety, and user management.",
+            "Built sequential and concurrent multi-agent workflows to orchestrate up to 5 specialist agents in parallel, cutting execution time by ~5x."
+        ],
+        image: 'https://placehold.co/400x300/EF4444/FFFFFF?text=Fitness+AI+Coaching',
+        tags: ['Azure OpenAI', 'Microsoft Agent Framework', 'Python', 'Multi-Agent'],
+        category: ['ml-ai'],
+        metrics: ['70% Admin Reduction', '5x Workflow Speedup'],
+        link: "https://bhuvanps.github.io/Portfolio/FitnessAgent"
+    },
     {
     "id": "hr-analytics-pro",
     "title": "Advanced HR Analytics",

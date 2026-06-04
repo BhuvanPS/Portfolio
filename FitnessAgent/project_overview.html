@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fitness Agents — Modular Coaching Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #0a0d0a;
+      --paper: #f4f1eb;
+      --paper-warm: #ede9df;
+      --surface: #ffffff;
+      --muted: #6b6860;
+      --faint: #e8e4da;
+      --rule: #d4cfC5;
+      --accent: #1a5c3a;
+      --accent-light: #d4edde;
+      --accent-mid: #2d7a52;
+      --accent-pale: #edf7f1;
+      --danger: #8b2a18;
+      --amber: #7a4f12;
+      --amber-bg: #fef7ec;
+      --shadow-sm: 0 1px 4px rgba(10,13,10,0.07), 0 0 0 0.5px rgba(10,13,10,0.06);
+      --shadow-md: 0 4px 20px rgba(10,13,10,0.09), 0 0 0 0.5px rgba(10,13,10,0.06);
+      --shadow-lg: 0 16px 48px rgba(10,13,10,0.12), 0 0 0 0.5px rgba(10,13,10,0.06);
+      --r: 4px;
+      --r-lg: 12px;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      min-height: 100vh;
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ---- TEXTURE ---- */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 56px 0 96px;
+    }
+
+    /* ---- MASTHEAD ---- */
+    .masthead {
+      border-top: 2.5px solid var(--ink);
+      padding-top: 32px;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .masthead-logo {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 1.05rem;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+    }
+    .masthead-meta {
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* ---- HERO ---- */
+    .hero {
+      margin-top: 52px;
+      display: grid;
+      gap: 0;
+    }
+    .hero-eyebrow {
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-mid);
+      font-weight: 500;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1.5px;
+      background: var(--accent-mid);
+    }
+    h1 {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(3rem, 6.5vw, 6rem);
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      max-width: 820px;
+    }
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-rule {
+      margin: 36px 0;
+      border: none;
+      border-top: 0.5px solid var(--rule);
+    }
+    .hero-body {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .hero-lead {
+      font-size: 1.12rem;
+      color: #2e2c28;
+      line-height: 1.75;
+      font-weight: 300;
+    }
+    .hero-stats {
+      display: grid;
+      gap: 0;
+      border-top: 0.5px solid var(--rule);
+    }
+    .stat-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 0.5px solid var(--rule);
+    }
+    .stat-cell {
+      padding: 18px 0;
+      border-right: 0.5px solid var(--rule);
+    }
+    .stat-cell:last-child { border-right: none; padding-left: 20px; }
+    .stat-num {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 2.2rem;
+      line-height: 1;
+      color: var(--ink);
+    }
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-top: 5px;
+    }
+
+    /* ---- DIVIDER BAND ---- */
+    .band {
+      margin: 64px 0;
+      background: var(--ink);
+      color: var(--paper);
+      border-radius: var(--r-lg);
+      padding: 32px 40px;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      overflow: hidden;
+      position: relative;
+    }
+    .band::after {
+      content: 'FA';
+      position: absolute;
+      right: 32px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'DM Serif Display', serif;
+      font-size: 7rem;
+      color: rgba(255,255,255,0.04);
+      pointer-events: none;
+      line-height: 1;
+    }
+    .band-item {
+      flex: 1;
+      min-width: 160px;
+    }
+    .band-item + .band-item {
+      border-left: 0.5px solid rgba(255,255,255,0.12);
+      padding-left: 40px;
+    }
+    .band-label {
+      font-size: 0.73rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 6px;
+    }
+    .band-value {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      color: #f4f1eb;
+    }
+
+    /* ---- SECTION TITLES ---- */
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    h2 {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 2rem;
+      line-height: 1.1;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+    .section-num {
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* ---- AGENT CARDS ---- */
+    .agent-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .agent-card {
+      background: var(--surface);
+      padding: 28px 24px;
+      position: relative;
+      transition: background 0.15s;
+    }
+    .agent-card:hover { background: var(--paper-warm); }
+    .agent-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      margin-bottom: 14px;
+      font-weight: 500;
+      font-family: 'DM Serif Display', serif;
+      font-style: italic;
+    }
+    .agent-card:nth-child(1) .agent-icon { background: var(--accent-pale); color: var(--accent); }
+    .agent-card:nth-child(2) .agent-icon { background: #fef3e8; color: #8b4a0c; }
+    .agent-card:nth-child(3) .agent-icon { background: #fce8f0; color: #8b1a4a; }
+    .agent-card:nth-child(4) .agent-icon { background: #e8f0fe; color: #1a3d8b; }
+    .agent-card:nth-child(5) .agent-icon { background: #fef8e8; color: #7a5a12; }
+    .agent-card:nth-child(6) .agent-icon { background: #f0e8fe; color: #5a1a8b; }
+    .agent-name {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+    h3.agent-title {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 1.1rem;
+      color: var(--ink);
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+    .agent-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ---- WORKFLOW SECTION ---- */
+    .workflow-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+    .workflow-card {
+      background: var(--surface);
+      border: 0.5px solid var(--rule);
+      border-radius: var(--r-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+    }
+    .wf-type {
+      display: inline-block;
+      font-size: 0.73rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-weight: 500;
+      margin-bottom: 14px;
+    }
+    .wf-sequential { background: var(--accent-pale); color: var(--accent); }
+    .wf-concurrent { background: var(--amber-bg); color: var(--amber); }
+    .wf-manager { background: #f0e8fe; color: #5a1a8b; }
+    .wf-checkin { background: #e8f0fe; color: #1a3d8b; }
+    h3.wf-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+    .wf-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+    .wf-agents {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 16px;
+    }
+    .wf-agent-pill {
+      font-size: 0.75rem;
+      padding: 3px 9px;
+      border-radius: 20px;
+      background: var(--faint);
+      color: var(--muted);
+      font-family: ui-monospace, 'Courier New', monospace;
+      letter-spacing: -0.01em;
+    }
+
+    /* ---- ARCHITECTURE ---- */
+    .arch-section {
+      background: var(--ink);
+      border-radius: 16px;
+      padding: 40px;
+      color: var(--paper);
+      position: relative;
+      overflow: hidden;
+    }
+    .arch-section h2 { color: var(--paper); }
+    .arch-section .section-num { color: rgba(255,255,255,0.35); }
+    .arch-flow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 32px;
+      position: relative;
+    }
+    .arch-flow::before {
+      content: '';
+      position: absolute;
+      top: 36px;
+      left: 12.5%;
+      right: 12.5%;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.15), rgba(255,255,255,0.3) 50%, rgba(255,255,255,0.15));
+      pointer-events: none;
+    }
+    .arch-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 12px;
+      position: relative;
+    }
+    .arch-circle {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      font-size: 1.3rem;
+      position: relative;
+      z-index: 1;
+    }
+    .arch-step:nth-child(1) .arch-circle { background: rgba(45, 122, 82, 0.2); border-color: rgba(45,122,82,0.4); }
+    .arch-step:nth-child(2) .arch-circle { background: rgba(139, 42, 24, 0.2); border-color: rgba(139,42,24,0.4); }
+    .arch-step:nth-child(3) .arch-circle { background: rgba(26, 61, 139, 0.2); border-color: rgba(26,61,139,0.4); }
+    .arch-step:nth-child(4) .arch-circle { background: rgba(90, 26, 139, 0.2); border-color: rgba(90,26,139,0.4); }
+    .arch-step-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1rem;
+      color: var(--paper);
+      margin-bottom: 6px;
+    }
+    .arch-step-desc {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.55;
+    }
+
+    /* ---- IMPACT ---- */
+    .impact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--rule);
+      border: 0.5px solid var(--rule);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+    }
+    .impact-cell {
+      background: var(--surface);
+      padding: 32px 28px;
+      transition: background 0.15s;
+    }
+    .impact-cell:hover { background: var(--accent-pale); }
+    .impact-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 3rem;
+      line-height: 1;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .impact-title {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+    .impact-body {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ---- DEV SECTION ---- */
+    .dev-layout {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 32px;
+      align-items: start;
+    }
+    pre {
+      background: var(--ink);
+      color: #a8d8b8;
+      border-radius: var(--r-lg);
+      padding: 24px;
+      font-size: 0.85rem;
+      line-height: 1.65;
+      overflow-x: auto;
+      font-family: ui-monospace, 'Courier New', monospace;
+    }
+    .dev-tips {
+      display: grid;
+      gap: 16px;
+    }
+    .dev-tip {
+      padding: 20px;
+      background: var(--surface);
+      border: 0.5px solid var(--rule);
+      border-radius: var(--r-lg);
+    }
+    .dev-tip-label {
+      font-size: 0.73rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+    .dev-tip p {
+      font-size: 0.88rem;
+      color: var(--ink);
+      line-height: 1.6;
+    }
+    code {
+      font-family: ui-monospace, 'Courier New', monospace;
+      font-size: 0.85em;
+      background: var(--faint);
+      color: var(--accent);
+      padding: 1px 5px;
+      border-radius: 3px;
+    }
+
+    /* ---- NEXT STEPS ---- */
+    .next-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .next-card {
+      background: var(--surface);
+      border: 0.5px solid var(--rule);
+      border-radius: var(--r-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      border-top: 3px solid var(--accent);
+    }
+    .next-card:nth-child(2) { border-top-color: var(--amber); }
+    .next-card:nth-child(3) { border-top-color: #5a1a8b; }
+    .next-label {
+      font-size: 0.73rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    .next-text {
+      font-size: 0.9rem;
+      color: var(--ink);
+      line-height: 1.6;
+    }
+    .next-text code { font-size: 0.82em; }
+
+    /* ---- FOOTER ---- */
+    footer {
+      margin-top: 72px;
+      padding-top: 28px;
+      border-top: 0.5px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .footer-brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      color: var(--ink);
+    }
+    .footer-tagline {
+      font-size: 0.82rem;
+      color: var(--muted);
+      max-width: 400px;
+      line-height: 1.6;
+    }
+    .footer-meta {
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-align: right;
+    }
+
+    /* ---- SECTION SPACING ---- */
+    .section { margin-top: 72px; }
+    .section + .section { margin-top: 80px; }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 800px) {
+      h1 { font-size: 2.8rem; }
+      .hero-body { grid-template-columns: 1fr; }
+      .agent-grid { grid-template-columns: 1fr 1fr; }
+      .workflow-layout { grid-template-columns: 1fr; }
+      .arch-flow { grid-template-columns: 1fr 1fr; gap: 20px; }
+      .arch-flow::before { display: none; }
+      .impact-grid { grid-template-columns: 1fr; }
+      .dev-layout { grid-template-columns: 1fr; }
+      .next-steps { grid-template-columns: 1fr; }
+      .band-item + .band-item { border-left: none; padding-left: 0; border-top: 0.5px solid rgba(255,255,255,0.12); padding-top: 20px; }
+    }
+    @media (max-width: 560px) {
+      .agent-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ---- ANIMATIONS ---- */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero { animation: fadeUp 0.6s ease both; }
+    .band { animation: fadeUp 0.6s 0.1s ease both; }
+  </style>
+</head>
+<body>
+<main class="page">
+
+  <nav class="masthead">
+    <span class="masthead-logo">Fitness Agents</span>
+    <span class="masthead-meta">Microsoft Agent Framework</span>
+  </nav>
+
+  <!-- ---- HERO ---- -->
+  <section class="hero">
+    <p class="hero-eyebrow">Modular Coaching Intelligence</p>
+    <h1>Intelligent agents.<br><em>Better bodies.</em></h1>
+    <hr class="hero-rule" />
+    <div class="hero-body">
+      <p class="hero-lead">A next-generation coaching platform that separates domain expertise from execution flow. Specialized agents collaborate through composable workflows to deliver safe, adaptive, personalized guidance — across onboarding, program design, progress tracking, and coordination.</p>
+      <div class="hero-stats">
+        <div class="stat-row">
+          <div class="stat-cell">
+            <div class="stat-num">6</div>
+            <div class="stat-label">Agent roles</div>
+          </div>
+          <div class="stat-cell">
+            <div class="stat-num">5</div>
+            <div class="stat-label">Workflows</div>
+          </div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-cell">
+            <div class="stat-num">3</div>
+            <div class="stat-label">Patterns</div>
+          </div>
+          <div class="stat-cell">
+            <div class="stat-num">∞</div>
+            <div class="stat-label">Extensible</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---- BAND ---- -->
+  <div class="band">
+    <div class="band-item">
+      <div class="band-label">Core benefit</div>
+      <div class="band-value">Safety-first by design</div>
+    </div>
+    <div class="band-item">
+      <div class="band-label">Architecture</div>
+      <div class="band-value">Composable, reusable agents</div>
+    </div>
+    <div class="band-item">
+      <div class="band-label">Orchestration</div>
+      <div class="band-value">Sequential, parallel &amp; dynamic</div>
+    </div>
+  </div>
+
+  <!-- ---- AGENTS ---- -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2>Agent roles</h2>
+    </div>
+    <div class="agent-grid">
+      <div class="agent-card">
+        <div class="agent-icon">Ac</div>
+        <div class="agent-name">admin_agent</div>
+        <h3 class="agent-title">Intake & Admin</h3>
+        <p class="agent-desc">Captures member data, onboarding details, and administrative context to build a complete member profile.</p>
+      </div>
+      <div class="agent-card">
+        <div class="agent-icon">Co</div>
+        <div class="agent-name">coaching_agent</div>
+        <h3 class="agent-title">Exercise Coaching</h3>
+        <p class="agent-desc">Generates exercise plans, training recommendations, and coaching insights tailored to individual capacity.</p>
+      </div>
+      <div class="agent-card">
+        <div class="agent-icon">Nu</div>
+        <div class="agent-name">nutrition_agent</div>
+        <h3 class="agent-title">Nutrition Guidance</h3>
+        <p class="agent-desc">Creates meal guidance and dietary recommendations precisely aligned to each member's fitness goals.</p>
+      </div>
+      <div class="agent-card">
+        <div class="agent-icon">Sa</div>
+        <div class="agent-name">safety_agent</div>
+        <h3 class="agent-title">Safety Validation</h3>
+        <p class="agent-desc">Validates load, contraindications, and risk factors before any plan is delivered to a member.</p>
+      </div>
+      <div class="agent-card">
+        <div class="agent-icon">Pr</div>
+        <div class="agent-name">progress_agent</div>
+        <h3 class="agent-title">Progress Tracking</h3>
+        <p class="agent-desc">Collects progress updates and tracks outcomes longitudinally, adapting plans as members evolve.</p>
+      </div>
+      <div class="agent-card">
+        <div class="agent-icon">Cx</div>
+        <div class="agent-name">coordinator_agent</div>
+        <h3 class="agent-title">Dynamic Orchestration</h3>
+        <p class="agent-desc">Acts as manager — choosing which specialists to invoke, in what order, and when to combine their outputs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---- WORKFLOWS ---- -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2>Workflow patterns</h2>
+    </div>
+    <div class="workflow-layout">
+      <div style="display:grid; gap:16px;">
+        <div class="workflow-card">
+          <span class="wf-type wf-sequential">Sequential</span>
+          <h3 class="wf-title">Onboarding workflow</h3>
+          <p class="wf-desc">Strictly ordered agent collaboration — intake first, then safety review, then program generation. Ideal for new member onboarding where each step depends on the last.</p>
+          <div class="wf-agents">
+            <span class="wf-agent-pill">admin_agent</span>
+            <span class="wf-agent-pill">safety_agent</span>
+            <span class="wf-agent-pill">coaching_agent</span>
+            <span class="wf-agent-pill">nutrition_agent</span>
+          </div>
+        </div>
+        <div class="workflow-card">
+          <span class="wf-type wf-concurrent">Concurrent</span>
+          <h3 class="wf-title">Data collection workflow</h3>
+          <p class="wf-desc">Parallel agent execution — agents run simultaneously for efficiency. Best suited for data collection and review tasks where results are independent.</p>
+          <div class="wf-agents">
+            <span class="wf-agent-pill">progress_agent</span>
+            <span class="wf-agent-pill">admin_agent</span>
+          </div>
+        </div>
+      </div>
+      <div style="display:grid; gap:16px;">
+        <div class="workflow-card">
+          <span class="wf-type wf-manager">Manager-driven</span>
+          <h3 class="wf-title">Coordinator workflow</h3>
+          <p class="wf-desc">Dynamic orchestration — the coordinator agent decides which specialists to invoke and in what order, adapting to the complexity of each member's situation.</p>
+          <div class="wf-agents">
+            <span class="wf-agent-pill">coordinator_agent</span>
+            <span class="wf-agent-pill">all specialists</span>
+          </div>
+        </div>
+        <div class="workflow-card">
+          <span class="wf-type wf-sequential">Sequential</span>
+          <h3 class="wf-title">Program planning workflow</h3>
+          <p class="wf-desc">Combines safety review, exercise coaching, and nutrition guidance into a unified, consistent plan ready for delivery.</p>
+          <div class="wf-agents">
+            <span class="wf-agent-pill">safety_agent</span>
+            <span class="wf-agent-pill">coaching_agent</span>
+            <span class="wf-agent-pill">nutrition_agent</span>
+          </div>
+        </div>
+        <div class="workflow-card">
+          <span class="wf-type wf-checkin">Sequential</span>
+          <h3 class="wf-title">Check-in workflow</h3>
+          <p class="wf-desc">Member check-ins that feed directly into progress tracking, closing the loop between plan delivery and outcomes.</p>
+          <div class="wf-agents">
+            <span class="wf-agent-pill">admin_agent</span>
+            <span class="wf-agent-pill">progress_agent</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---- ARCHITECTURE ---- -->
+  <section class="section">
+    <div class="arch-section">
+      <div class="section-header">
+        <span class="section-num" style="color:rgba(255,255,255,0.35)">03</span>
+        <h2>System architecture</h2>
+      </div>
+      <div class="arch-flow">
+        <div class="arch-step">
+          <div class="arch-circle">↘</div>
+          <div class="arch-step-title">Intake</div>
+          <div class="arch-step-desc">Member data captured and validated by admin_agent</div>
+        </div>
+        <div class="arch-step">
+          <div class="arch-circle">⚐</div>
+          <div class="arch-step-title">Safety review</div>
+          <div class="arch-step-desc">Contraindications and risk flagged before planning begins</div>
+        </div>
+        <div class="arch-step">
+          <div class="arch-circle">◈</div>
+          <div class="arch-step-title">Plan generation</div>
+          <div class="arch-step-desc">Coaching and nutrition agents produce a unified program</div>
+        </div>
+        <div class="arch-step">
+          <div class="arch-circle">⊛</div>
+          <div class="arch-step-title">Orchestration</div>
+          <div class="arch-step-desc">Coordinator adapts flow dynamically across workflows</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---- IMPACT ---- -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2>Project impact</h2>
+    </div>
+    <div class="impact-grid">
+      <div class="impact-cell">
+        <div class="impact-num">01</div>
+        <div class="impact-title">Accelerates product development</div>
+        <p class="impact-body">Domain logic can be built and extended independently by separate teams without coupling concerns.</p>
+      </div>
+      <div class="impact-cell">
+        <div class="impact-num">02</div>
+        <div class="impact-title">Builds member trust</div>
+        <p class="impact-body">Explicit safety and validation stages give auditable assurance that no program skips a risk check.</p>
+      </div>
+      <div class="impact-cell">
+        <div class="impact-num">03</div>
+        <div class="impact-title">Enables future expansion</div>
+        <p class="impact-body">The composable architecture extends naturally to more advanced coaching scenarios and third-party integrations.</p>
+      </div>
+      <div class="impact-cell">
+        <div class="impact-num">04</div>
+        <div class="impact-title">Supports deep personalization</div>
+        <p class="impact-body">Agent behavior can be mixed and matched across different workflows to suit any member profile or goal.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---- DEVELOPER GUIDE ---- -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2>Developer guide</h2>
+    </div>
+    <div class="dev-layout">
+      <div>
+        <p style="font-size:0.9rem; color:var(--muted); margin-bottom:18px;">Built on the <strong>Microsoft Agent Framework</strong>. Configure Azure OpenAI credentials and run the onboarding demo. Agents and workflows update independently.</p>
+        <pre>AZURE_OPENAI_ENDPOINT=your_endpoint
+AZURE_OPENAI_API_KEY=your_api_key
+AZURE_OPENAI_CHAT_DEPLOYMENT_NAME=your_deployment
+
+python main.py</pre>
+      </div>
+      <div class="dev-tips">
+        <div class="dev-tip">
+          <div class="dev-tip-label">Framework</div>
+          <p>Powered by the <strong>Microsoft Agent Framework</strong> — agents, tools, and orchestration are all first-class framework primitives.</p>
+        </div>
+        <div class="dev-tip">
+          <div class="dev-tip-label">Entrypoint</div>
+          <p>Use <code>main.py</code> for a quick workflow demo that exercises the full agent pipeline.</p>
+        </div>
+        <div class="dev-tip">
+          <div class="dev-tip-label">Extend agents</div>
+          <p>Add new capabilities under <code>agents/</code> — each module owns a narrow domain task.</p>
+        </div>
+        <div class="dev-tip">
+          <div class="dev-tip-label">Add workflows</div>
+          <p>New orchestration patterns go under <code>workflows/</code> using the existing engine primitives.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---- NEXT STEPS ---- -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <h2>Next steps</h2>
+    </div>
+    <div class="next-steps">
+      <div class="next-card">
+        <div class="next-label">Check-in</div>
+        <p class="next-text">Extend <code>checkin_workflow</code> to support ongoing member follow-up beyond the initial program period.</p>
+      </div>
+      <div class="next-card">
+        <div class="next-label">Progress</div>
+        <p class="next-text">Add personalized goal tracking features inside <code>progress_agent</code> with longitudinal scoring.</p>
+      </div>
+      <div class="next-card">
+        <div class="next-label">Coordination</div>
+        <p class="next-text">Introduce multi-agent decision scoring in <code>coordinator_workflow</code> for smarter specialist selection.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>
+      <div class="footer-brand">Fitness Agents</div>
+      <p class="footer-tagline">Scalable, safe, and adaptable fitness coaching through composable agents and orchestrated workflows.</p>
+    </div>
+    <div class="footer-meta">
+      Microsoft Agent Framework
+    </div>
+  </footer>
+
+</main>
+</body>
+</html>
