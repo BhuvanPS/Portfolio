@@ -1333,7 +1333,7 @@ const PortfolioApp = (() => {
             try {
                 const apiUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname === ''
                     ? 'http://127.0.0.1:5001/api/chat' 
-                    : '/api/chat';
+                    : 'https://rag-backend-fb1v1jm5p-bhuvan-s-projects9.vercel.app/api/chat';
 
                 const response = await fetch(apiUrl, {
                     method: 'POST',
