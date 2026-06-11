@@ -1109,6 +1109,7 @@ const PortfolioApp = (() => {
         init() {
             this.cacheDOM();
             this.bindEvents();
+            this.initVoice();
         },
 
         cacheDOM() {
@@ -1119,7 +1120,10 @@ const PortfolioApp = (() => {
                 form: document.getElementById('chat-form'),
                 input: document.getElementById('chat-input'),
                 messages: document.getElementById('chat-messages'),
-                toggleIcon: document.getElementById('chat-toggle')?.querySelector('i')
+                toggleIcon: document.getElementById('chat-toggle')?.querySelector('i'),
+                voiceToggle: document.getElementById('chat-voice-toggle'),
+                mic: document.getElementById('chat-mic'),
+                wave: document.getElementById('chat-voice-wave')
             };
         },
 
@@ -1129,9 +1133,20 @@ const PortfolioApp = (() => {
             this.dom.toggle.addEventListener('click', () => this.toggleChat());
             this.dom.close.addEventListener('click', () => this.toggleChat());
             this.dom.form.addEventListener('submit', (e) => this.handleSubmit(e));
+
+            if (this.dom.voiceToggle) {
+                this.dom.voiceToggle.addEventListener('click', () => this.toggleVoiceOutput());
+            }
+
+            if (this.dom.mic) {
+                this.dom.mic.addEventListener('click', () => this.toggleVoiceInput());
+            }
         },
 
         isOpen: false,
+        voiceEnabled: false,
+        isListening: false,
+        recognition: null,
 
         toggleChat() {
             this.isOpen = !this.isOpen;
@@ -1152,7 +1167,106 @@ const PortfolioApp = (() => {
                 }, 300);
                 this.dom.toggleIcon.classList.remove('fa-times');
                 this.dom.toggleIcon.classList.add('fa-message');
+                // Stop speech synthesis on close
+                if (window.speechSynthesis) {
+                    window.speechSynthesis.cancel();
+                }
+                // Stop voice input listening on close
+                if (this.isListening && this.recognition) {
+                    this.recognition.stop();
+                }
             }
+        },
+
+        toggleVoiceOutput() {
+            this.voiceEnabled = !this.voiceEnabled;
+            const icon = this.dom.voiceToggle.querySelector('i');
+            if (this.voiceEnabled) {
+                icon.classList.remove('fa-volume-xmark');
+                icon.classList.add('fa-volume-high', 'text-green-400');
+            } else {
+                icon.classList.remove('fa-volume-high', 'text-green-400');
+                icon.classList.add('fa-volume-xmark');
+                if (window.speechSynthesis) {
+                    window.speechSynthesis.cancel();
+                }
+            }
+        },
+
+        initVoice() {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (SpeechRecognition && this.dom.mic) {
+                this.recognition = new SpeechRecognition();
+                this.recognition.continuous = false;
+                this.recognition.interimResults = false;
+                this.recognition.lang = 'en-US';
+
+                this.recognition.onstart = () => {
+                    this.isListening = true;
+                    if (this.dom.wave) this.dom.wave.classList.remove('hidden');
+                    this.dom.mic.classList.add('text-red-500', 'bg-red-50', 'dark:bg-red-950/20', 'border-red-500/20');
+                    this.dom.mic.querySelector('i').classList.remove('fa-microphone');
+                    this.dom.mic.querySelector('i').classList.add('fa-microphone-slash');
+                };
+
+                this.recognition.onend = () => {
+                    this.isListening = false;
+                    if (this.dom.wave) this.dom.wave.classList.add('hidden');
+                    this.dom.mic.classList.remove('text-red-500', 'bg-red-50', 'dark:bg-red-950/20', 'border-red-500/20');
+                    this.dom.mic.querySelector('i').classList.remove('fa-microphone-slash');
+                    this.dom.mic.querySelector('i').classList.add('fa-microphone');
+                };
+
+                this.recognition.onresult = (event) => {
+                    const transcript = event.results[0][0].transcript;
+                    if (this.dom.input) {
+                        this.dom.input.value = transcript;
+                        this.handleSubmit(new Event('submit'));
+                    }
+                };
+
+                this.recognition.onerror = (event) => {
+                    console.error('Speech recognition error:', event.error);
+                    this.isListening = false;
+                    if (this.dom.wave) this.dom.wave.classList.add('hidden');
+                };
+            } else if (this.dom.mic) {
+                // Hide mic icon if not supported
+                this.dom.mic.style.display = 'none';
+            }
+        },
+
+        toggleVoiceInput() {
+            if (!this.recognition) return;
+            if (this.isListening) {
+                this.recognition.stop();
+            } else {
+                // Stop ongoing synthesis before starting listening
+                if (window.speechSynthesis) {
+                    window.speechSynthesis.cancel();
+                }
+                this.recognition.start();
+            }
+        },
+
+        speak(text) {
+            if (!('speechSynthesis' in window)) return;
+            window.speechSynthesis.cancel(); // cancel any active synthesis
+            if (!this.voiceEnabled) return;
+
+            // Strip Markdown elements for clean pronunciation
+            const cleanText = text
+                .replace(/\*+/g, '')
+                .replace(/#+/g, '')
+                .replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1')
+                .replace(/`([^`]+)`/g, '$1')
+                .trim();
+
+            const utterance = new SpeechSynthesisUtterance(cleanText);
+            utterance.lang = 'en-US';
+            utterance.rate = 1.05;
+            utterance.pitch = 1.0;
+            window.speechSynthesis.speak(utterance);
         },
 
         addMessage(text, isUser = false) {
@@ -1208,7 +1322,7 @@ const PortfolioApp = (() => {
         },
 
         async handleSubmit(e) {
-            e.preventDefault();
+            if (e) e.preventDefault();
             const message = this.dom.input.value.trim();
             if (!message) return;
 
@@ -1219,7 +1333,7 @@ const PortfolioApp = (() => {
             try {
                 const apiUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname === ''
                     ? 'http://127.0.0.1:5001/api/chat' 
-                    : 'https://rag-chatbot-w241.onrender.com/api/chat';
+                    : '/api/chat';
 
                 const response = await fetch(apiUrl, {
                     method: 'POST',
@@ -1233,14 +1347,18 @@ const PortfolioApp = (() => {
                 if (!response.ok || !data.response) {
                     const errorMessage = data.error || "Sorry, I'm having trouble processing your request right now. Please try again later.";
                     this.addMessage(errorMessage);
+                    this.speak(errorMessage);
                     return;
                 }
                 
                 this.addMessage(data.response);
+                this.speak(data.response);
             } catch (error) {
                 console.error('Chat Error:', error);
                 this.removeTypingIndicator();
-                this.addMessage("Sorry, I'm having trouble connecting right now. Please try again later.");
+                const connectError = "Sorry, I'm having trouble connecting right now. Please try again later.";
+                this.addMessage(connectError);
+                this.speak(connectError);
             }
         }
     };
