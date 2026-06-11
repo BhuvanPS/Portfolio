@@ -1194,6 +1194,16 @@ const PortfolioApp = (() => {
         },
 
         initVoice() {
+            // Warm up speech synthesis voices on init
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.getVoices();
+                if (window.speechSynthesis.onvoiceschanged !== undefined) {
+                    window.speechSynthesis.onvoiceschanged = () => {
+                        window.speechSynthesis.getVoices();
+                    };
+                }
+            }
+
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
             if (SpeechRecognition && this.dom.mic) {
                 this.recognition = new SpeechRecognition();
@@ -1263,8 +1273,34 @@ const PortfolioApp = (() => {
                 .trim();
 
             const utterance = new SpeechSynthesisUtterance(cleanText);
+            
+            // Set language to US English
             utterance.lang = 'en-US';
-            utterance.rate = 1.05;
+
+            // Select a high-quality voice
+            const voices = window.speechSynthesis.getVoices();
+            if (voices && voices.length > 0) {
+                // Priority: Google Natural, Microsoft Natural, Apple Premium Siri/Samantha/Daniel, standard English
+                let selectedVoice = voices.find(v => v.name.includes('Google US English') && v.lang.startsWith('en'));
+                if (!selectedVoice) {
+                    selectedVoice = voices.find(v => v.name.includes('Natural') && v.lang.startsWith('en'));
+                }
+                if (!selectedVoice) {
+                    selectedVoice = voices.find(v => (v.name.includes('Siri') || v.name.includes('Samantha') || v.name.includes('Daniel') || v.name.includes('Tessa')) && v.lang.startsWith('en'));
+                }
+                if (!selectedVoice) {
+                    selectedVoice = voices.find(v => v.name.includes('Microsoft Zira') && v.lang.startsWith('en'));
+                }
+                if (!selectedVoice) {
+                    selectedVoice = voices.find(v => v.lang.startsWith('en'));
+                }
+                
+                if (selectedVoice) {
+                    utterance.voice = selectedVoice;
+                }
+            }
+
+            utterance.rate = 0.98; // natural cadence
             utterance.pitch = 1.0;
             window.speechSynthesis.speak(utterance);
         },
