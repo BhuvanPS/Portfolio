@@ -1,9 +1,9 @@
 const personalDetails = {
     name: "Bhuvan Subramani",
     brand: "Bhuvan.dev",
-    title: "Bhuvan Subramani - Data Science & Software Engineering Portfolio",
-    metaDescription: "Bhuvan Subramani - Data Scientist, AI/ML Engineer & Flutter Developer specializing in data analytics, machine learning, and mobile app development.",
-    about: "Transforming data into actionable insights and building intelligent applications that solve real-world problems",
+    title: "Bhuvan Subramani - Data Engineering & AI Engineering Portfolio",
+    metaDescription: "Bhuvan Subramani - Data Engineer & AI/ML Engineer specializing in big data pipelines, machine learning, AI agent frameworks, and database optimization.",
+    about: "Building robust data pipelines, orchestrating AI systems, and engineering scalable data platforms.",
     socialLinks: [
         { url: "https://github.com/BhuvanPS", icon: "fa-brands fa-github", label: "GitHub Profile" },
         { url: "https://www.linkedin.com/in/bhuvan-ps", icon: "fa-brands fa-linkedin", label: "LinkedIn Profile" }
@@ -12,7 +12,7 @@ const personalDetails = {
         url: "Bhuvan_Master_resume.pdf",
         filename: "Bhuvan_Master_resume.pdf"
     },
-    profileImage: "avatar.webp",
+    profileImage: "newProfile.png",
     metrics: [
         { value: "8+", label: "End-to-End Projects" },
         { value: "5000+", label: "Active Users Impacted" },
@@ -20,14 +20,14 @@ const personalDetails = {
         { value: "5+", label: "Data Visualizations" }
     ],
     aboutLong: [
-        "I'm <span class=\"font-semibold text-indigo-600 dark:text-indigo-400\">Bhuvan Purushothaman Subramani</span>, a Data Scientist and Software Engineer who transforms complex data into scalable solutions. I've delivered <span class=\"font-semibold\">$15M+ in business impact</span>, built systems serving <span class=\"font-semibold\">5,000+ users</span>, and architected ML pipelines achieving <span class=\"font-semibold\">85%+ accuracy</span> across healthcare, finance, and retail.",
-        "What sets me apart? I bridge the gap between cutting-edge AI research and production-ready applications—from real-time analytics on Microsoft Fabric to AI-powered mobile apps on Google Play. Currently pursuing my <span class=\"font-semibold\">Master's in Data Science at Deakin University</span>, I don't just build models—I deliver measurable outcomes that drive revenue, reduce costs, and enhance user experiences."
+        "I'm <span class=\"font-semibold text-indigo-600 dark:text-indigo-400\">Bhuvan Purushothaman Subramani</span>, a Data Engineer and AI Engineer who builds robust data infrastructures and scalable intelligence systems. I've delivered <span class=\"font-semibold\">$15M+ in business impact</span>, built data systems serving <span class=\"font-semibold\">5,000+ users</span>, and architected ML/AI pipelines achieving <span class=\"font-semibold\">85%+ accuracy</span> across healthcare, finance, and retail.",
+        "What sets me apart? I bridge the gap between complex data warehousing and production-ready AI applications—from real-time data pipelines on Microsoft Fabric to multi-agent AI ecosystems. Having completed my <span class=\"font-semibold\">Master's in Data Science at Deakin University</span>, I don't just build models—I engineer scalable platforms that drive revenue, reduce costs, and enhance enterprise efficiency."
     ],
     services: [
-        { title: "Data Analysis & Visualization", desc: "Power BI dashboards, statistical analysis, and actionable business insights", icon: "fa-solid fa-chart-line" },
-        { title: "Machine Learning & AI", desc: "Predictive modeling, Classification, Regression, and deep learning", icon: "fa-solid fa-brain" },
-        { title: "Mobile App Development", desc: "Cross-platform Flutter apps with Firebase integration and AI features", icon: "fa-solid fa-mobile-alt" },
-        { title: "Data Engineering", desc: "SQL optimization, data pipelines, and big data processing", icon: "fa-solid fa-database" }
+        { title: "Data Engineering", desc: "Architecting robust ETL pipelines, data lakes, and SQL/NoSQL database optimizations for enterprise workloads", icon: "fa-solid fa-database" },
+        { title: "AI & ML Engineering", desc: "Designing predictive models, deep learning pipelines, and orchestrating multi-agent AI frameworks", icon: "fa-solid fa-brain" },
+        { title: "Real-time Analytics", desc: "Building streaming analytics architectures, data warehouses, and interactive dashboards on Fabric & Power BI", icon: "fa-solid fa-chart-line" },
+        { title: "Software & Cloud Engineering", desc: "Developing scalable backend systems, cloud-native architectures, and integrating AI applications", icon: "fa-solid fa-server" }
     ],
     contact: {
         email: "psbhuvan2002@gmail.com",
@@ -313,8 +313,8 @@ const journeyData = {
         {
             degree: 'Master of Data Science',
             institution: 'Deakin University, Melbourne',
-            period: 'Present',
-            description: 'Specializing in advanced analytics, machine learning, statistical methods, and data visualization.'
+            period: 'Completed 2026',
+            description: 'Specializing in advanced analytics, machine learning, statistical methods, and data visualization. Completed academic curriculum with focus on real-world AI deployment.'
         },
         {
             degree: 'B.Tech (Hons) Computer Science & Engineering',

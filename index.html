@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 
 <head>
     <meta name="google-site-verification" content="w0YQjVpGVj-D4KuO7PzQsZ1kTxQnBGds4gDBbsilhFE" />
@@ -19,7 +19,44 @@
         tailwind.config = {
             darkMode: 'class',
             theme: {
-                extend: {}
+                extend: {
+                    colors: {
+                        // Tailored Ultra-Premium Violet Palette
+                        indigo: {
+                            50: '#f4f2ff',
+                            100: '#ebe6ff',
+                            200: '#d5ccff',
+                            300: '#b29eff',
+                            400: '#8b66ff',
+                            500: '#632efe', // Radiant electric violet
+                            600: '#551ee3', // Deep indigo-violet
+                            700: '#4314be',
+                            800: '#38109d',
+                            900: '#2f0f80',
+                            950: '#1b0654',
+                        },
+                        // Neon accents
+                        purple: {
+                            400: '#f472b6',
+                            500: '#d946ef', // fuchsia neon
+                            600: '#c084fc',
+                        },
+                        // Custom luxurious dark-mode grays (Deep Cosmic Indigo-Gray)
+                        gray: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#1e1b4b', // deep cosmic navy for borders
+                            800: '#0c0a21', // rich dark card bg
+                            900: '#060414', // ultra-deep background
+                            950: '#03020a', // pure black-indigo abyss
+                        }
+                    }
+                }
             }
         }
     </script>
@@ -30,6 +67,9 @@
     <!-- Marked.js for Markdown parsing -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
 
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.3.4/dist/lenis.min.js"></script>
+
     <!-- App Scripts -->
     <script src="data.js" defer></script>
     <script src="script.js" defer></script>
@@ -39,6 +79,10 @@
 
 <body
     class="min-h-screen bg-gray-50 dark:bg-gray-950 text-gray-800 dark:text-gray-200 antialiased transition-colors duration-500">
+
+    <div class="scroll-progress-container">
+        <div id="scroll-progress-bar" class="scroll-progress-bar"></div>
+    </div>
 
     <header
         class="glass-effect fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg transition-all duration-500">
@@ -104,6 +148,9 @@
     <section id="home"
         class="relative flex min-h-screen items-center justify-center bg-cover bg-center bg-no-repeat text-gray-900 dark:text-white overflow-hidden pt-16">
         <div class="absolute inset-0 z-0 bg-white/80 dark:bg-black/50">
+            <!-- Grid Overlay -->
+            <div class="absolute inset-0 hero-grid-pattern opacity-60"></div>
+            <!-- Glowing blobs -->
             <div
                 class="absolute top-1/4 left-1/4 w-72 h-72 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob">
             </div>
@@ -115,65 +162,89 @@
             </div>
         </div>
 
-        <div class="container mx-auto px-4 py-12 z-10 relative">
-            <div class="flex flex-col md:flex-row items-center justify-between gap-12 mb-16">
-                <!-- Text Content -->
-                <div class="md:w-1/2 text-center md:text-left">
-                    <h1 class="mb-4 text-5xl md:text-6xl font-extrabold leading-tight animate-fade-in-up">
-                        <span id="hero-name" class="text-indigo-700 dark:text-yellow-300"></span>
-                    </h1>
-                    <div class="mb-6 text-xl md:text-2xl font-light animate-fade-in-up animation-delay-200">
-                        <span class="font-semibold">Data Scientist</span> • <span class="font-semibold">ML
-                            Engineer</span> •
-                        <span class="font-semibold">Flutter Developer</span>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 z-10 relative">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+                <!-- Left Column: Bio and CTAs -->
+                <div class="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6 md:space-y-8 max-w-3xl mx-auto lg:mx-0">
+                    <!-- Status Badge -->
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-indigo-500/20 bg-indigo-500/5 dark:bg-indigo-400/5 text-indigo-700 dark:text-indigo-300 text-xs font-bold uppercase tracking-wider animate-fade-in shadow-sm">
+                        <span class="relative flex h-2 w-2">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                        </span>
+                        Open to new opportunities
                     </div>
+
+                    <h1 class="text-5xl md:text-7xl font-extrabold leading-tight tracking-tight animate-fade-in-up">
+                        <span id="hero-name" class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"></span>
+                    </h1>
+
+                    <!-- Roles badges -->
+                    <div class="flex flex-wrap gap-2.5 justify-center lg:justify-start animate-fade-in-up animation-delay-200">
+                        <span class="px-4 py-1.5 rounded-full text-sm font-semibold bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border border-indigo-500/20 shadow-sm transition-all duration-300 hover:bg-indigo-500/20">Data Engineer</span>
+                        <span class="px-4 py-1.5 rounded-full text-sm font-semibold bg-purple-500/10 text-purple-700 dark:text-purple-300 border border-purple-500/20 shadow-sm transition-all duration-300 hover:bg-purple-500/20">AI Engineer</span>
+                        <span class="px-4 py-1.5 rounded-full text-sm font-semibold bg-pink-500/10 text-pink-700 dark:text-pink-300 border border-pink-500/20 shadow-sm transition-all duration-300 hover:bg-pink-500/20">ML Engineer</span>
+                    </div>
+
                     <p id="hero-desc"
-                        class="mb-8 text-lg md:text-xl font-medium max-w-2xl mx-auto md:mx-0 animate-fade-in-up animation-delay-400">
+                        class="text-lg md:text-xl font-medium leading-relaxed text-gray-600 dark:text-gray-300 animate-fade-in-up animation-delay-400 max-w-xl">
                     </p>
 
-                    <!-- Social Links -->
-                    <div id="hero-socials"
-                        class="flex justify-center md:justify-start gap-8 mb-10 animate-fade-in-up animation-delay-400">
-                    </div>
-
                     <!-- Buttons -->
-                    <div
-                        class="flex flex-col sm:flex-row justify-center md:justify-start gap-6 animate-fade-in-up animation-delay-600">
+                    <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 sm:gap-6 w-full sm:w-auto animate-fade-in-up animation-delay-600">
                         <button data-section="projects"
-                            class="scroll-button rounded-full bg-indigo-600 dark:bg-white px-10 py-4 text-lg font-semibold text-white dark:text-indigo-700 shadow-xl transition-all duration-300 hover:scale-110 hover:bg-indigo-700 dark:hover:bg-gray-100 transform hover:-translate-y-2 hover:shadow-2xl">
+                            class="scroll-button rounded-full bg-indigo-600 dark:bg-white px-8 py-3.5 text-base md:text-lg font-semibold text-white dark:text-indigo-700 shadow-lg transition-all duration-300 hover:scale-105 hover:bg-indigo-700 dark:hover:bg-gray-100 transform hover:-translate-y-1 hover:shadow-xl">
                             View My Work
                         </button>
                         <a id="resume-btn" href="#" download
-                            class="rounded-full border-2 border-indigo-600 dark:border-white px-10 py-4 text-lg font-semibold text-indigo-700 dark:text-white shadow-xl transition-all duration-300 hover:scale-110 hover:bg-indigo-600 hover:text-white dark:hover:bg-white dark:hover:text-indigo-700 transform hover:-translate-y-2 hover:shadow-2xl">
+                            class="rounded-full border-2 border-indigo-600 dark:border-white px-8 py-3.5 text-base md:text-lg font-semibold text-indigo-700 dark:text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-indigo-600 hover:text-white dark:hover:bg-white dark:hover:text-indigo-700 transform hover:-translate-y-1 hover:shadow-xl">
                             Download Resume
                         </a>
                     </div>
+
+                    <!-- Social Links -->
+                    <div id="hero-socials"
+                        class="flex justify-center lg:justify-start gap-4 animate-fade-in-up animation-delay-400">
+                    </div>
                 </div>
 
-                <!-- Image -->
-                <div class="md:w-1/2 flex justify-center animate-float order-first md:order-last mb-8 md:mb-0">
-                    <img id="profile-img" src="" alt=""
-                        class="h-64 w-64 md:h-80 md:w-80 rounded-full border-4 border-white shadow-2xl object-cover" />
+                <!-- Right Column: Visual Dashboard / Metrics -->
+                <div class="lg:col-span-5 w-full flex justify-center lg:justify-end items-center">
+                    <div id="hero-metrics"
+                        class="grid grid-cols-2 gap-4 sm:gap-6 w-full max-w-md animate-fade-in-up animation-delay-600">
+                    </div>
                 </div>
-            </div>
-
-            <!-- Key Metrics -->
-            <div id="hero-metrics"
-                class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto animate-fade-in-up animation-delay-600">
             </div>
         </div>
     </section>
 
     <section id="about" class="bg-gray-50 dark:bg-gray-950 py-20 md:py-24 transition-colors duration-500">
         <div class="container mx-auto px-4 max-w-6xl">
-            <h2 class="mb-16 text-center text-4xl md:text-5xl font-bold text-indigo-700 dark:text-indigo-400">About Me
+            <h2 class="mb-16 text-center text-4xl md:text-5xl font-bold text-indigo-700 dark:text-indigo-400 reveal-clip">About Me
             </h2>
 
-            <div class="grid md:grid-cols-2 gap-12 mb-16">
-                <div id="about-content">
+            <div class="flex flex-col md:flex-row items-center gap-12 mb-16">
+                <!-- Left Column: Profile image (Mirror inverted) -->
+                <div class="md:w-5/12 flex justify-center reveal-3d">
+                    <div class="relative group">
+                        <!-- Ambient gradient glow behind the avatar -->
+                        <div class="absolute -inset-2 rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-75 blur-xl group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+                        
+                        <!-- Circular frame -->
+                        <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-2xl bg-gray-200 dark:bg-gray-900">
+                            <img id="profile-img" src="" alt=""
+                                class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105 transform -scale-x-100" />
+                        </div>
+                    </div>
                 </div>
 
-                <div id="about-services" class="space-y-6">
+                <!-- Right Column: About details -->
+                <div class="md:w-7/12 space-y-8 flex-grow">
+                    <div id="about-content" class="reveal-fade">
+                    </div>
+
+                    <div id="about-services" class="space-y-6 reveal-fade">
+                    </div>
                 </div>
             </div>
 
@@ -190,7 +261,7 @@
 
     <section id="expertise" class="bg-white dark:bg-gray-900 py-20 md:py-24 transition-colors duration-500">
         <div class="container mx-auto px-4 max-w-6xl">
-            <h2 class="mb-12 text-center text-4xl md:text-5xl font-bold text-indigo-700 dark:text-indigo-400">My Skills
+            <h2 class="mb-12 text-center text-4xl md:text-5xl font-bold text-indigo-700 dark:text-indigo-400 reveal-clip">My Skills
             </h2>
 
             <!-- Tab Navigation -->
@@ -208,7 +279,7 @@
 
     <section id="projects" class="bg-gray-50 dark:bg-gray-950 py-20 md:py-24 transition-colors duration-500">
         <div class="container mx-auto px-4 max-w-6xl">
-            <h2 class="mb-8 text-center text-4xl md:text-5xl font-bold text-indigo-700 dark:text-indigo-400">Featured
+            <h2 class="mb-8 text-center text-4xl md:text-5xl font-bold text-indigo-700 dark:text-indigo-400 reveal-clip">Featured
                 Projects</h2>
             <p class="text-center text-gray-600 dark:text-gray-400 mb-12 text-lg max-w-3xl mx-auto">
                 A showcase of my work in data science, machine learning, and mobile development
@@ -267,7 +338,7 @@
 
         <div class="container mx-auto px-4 max-w-5xl z-10 relative">
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">Let's Connect</h2>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 reveal-clip">Let's Connect</h2>
                 <p class="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
                     Open to Data Science, ML Engineering, and Flutter Development opportunities
                 </p>

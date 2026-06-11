@@ -4,6 +4,9 @@
  */
 
 const PortfolioApp = (() => {
+    let lenisInstance = null;
+    let revealObserver = null;
+
     // ==========================================
     // Utilities
     // ==========================================
@@ -55,11 +58,13 @@ const PortfolioApp = (() => {
             this.renderPersonalDetails();
             this.initializeDarkMode();
             this.initializeMobileMenu();
+            this.initializeLenis();
             this.initializeSmoothScrolling();
             this.initializeBackToTop();
             this.handleContactForm();
             this.updateCopyright();
             this.initializeScrollReveal();
+            this.initializeActiveNavLinkTracking();
             this.initializeParallax();
         },
 
@@ -96,8 +101,8 @@ const PortfolioApp = (() => {
             if (socialContainer) {
                 socialContainer.innerHTML = personalDetails.socialLinks.map(link => `
                     <a href="${link.url}" target="_blank" rel="noopener noreferrer" aria-label="${link.label}"
-                       class="text-gray-700 dark:text-white/80 hover:text-indigo-600 dark:hover:text-white transition-all duration-300 transform hover:scale-110 hover:-translate-y-1">
-                        <i class="${link.icon} text-4xl drop-shadow-md"></i>
+                       class="w-12 h-12 rounded-full flex items-center justify-center bg-gray-100 hover:bg-indigo-600 dark:bg-white/5 dark:hover:bg-indigo-600 text-gray-700 dark:text-white/80 hover:text-white dark:hover:text-white transition-all duration-300 border border-gray-200/50 dark:border-white/5 hover:border-indigo-600 dark:hover:border-indigo-600 transform hover:scale-110 hover:-translate-y-1 shadow-sm">
+                        <i class="${link.icon} text-xl"></i>
                     </a>
                 `).join('');
             }
@@ -112,12 +117,43 @@ const PortfolioApp = (() => {
             // Metrics
             const metricsContainer = document.getElementById('hero-metrics');
             if (metricsContainer) {
-                metricsContainer.innerHTML = personalDetails.metrics.map(metric => `
-                    <div class="metric-card rounded-lg p-4 text-center">
-                        <div class="text-3xl font-bold text-indigo-700 dark:text-yellow-300">${metric.value}</div>
-                        <div class="text-sm text-gray-700 dark:text-gray-200">${metric.label}</div>
-                    </div>
-                `).join('');
+                const icons = [
+                    'fa-solid fa-laptop-code',
+                    'fa-solid fa-users',
+                    'fa-solid fa-mobile-screen-button',
+                    'fa-solid fa-chart-pie'
+                ];
+                const gradients = [
+                    'from-blue-500 to-indigo-500',
+                    'from-purple-500 to-pink-500',
+                    'from-pink-500 to-rose-500',
+                    'from-emerald-500 to-teal-500'
+                ];
+                metricsContainer.innerHTML = personalDetails.metrics.map((metric, idx) => {
+                    const icon = icons[idx % icons.length];
+                    const gradient = gradients[idx % gradients.length];
+                    return `
+                        <div class="metric-card rounded-2xl p-5 md:p-6 text-center reveal-3d relative overflow-hidden group border border-gray-200/50 dark:border-white/5 hover:border-transparent transition-all duration-300 shadow-sm flex flex-col items-center justify-center">
+                            <!-- Gradient Top Border line -->
+                            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${gradient}"></div>
+                            
+                            <!-- Icon with subtle background pulse -->
+                            <div class="mb-3 w-10 h-10 rounded-full flex items-center justify-center bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 group-hover:scale-110 transition-transform duration-300">
+                                <i class="${icon} text-lg"></i>
+                            </div>
+                            
+                            <!-- Value -->
+                            <div class="text-3xl md:text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r ${gradient} mb-1 select-none">
+                                ${metric.value}
+                            </div>
+                            
+                            <!-- Label -->
+                            <div class="text-xs uppercase tracking-wider font-semibold text-gray-500 dark:text-gray-400 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-300">
+                                ${metric.label}
+                            </div>
+                        </div>
+                    `;
+                }).join('');
             }
 
             // About Section
@@ -211,13 +247,12 @@ const PortfolioApp = (() => {
             const sunIcons = document.querySelectorAll('.fa-sun');
             const moonIcons = document.querySelectorAll('.fa-moon');
 
-            State.isDarkMode = localStorage.getItem('theme') === 'dark' ||
-                (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            State.isDarkMode = localStorage.getItem('theme') !== 'light';
 
             const updateHomeBackground = (isDark) => {
                 const homeSection = document.getElementById('home');
                 if (homeSection) {
-                    homeSection.style.backgroundImage = isDark ? "url('bg.webp')" : "url('bglight.webp')";
+                    homeSection.style.backgroundImage = "url('bgnewImg.png')";
                 }
             };
 
@@ -279,7 +314,14 @@ const PortfolioApp = (() => {
                     const sectionId = target.dataset.section;
                     const section = document.getElementById(sectionId);
                     if (section) {
-                        section.scrollIntoView({ behavior: 'smooth' });
+                        if (lenisInstance) {
+                            lenisInstance.scrollTo(section, {
+                                offset: -80,
+                                duration: 1.2
+                            });
+                        } else {
+                            section.scrollIntoView({ behavior: 'smooth' });
+                        }
                     }
                 }
             });
@@ -290,9 +332,9 @@ const PortfolioApp = (() => {
             if (!btn) return;
 
             const handleScroll = Utils.throttle(() => {
-                if (window.scrollY > 300) {
+                const scrollY = lenisInstance ? lenisInstance.scroll : window.scrollY;
+                if (scrollY > 300) {
                     btn.classList.remove('hidden');
-                    // Small delay to allow display:block to apply before opacity transition
                     requestAnimationFrame(() => {
                         btn.classList.add('show');
                     });
@@ -302,10 +344,18 @@ const PortfolioApp = (() => {
                 }
             }, 200);
 
-            window.addEventListener('scroll', handleScroll);
+            if (lenisInstance) {
+                lenisInstance.on('scroll', handleScroll);
+            } else {
+                window.addEventListener('scroll', handleScroll);
+            }
 
             btn.addEventListener('click', () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                if (lenisInstance) {
+                    lenisInstance.scrollTo(0, { duration: 1.2 });
+                } else {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
             });
         },
 
@@ -360,88 +410,158 @@ const PortfolioApp = (() => {
             });
         },
 
-        initializeScrollReveal() {
-            // All scroll-reveal animations disabled as per user request
-            // Everything will appear immediately without fade-in effects
+        initializeLenis() {
+            if (typeof Lenis === 'undefined') {
+                console.warn('Lenis is not loaded yet');
+                return;
+            }
+
+            lenisInstance = new Lenis({
+                duration: 1.2,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                direction: 'vertical',
+                gestureDirection: 'vertical',
+                smooth: true,
+                mouseMultiplier: 1,
+                smoothTouch: false,
+                touchMultiplier: 2,
+                infinite: false,
+            });
+
+            const progressBar = document.getElementById('scroll-progress-bar');
             
-            // // Intersection Observer for scroll-triggered animations
-            // const observerOptions = {
-            //     threshold: 0.1,
-            //     rootMargin: '0px 0px -50px 0px'
-            // };
+            lenisInstance.on('scroll', (e) => {
+                if (progressBar && e.limit > 0) {
+                    const progress = (e.scroll / e.limit) * 100;
+                    progressBar.style.width = `${progress}%`;
+                }
 
-            // const observer = new IntersectionObserver((entries) => {
-            //     entries.forEach(entry => {
-            //         if (entry.isIntersecting) {
-            //             entry.target.classList.add('revealed');
-            //             // Optionally unobserve after revealing
-            //             observer.unobserve(entry.target);
-            //         }
-            //     });
-            // }, observerOptions);
+                // Dynamic Header Styling on Scroll
+                const header = document.querySelector('header');
+                if (header) {
+                    if (e.scroll > 50) {
+                        header.classList.add('shadow-lg', 'bg-white/95', 'dark:bg-gray-900/95');
+                        header.classList.remove('bg-white/70', 'dark:bg-gray-900/70');
+                        const nav = header.querySelector('nav');
+                        if (nav) {
+                            nav.classList.remove('py-3', 'md:py-4');
+                            nav.classList.add('py-2', 'md:py-3');
+                        }
+                    } else {
+                        header.classList.remove('shadow-lg');
+                        header.classList.remove('bg-white/95', 'dark:bg-gray-900/95');
+                        header.classList.add('bg-white/70', 'dark:bg-gray-900/70');
+                        const nav = header.querySelector('nav');
+                        if (nav) {
+                            nav.classList.remove('py-2', 'md:py-3');
+                            nav.classList.add('py-3', 'md:py-4');
+                        }
+                    }
+                }
+            });
 
-            // // Observe sections with a delay to allow DOM to fully render
-            // setTimeout(() => {
-            //     // Add scroll-reveal class to major sections
-            //     const sections = document.querySelectorAll('section');
-            //     sections.forEach(section => {
-            //         if (section.id && section.id !== 'home') {
-            //             section.classList.add('scroll-reveal');
-            //             observer.observe(section);
-            //         }
-            //     });
+            function raf(time) {
+                lenisInstance.raf(time);
+                requestAnimationFrame(raf);
+            }
+            requestAnimationFrame(raf);
+        },
 
-            //     // Project cards animations removed as per user request
-            //     // const projectCards = document.querySelectorAll('.project-card');
-            //     // projectCards.forEach((card, index) => {
-            //     //     card.classList.add('scroll-reveal-stagger');
-            //     //     card.style.animationDelay = `${index * 0.1}s`;
-            //     //     observer.observe(card);
-            //     // });
+        initializeActiveNavLinkTracking() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link, .nav-link-mobile');
+            
+            const observerOptions = {
+                rootMargin: '-30% 0px -50% 0px',
+                threshold: 0
+            };
 
-            //     // Add stagger effect to skill cards
-            //     const skillCards = document.querySelectorAll('.skill-card');
-            //     skillCards.forEach((card, index) => {
-            //         card.classList.add('scroll-reveal-stagger');
-            //         card.style.animationDelay = `${index * 0.05}s`;
-            //         observer.observe(card);
-            //     });
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        navLinks.forEach(link => {
+                            if (link.dataset.section === id) {
+                                link.classList.add('active-link');
+                            } else {
+                                link.classList.remove('active-link');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
 
-            //     // Add reveal to metric cards
-            //     const metricCards = document.querySelectorAll('.metric-card');
-            //     metricCards.forEach(card => {
-            //         card.classList.add('scroll-reveal');
-            //         observer.observe(card);
-            //     });
+            sections.forEach(section => observer.observe(section));
+        },
 
-            //     // Add reveal to experience/education items
-            //     const experienceItems = document.querySelectorAll('.experience-item');
-            //     experienceItems.forEach((item, index) => {
-            //         item.classList.add('scroll-reveal-stagger');
-            //         item.style.animationDelay = `${index * 0.15}s`;
-            //         observer.observe(item);
-            //     });
-            // }, 500);
+        scanAndObserveRevealElements() {
+            if (!revealObserver) return;
+            const elements = document.querySelectorAll('.reveal-3d:not(.revealed), .reveal-clip:not(.revealed), .reveal-fade:not(.revealed)');
+            elements.forEach(el => {
+                if (!el.dataset.revealDelay) {
+                    const parent = el.parentElement;
+                    if (parent && (parent.classList.contains('grid') || parent.id === 'skills-grid' || parent.id === 'projects-container')) {
+                        const siblings = Array.from(parent.children).filter(child => child.classList.contains('reveal-3d') || child.classList.contains('project-card') || child.classList.contains('skill-card'));
+                        const siblingIndex = siblings.indexOf(el);
+                        if (siblingIndex !== -1) {
+                            el.dataset.revealDelay = (siblingIndex % 3) * 100;
+                        }
+                    }
+                }
+                revealObserver.observe(el);
+            });
+        },
+
+        initializeScrollReveal() {
+            const observerOptions = {
+                threshold: 0.05,
+                rootMargin: '0px 0px -60px 0px'
+            };
+
+            revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const delay = parseInt(entry.target.dataset.revealDelay || '0', 10);
+                        if (delay > 0) {
+                            setTimeout(() => {
+                                entry.target.classList.add('revealed');
+                            }, delay);
+                        } else {
+                            entry.target.classList.add('revealed');
+                        }
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            this.scanAndObserveRevealElements();
         },
 
         initializeParallax() {
-            // Subtle parallax effect for hero section
             const heroSection = document.getElementById('home');
             if (!heroSection) return;
 
             const blobs = heroSection.querySelectorAll('.animate-blob');
-            
-            const handleScroll = Utils.throttle(() => {
-                const scrolled = window.pageYOffset;
-                const parallaxSpeed = 0.5;
-                
-                blobs.forEach((blob, index) => {
-                    const speed = parallaxSpeed * (index + 1) * 0.3;
-                    blob.style.transform = `translateY(${scrolled * speed}px)`;
-                });
-            }, 16); // ~60fps
+            if (blobs.length === 0) return;
 
-            window.addEventListener('scroll', handleScroll);
+            if (lenisInstance) {
+                lenisInstance.on('scroll', (e) => {
+                    const scrolled = e.scroll;
+                    blobs.forEach((blob, index) => {
+                        const speed = 0.15 * (index + 1);
+                        blob.style.transform = `translateY(${scrolled * speed}px)`;
+                    });
+                });
+            } else {
+                const handleScroll = Utils.throttle(() => {
+                    const scrolled = window.pageYOffset;
+                    blobs.forEach((blob, index) => {
+                        const speed = 0.15 * (index + 1);
+                        blob.style.transform = `translateY(${scrolled * speed}px)`;
+                    });
+                }, 16);
+                window.addEventListener('scroll', handleScroll);
+            }
         }
     };
 
@@ -456,7 +576,7 @@ const PortfolioApp = (() => {
 
         createSkillCard(skill) {
             return `
-                <div class="skill-card group relative overflow-hidden flex flex-col items-center justify-center rounded-2xl bg-gradient-to-br from-white via-white to-gray-50 dark:from-gray-800 dark:via-gray-800 dark:to-gray-900 p-6 text-center shadow-md hover:shadow-2xl transition-all duration-500 border-2 border-gray-100 dark:border-gray-700 hover:border-indigo-300 dark:hover:border-indigo-600 hover:-translate-y-2 hover:scale-105" style="opacity: 0; animation: fadeInUp 0.5s ease forwards">
+                <div class="skill-card group relative overflow-hidden flex flex-col items-center justify-center rounded-2xl bg-gradient-to-br from-white via-white to-gray-50 dark:from-gray-800 dark:via-gray-800 dark:to-gray-900 p-6 text-center shadow-md hover:shadow-2xl transition-all duration-500 border-2 border-gray-100 dark:border-gray-700 hover:border-indigo-300 dark:hover:border-indigo-600 hover:-translate-y-2 hover:scale-105 reveal-3d hover-spring">
                     <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/5 via-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     <div class="relative mb-4 h-20 w-20 flex items-center justify-center rounded-2xl bg-gradient-to-br from-${skill.color}/20 to-${skill.color}/10 dark:from-${skill.color}/30 dark:to-${skill.color}/20 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg group-hover:shadow-${skill.color}/50">
                         <i class="${skill.iconClass} text-4xl text-${skill.color} group-hover:scale-110 transition-transform duration-300"></i>
@@ -472,18 +592,13 @@ const PortfolioApp = (() => {
             if (!container) return;
 
             const skills = skillData[category];
-            const fragment = document.createDocumentFragment();
-
-            // Using innerHTML on container is cleaner for batch updates than appending individual nodes
-            // But to use DocumentFragment effectively with template strings, we can build a big string
-            // or create elements. Here, building a string is faster for initial render.
-            // However, to support the animation delay logic easily:
 
             container.innerHTML = skills.map((skill, index) => {
-                // Inject animation delay inline
-                const delay = index * 50;
-                return this.createSkillCard(skill).replace('animation: fadeInUp 0.5s ease forwards', `animation: fadeInUp 0.5s ease forwards ${delay}ms`);
+                const delay = (index % 5) * 60;
+                return this.createSkillCard(skill).replace('reveal-3d"', `reveal-3d" data-reveal-delay="${delay}"`);
             }).join('');
+
+            UI.scanAndObserveRevealElements();
         },
 
         renderTabs() {
@@ -567,6 +682,9 @@ const PortfolioApp = (() => {
             container.appendChild(fragment);
 
             this.setupViewMoreExperience();
+            
+            // Scan for reveal elements
+            UI.scanAndObserveRevealElements();
         },
 
         createExperienceSection() {
@@ -583,11 +701,20 @@ const PortfolioApp = (() => {
                     </div>
                     <h3 class="text-3xl font-bold text-gray-800 dark:text-gray-200 ml-4">Experience</h3>
                 </div>
-                <div class="space-y-6 relative before:absolute before:left-0 before:top-[2rem] before:bottom-[2rem] before:w-0.5 before:bg-indigo-200 before:dark:bg-indigo-800" id="experience-timeline">
+                <div class="space-y-6 relative before:absolute before:left-0 before:-translate-x-1/2 before:top-[2.5rem] before:bottom-[2rem] before:w-[3px] before:bg-gradient-to-b before:from-indigo-600 before:via-purple-500 before:to-pink-500 before:rounded-full" id="experience-timeline">
                     ${journeyData.experience.map((exp, index) => `
                         <div class="relative pl-8 experience-item ${index >= initialShowCount ? 'hidden' : ''}" data-index="${index}">
-                            <div class="absolute left-0 top-[2rem] w-4 h-4 bg-indigo-600 dark:bg-indigo-500 rounded-full -ml-[7px] ring-4 ring-white dark:ring-gray-900 shadow-md z-10"></div>
-                            <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:-translate-y-1 group">
+                            <!-- Glowing radar beacon timeline node -->
+                            <div class="absolute left-0 top-[2rem] -translate-x-1/2 z-10 flex h-5 w-5 items-center justify-center">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 dark:bg-indigo-300 opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-indigo-600 dark:bg-indigo-400 border-2 border-white dark:border-gray-900 shadow-md"></span>
+                            </div>
+                            
+                            <!-- Card with focus bar and spring scaling -->
+                            <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl border border-gray-100/80 dark:border-gray-700/80 hover:border-transparent transition-all duration-300 hover:-translate-y-1.5 group reveal-fade relative overflow-hidden hover-spring">
+                                <!-- Focus color-glow strip -->
+                                <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-transparent group-hover:bg-gradient-to-b group-hover:from-indigo-500 group-hover:via-purple-500 group-hover:to-pink-500 transition-all duration-300"></div>
+                                
                                 <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 mb-3">
                                     <div class="flex-1">
                                         <h4 class="text-xl font-bold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">${exp.title}</h4>
@@ -598,10 +725,10 @@ const PortfolioApp = (() => {
                                         <span class="font-medium">${exp.period}</span>
                                     </div>
                                 </div>
-                                <ul class="space-y-2 mb-4">
+                                <ul class="space-y-2.5 mb-4">
                                     ${exp.description.map(item => `
-                                        <li class="flex items-start text-gray-600 dark:text-gray-300 leading-relaxed">
-                                            <i class="fa-solid fa-circle text-indigo-500 dark:text-indigo-400 text-[6px] mr-3 mt-2 flex-shrink-0"></i>
+                                        <li class="flex items-start text-gray-600 dark:text-gray-300 leading-relaxed text-sm md:text-base">
+                                            <i class="fa-solid fa-terminal text-indigo-500 dark:text-indigo-400 text-[10px] mr-3 mt-1.5 flex-shrink-0"></i>
                                             <span>${item}</span>
                                         </li>
                                     `).join('')}
@@ -640,8 +767,13 @@ const PortfolioApp = (() => {
                 </div>
                 <div class="grid md:grid-cols-2 gap-6">
                     ${journeyData.education.map(edu => `
-                        <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:-translate-y-1 group relative overflow-hidden">
+                        <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl border border-gray-100/80 dark:border-gray-700/80 hover:border-transparent transition-all duration-300 hover:-translate-y-1.5 group relative overflow-hidden hover-spring reveal-3d">
+                            <!-- Focus color-glow strip -->
+                            <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-transparent group-hover:bg-gradient-to-b group-hover:from-purple-500 group-hover:via-pink-500 group-hover:to-rose-500 transition-all duration-300"></div>
+                            
+                            <!-- Mesh glow accent -->
                             <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-bl-full"></div>
+                            
                             <div class="relative">
                                 <div class="flex items-start justify-between mb-3">
                                     <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-700/50 px-3 py-1.5 rounded-full">
@@ -675,7 +807,7 @@ const PortfolioApp = (() => {
                 </div>
                 <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     ${journeyData.certificates.map(cert => `
-                        <a href="${cert.link || '#'}" target="_blank" rel="noopener noreferrer" class="block bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-800/50 rounded-xl p-5 border-2 border-gray-100 dark:border-gray-700 hover:border-green-400 dark:hover:border-green-500 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 group">
+                        <a href="${cert.link || '#'}" target="_blank" rel="noopener noreferrer" class="block bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-800/50 rounded-xl p-5 border-2 border-gray-100 dark:border-gray-700 hover:border-green-400 dark:hover:border-green-500 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 group reveal-3d">
                             <div class="flex items-start space-x-3">
                                 <div class="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-green-400 to-teal-500 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                                     <i class="fa-solid fa-certificate text-white"></i>
@@ -711,7 +843,10 @@ const PortfolioApp = (() => {
                 if (isExpanded) {
                     hiddenItems.forEach(item => {
                         item.classList.remove('hidden');
-                        item.style.animation = 'fadeInUp 0.5s ease forwards';
+                        const card = item.querySelector('.reveal-fade');
+                        if (card) {
+                            card.classList.add('revealed');
+                        }
                     });
                     viewMoreText.textContent = 'View Less';
                     viewMoreIcon.style.transform = 'rotate(180deg)';
@@ -721,11 +856,23 @@ const PortfolioApp = (() => {
                     allItems.forEach((item, index) => {
                         if (index >= initialShowCount) {
                             item.classList.add('hidden');
+                            const card = item.querySelector('.reveal-fade');
+                            if (card) {
+                                card.classList.remove('revealed');
+                            }
                         }
                     });
                     viewMoreText.textContent = 'View More Experiences';
                     viewMoreIcon.style.transform = 'rotate(0deg)';
-                    document.getElementById('experience-timeline').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    
+                    const timeline = document.getElementById('experience-timeline');
+                    if (timeline) {
+                        if (lenisInstance) {
+                            lenisInstance.scrollTo(timeline, { offset: -100, duration: 1.2 });
+                        } else {
+                            timeline.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    }
                 }
             });
         }
@@ -742,7 +889,7 @@ const PortfolioApp = (() => {
 
         createCard(project) {
             const card = document.createElement('div');
-            card.className = `project-card ${project.category.join(' ')} group relative flex flex-col bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:-translate-y-1 overflow-hidden`;
+            card.className = `project-card ${project.category.join(' ')} group relative flex flex-col bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:-translate-y-1.5 overflow-hidden reveal-3d hover-spring`;
 
             const categoryColors = {
                 'data': 'from-blue-500 to-cyan-500',
@@ -862,12 +1009,17 @@ const PortfolioApp = (() => {
                     card.classList.add('hidden', 'project-hidden');
                 }
                 card.setAttribute('data-project-index', index);
+                // Stagger transition delays dynamically (3-column layout)
+                card.setAttribute('data-reveal-delay', (index % 3) * 100);
                 fragment.appendChild(card);
             });
 
             container.appendChild(fragment);
 
             this.updateViewMoreButton(hasMore);
+
+            // Scan for reveal elements
+            UI.scanAndObserveRevealElements();
         },
 
         updateViewMoreButton(hasMore) {
@@ -885,7 +1037,6 @@ const PortfolioApp = (() => {
                     viewMoreText.textContent = 'View More Projects';
                     viewMoreIcon.style.transform = 'rotate(0deg)';
 
-                    // Remove old listeners to prevent duplicates (simple approach: clone and replace)
                     const newBtn = viewMoreBtn.cloneNode(true);
                     viewMoreBtn.parentNode.replaceChild(newBtn, viewMoreBtn);
 
@@ -898,8 +1049,7 @@ const PortfolioApp = (() => {
                         if (!isExpanded) {
                             hiddenProjects.forEach(project => {
                                 project.classList.remove('hidden');
-                                // Animation removed as per user request
-                                // project.style.animation = 'fadeInUp 0.5s ease forwards';
+                                project.classList.add('revealed');
                             });
                             text.textContent = 'View Less';
                             icon.style.transform = 'rotate(180deg)';
@@ -907,11 +1057,20 @@ const PortfolioApp = (() => {
                         } else {
                             hiddenProjects.forEach(project => {
                                 project.classList.add('hidden');
+                                project.classList.remove('revealed');
                             });
                             text.textContent = 'View More Projects';
                             icon.style.transform = 'rotate(0deg)';
                             newBtn.dataset.expanded = 'false';
-                            document.getElementById('projects').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            
+                            const projSection = document.getElementById('projects');
+                            if (projSection) {
+                                if (lenisInstance) {
+                                    lenisInstance.scrollTo(projSection, { offset: -100, duration: 1.2 });
+                                } else {
+                                    projSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                }
+                            }
                         }
                     });
                 }
