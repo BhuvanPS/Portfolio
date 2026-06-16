@@ -161,22 +161,24 @@ const PortfolioApp = (() => {
             if (aboutContainer) {
                 aboutContainer.innerHTML = `
                     <h3 class="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200">Who I Am</h3>
-                    ${personalDetails.aboutLong.map(p => `<p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300 mb-4">${p}</p>`).join('')}
+                    <div class="space-y-4 max-w-3xl mx-auto md:mx-0">
+                        ${personalDetails.aboutLong.map(p => `<p class="text-lg leading-relaxed text-gray-600 dark:text-gray-300">${p}</p>`).join('')}
+                    </div>
                 `;
             }
 
             const servicesContainer = document.getElementById('about-services');
             if (servicesContainer) {
                 servicesContainer.innerHTML = `
-                    <h3 class="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200">What I Offer</h3>
-                    <div class="space-y-4">
+                    <h3 class="text-2xl font-bold mb-6 text-gray-800 dark:text-gray-200">What I Offer</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
                         ${personalDetails.services.map(service => `
-                            <div class="flex items-start space-x-3">
-                                <i class="${service.icon} text-2xl text-indigo-600 dark:text-indigo-400 mt-1"></i>
-                                <div>
-                                    <h4 class="font-semibold text-gray-800 dark:text-gray-200">${service.title}</h4>
-                                    <p class="text-gray-600 dark:text-gray-400 text-sm">${service.desc}</p>
+                            <div class="bg-white/50 dark:bg-gray-800/30 backdrop-blur-sm p-6 rounded-2xl border border-gray-200/40 dark:border-gray-800/40 hover:border-indigo-500/30 dark:hover:border-indigo-500/30 hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group hover-spring">
+                                <div class="w-12 h-12 rounded-full bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform duration-300">
+                                    <i class="${service.icon} text-xl"></i>
                                 </div>
+                                <h4 class="font-bold text-gray-800 dark:text-gray-200 text-base mb-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">${service.title}</h4>
+                                <p class="text-gray-500 dark:text-gray-400 text-xs md:text-sm leading-relaxed">${service.desc}</p>
                             </div>
                         `).join('')}
                     </div>
@@ -661,25 +663,27 @@ const PortfolioApp = (() => {
         },
 
         render() {
-            const container = document.getElementById('journey-section');
-            if (!container) return;
-
-            const fragment = document.createDocumentFragment();
-
             // Experience
-            const expSection = this.createExperienceSection();
-            fragment.appendChild(expSection);
+            const expContainer = document.getElementById('experience-timeline-container');
+            if (expContainer) {
+                expContainer.innerHTML = '';
+                expContainer.appendChild(this.createExperienceSection());
+            }
 
-            // Education
-            const eduSection = this.createEducationSection();
-            fragment.appendChild(eduSection);
+            // Achievements & Leadership
+            const achievementsContainer = document.getElementById('achievements-container');
+            if (achievementsContainer) {
+                achievementsContainer.innerHTML = '';
+                achievementsContainer.appendChild(this.createAchievementsSection());
+            }
 
-            // Certifications
-            const certSection = this.createCertSection();
-            fragment.appendChild(certSection);
-
-            container.innerHTML = '';
-            container.appendChild(fragment);
+            // Education & Certifications
+            const eduCertsContainer = document.getElementById('education-certs-container');
+            if (eduCertsContainer) {
+                eduCertsContainer.innerHTML = '';
+                eduCertsContainer.appendChild(this.createEducationSection());
+                eduCertsContainer.appendChild(this.createCertSection());
+            }
 
             this.setupViewMoreExperience();
             
@@ -821,6 +825,41 @@ const PortfolioApp = (() => {
                                 </div>
                             </div>
                         </a>
+                    `).join('')}
+                </div>
+            `;
+            return div;
+        },
+
+        createAchievementsSection() {
+            const div = document.createElement('div');
+            div.className = 'mt-12';
+            div.innerHTML = `
+                <div class="flex items-center mb-8">
+                    <div class="w-12 h-12 bg-gradient-to-br from-yellow-500 to-amber-600 rounded-full flex items-center justify-center shadow-lg">
+                        <i class="fa-solid fa-trophy text-xl text-white"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold text-gray-800 dark:text-gray-200 ml-4">Achievements & Leadership</h3>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6">
+                    ${journeyData.achievements.map(ach => `
+                        <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl border border-gray-100/80 dark:border-gray-700/80 hover:border-transparent transition-all duration-300 hover:-translate-y-1.5 group relative overflow-hidden hover-spring reveal-3d">
+                            <!-- Focus color-glow strip -->
+                            <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-transparent group-hover:bg-gradient-to-b group-hover:from-yellow-500 group-hover:to-amber-500 transition-all duration-300"></div>
+                            
+                            <!-- Mesh glow accent -->
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-yellow-500/10 to-amber-500/10 rounded-bl-full"></div>
+                            
+                            <div class="relative flex items-start space-x-4">
+                                <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-yellow-400 to-amber-500 rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-md">
+                                    <i class="fa-solid fa-ranking-star text-white text-lg"></i>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="text-xl font-bold text-gray-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors mb-2 leading-tight">${ach.title}</h4>
+                                    <p class="text-gray-600 dark:text-gray-300 leading-relaxed text-sm md:text-base">${ach.description}</p>
+                                </div>
+                            </div>
+                        </div>
                     `).join('')}
                 </div>
             `;

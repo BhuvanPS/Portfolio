@@ -9,8 +9,8 @@ const personalDetails = {
         { url: "https://www.linkedin.com/in/bhuvan-ps", icon: "fa-brands fa-linkedin", label: "LinkedIn Profile" }
     ],
     resume: {
-        url: "Bhuvan_Master_resume.pdf",
-        filename: "Bhuvan_Master_resume.pdf"
+        url: "Bhuvan_Resume.pdf",
+        filename: "Bhuvan_Resume.pdf"
     },
     profileImage: "newProfile.png",
     metrics: [
@@ -262,8 +262,23 @@ const journeyData = {
     experience: [
         {
             title: "Junior AI Engineer",
+            company: "InnovAlte (AI-Driven Bush Fire Forecasting), Melbourne",
+            period: "02/2026 – 06/2026",
+            description: [
+                "Designed the model input schema with 14+ physically grounded variables and a fixed tensor shape, serving as the cross-stream API contract between AI, Backend and Frontend teams and unblocking parallel development across the project",
+                "Built an 8-phase time series forecasting pipeline covering temporal decomposition, FFDI proxy feature engineering, and multi-output deep learning benchmarking across four architectures (LSTM, Transformer, CNN-LSTM) on 5,000 synthetic fire records",
+                "Developed a physically grounded synthetic data generator and a Model-as-a-Service FastAPI deployment guide, enabling model prototyping and backend integration before production data was available"
+            ],
+            highlights: [
+                "Model Schema Design",
+                "Time Series Forecasting",
+                "Model-as-a-Service (FastAPI)"
+            ]
+        },
+        {
+            title: "Junior Data Engineer",
             company: "Gopher Industries, Melbourne",
-            period: "06/2025 – Present",
+            period: "06/2025 – 12/2025",
             description: [
                 "Led the development of synthetic data generation pipelines to support internal ML research and model validation",
                 "Managed a 12 memebered AI team and optimized data workflows for improved efficiency",
@@ -275,6 +290,7 @@ const journeyData = {
                 "ML Pipeline Optimization"
             ]
         },
+        
         {
             title: 'Software Consultant (Remote)',
             company: 'RADSTEC, California',
@@ -287,7 +303,7 @@ const journeyData = {
             highlights: ['AI Integration', '20% Efficiency Boost']
         },
         {
-            title: 'Software Engineer',
+            title: 'Full Stack Developer',
             company: 'CUROWEBS, Coimbatore',
             period: '01/2024 – 06/2024',
             description: [
@@ -330,6 +346,24 @@ const journeyData = {
         { name: 'Privacy and Security in Online Social Media', issuer: 'NPTEL' },
         { name: 'Flutter and Dart', issuer: 'NPTEL',link:'https://www.udemy.com/certificate/UC-68f3e8c3-4726-4780-8720-46b3ccac3273/' },
         { name: 'Deep Learning', issuer: 'NPTEL' }
+    ],
+    achievements: [
+        {
+            title: "Google DeepMind AI Sprint Hackathon — Top 9 Finalist",
+            description: "Built a hyperlocal AI fashion marketplace with a price elasticity optimizer, Gemini-powered style sandbox, and Veo3 campaign generation in under 3 hours."
+        },
+        {
+            title: "GovHack Australia — Honourable Mention",
+            description: "Victoria Green Transit Strategy: Identified $15M in regenerative economy potential and projected 25% carbon reduction through smart infrastructure and transit analysis."
+        },
+        {
+            title: "Technical Coordinator • E-CELL SASTRA",
+            description: "Led mobile platform dev with 500+ downloads and 1,000+ registered users; reduced manual communication overhead by 45% via automated networking features. Provided support and feedback to the junior developers."
+        },
+        {
+            title: "Data Team Lead • Guardian Monitor | Gopher Industries | Deakin University",
+            description: "Directed a cross-functional team of 12 for Guardian Monitor, fostering teamwork through peer-review frameworks and collaborative CI/CD strategies that accelerated project delivery cycles by 20%."
+        }
     ]
 };
 // Freeze data objects to prevent accidental mutations
